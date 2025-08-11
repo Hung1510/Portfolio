@@ -42,6 +42,16 @@ const projects = [
   },
   {
     id: 5,
+    title: "Layoffs Data Analysis & EDA",
+    description:
+      "A comprehensive analysis of layoffs data, focusing on trends, patterns, and key factors contributing to workforce reductions.",
+    image: "/projects/layoffs.png",
+    tags: ["MySQL", "Excel", "PowerBI"],
+    demoUrl: "#",
+    githubUrl: "https://github.com/Hung1510/SQL_DataCleaning_EDA.git",
+  },
+  {
+    id: 6,
     title: "Tree Sale Dashboard",
     description:
       "Develop an interactive dashboard to analyze plant sales data, focusing on revenue trends, product performance, and key correlations between sales factors.",
@@ -83,8 +93,11 @@ export const ProjectsSection = () => {
 
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
+                  {project.tags.map((tag, idx) => (
+                    <span
+                      key={tag + idx}
+                      className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground"
+                    >
                       {tag}
                     </span>
                   ))}
