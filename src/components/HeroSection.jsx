@@ -9,7 +9,7 @@ export const HeroSection = () => {
       <div className="container max-w-4xl mx-auto text-center z-10">
         <div className="space-y-6">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-            <span className="opacity-0 animate-fade-in"> Hi, I'm</span>
+            <span className="opacity-0 animate-fade-in"> Hi, I&apos;m</span>
             <span className="text-primary opacity-0 animate-fade-in-delay-1">
               {" "}
               Phạm Trần Gia Hưng
@@ -20,8 +20,8 @@ export const HeroSection = () => {
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            I'm building my skill in creating secure and efficient backend systems for real-world applications and also improving my programming skills in web development.
-            I'm also exploring data analysis and visualization to turn raw information into meaningful insights.
+            I&apos;m building my skill in creating secure and efficient backend systems for real-world applications and also improving my programming skills in web development.
+            I&apos;m also exploring data analysis and visualization to turn raw information into meaningful insights.
           </p>
 
 

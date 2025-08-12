@@ -18,4 +18,13 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
-}
+  overrides: [
+    {
+      files: ['src/pages/api/**/*.js'],
+      env: { node: true, es2020: true },
+      rules: {
+        // You can override/add rules for API files here if needed
+      },
+    },
+  ],
+};
