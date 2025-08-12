@@ -52,6 +52,16 @@ const projects = [
   },
   {
     id: 6,
+    title: "E-commerce Shopping Cart",
+    description:
+      "A back-end e-commerce shopping cart platform, built with Spring Boot, Spring Security, JWT and an api to store user data.",
+    image: "",
+    tags: ["Java", "Spring Boot", "Spring Security", "JWT"],
+    demoUrl: "#",
+    githubUrl: "https://github.com/Hung1510/eCommerce-Project.git",
+  },
+  {
+    id: 7,
     title: "Tree Sale Dashboard",
     description:
       "Develop an interactive dashboard to analyze plant sales data, focusing on revenue trends, product performance, and key correlations between sales factors.",
