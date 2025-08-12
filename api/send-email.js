@@ -1,4 +1,3 @@
-// /api/send-email.js
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY || "");
@@ -8,11 +7,13 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  console.log("RESEND_API_KEY set?", !!process.env.RESEND_API_KEY);
+  // Log env vars to make sure they're set on Vercel
+  console.log("RESEND_API_KEY is set:", !!process.env.RESEND_API_KEY);
   console.log("RESEND_SENDER:", process.env.RESEND_SENDER);
 
   const { name, email, message } = req.body;
 
+  // Validate inputs
   if (!name || !email || !message) {
     return res.status(400).json({ error: "Missing required fields: name, email, or message" });
   }
@@ -25,16 +26,19 @@ export default async function handler(req, res) {
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
     });
 
-    if (!response || typeof response !== "object") {
-      console.error("Invalid response from Resend API:", response);
-      return res.status(500).json({ error: "Invalid response from email service" });
-    }
+    console.log("Email sent successfully:", response);
 
-    // Success
     return res.status(200).json({ message: "Email sent successfully" });
-
   } catch (error) {
-    console.error("Failed to send email:", error);
-    return res.status(500).json({ error: error.message || "Failed to send email" });
+    // Log the full error so we can see what’s wrong
+    console.error("Error sending email:", error);
+
+    // Try to get a meaningful error message
+    const errorMessage =
+      error?.response?.data?.message ||
+      error.message ||
+      "Failed to send email";
+
+    return res.status(500).json({ error: errorMessage });
   }
 }
