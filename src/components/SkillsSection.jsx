@@ -1,32 +1,34 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { lang } from "../helper/lang";
 
 const skills = [
   // Frontend
   { name: "HTML/CSS", level: 80, category: "frontend" },
   { name: "JavaScript", level: 65, category: "frontend" },
   { name: "React", level: 65, category: "frontend" },
+  { name: "Embedded JavaScript", level: 65, category: "frontend" },
   { name: "Tailwind CSS", level: 60, category: "frontend" },
 
   // Backend
-  { name: "Node.js", level: 65, category: "backend" },
-  { name: "Express", level: 65, category: "backend" },
   { name: "Java", level: 70, category: "backend" },
+  { name: "Node.js", level: 65, category: "backend" },
+  { name: "Netjs", level: 65, category: "backend" },
+  { name: "Express", level: 65, category: "backend" },
   { name: "C#", level: 65, category: "backend" },
+  { name: "Python", level: 60, category: "backend" },
   { name: "MS-SQL", level: 60, category: "backend" },
+  { name: "MySQL", level: 60, category: "backend" },
+  { name: "Mongo DB", level: 60, category: "backend" },
+
 
   // Tools
   { name: "Git/GitHub", level: 75, category: "tools" },
   { name: "Trello", level: 70, category: "tools" },
 
-  // data analysis
-  { name: "Python", level: 70, category: "data analysis" },
-  { name: "Power BI", level: 65, category: "data analysis" },
-  { name: "MySQL", level: 65, category: "data analysis" },
-  { name: "Excel", level: 65, category: "data analysis" },
 ];
 
-const categories = ["all", "frontend", "backend", "tools", "data analysis"];
+const categories = ["all", "frontend", "backend", "tools"];
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -38,7 +40,7 @@ export const SkillsSection = () => {
     <section id="skills" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          My <span className="text-primary"> Skills</span>
+          {lang({ vi: "Kỹ năng của tôi", en: "My" })} <span className="text-primary">{lang({ vi: "", en: "Skills" })}</span>
         </h2>
 
         <div className="flex flex-wrap justify-center gap-4 mb-12">
