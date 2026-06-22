@@ -13,7 +13,7 @@ export const projects = [
     tags: ["Express.js", "Node.js", "EJS", "Bootstrap"],
     demoUrl: "https://smart-learning-jvakdob3j-datlys-projects.vercel.app/login",
     githubUrl: "https://github.com/Ly-Dat/SmartLearning",
-    detailUrl: "/projects/smart-learning-advisor",
+    slug: "smart-learning-advisor",
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ export const projects = [
     tags: ["React", "NestJS", "MongoDB", "REST API"],
     demoUrl: "https://interview-quizz-software.vercel.app/",
     githubUrl: "https://github.com/Hung1510/Capstone_Project_Quizz",
-    detailUrl: "/projects/2",
+    slug: "quiz-platform",
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ export const projects = [
     tags: ["React", "Node.js", "MongoDB"],
     demoUrl: "https://expense-tracker-lemon-omega.vercel.app/",
     githubUrl: "https://github.com/LeTrietHuan-Student/Project-CSW-303.git",
-    detailUrl: "/projects/3",
+    slug: "expense-tracker",
   },
   {
     id: 4,
@@ -53,7 +53,7 @@ export const projects = [
     tags: ["TypeScript", "discord.js", "SQLite", "Railway"],
     demoUrl: "#",
     githubUrl: "https://github.com/Hung1510/Galaxy_discordBot",
-    detailUrl: "/projects/4",
+    slug: "discord-bot",
   },
   {
     id: 5,
@@ -67,7 +67,7 @@ export const projects = [
     tags: ["Python", "Machine Learning", "NLP", "FastAPI"],
     demoUrl: "#",
     githubUrl: "#",
-    detailUrl: "/projects/5",
+    slug: "region-research",
   },
 ];
 
@@ -137,9 +137,9 @@ export const ProjectsSection = () => {
                     >
                       <Github size={20} />
                     </a>
-                    {project.detailUrl && project.detailUrl !== "#" && (
+                    {project.slug && (
                       <a
-                        href={project.detailUrl}
+                        href={`/projects/${project.slug}`}
                         className="text-foreground/80 hover:text-primary transition-colors duration-300"
                       >
                         <FileText size={20} />
