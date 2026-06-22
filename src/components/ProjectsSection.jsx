@@ -26,7 +26,7 @@ const projects = [
     tags: ["React", "NestJS", "MongoDB", "REST API"],
     demoUrl: "https://interview-quizz-software.vercel.app/",
     githubUrl: "https://github.com/Hung1510/Capstone_Project_Quizz",
-    detailUrl: "/projects/quiz-platform",
+    detailUrl: "#", // no detail page yet — icon stays hidden until a real one exists
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ const projects = [
     tags: ["React", "Node.js", "MongoDB"],
     demoUrl: "https://expense-tracker-lemon-omega.vercel.app/",
     githubUrl: "https://github.com/LeTrietHuan-Student/Project-CSW-303.git",
-    detailUrl: "/projects/expense-tracker",
+    detailUrl: "#", // no detail page yet — icon stays hidden until a real one exists
   },
   {
     id: 4,
@@ -137,12 +137,14 @@ export const ProjectsSection = () => {
                     >
                       <Github size={20} />
                     </a>
-                    <a
-                      href={project.detailUrl}
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                    >
-                      <FileText size={20} />
-                    </a>
+                    {project.detailUrl && project.detailUrl !== "#" && (
+                      <a
+                        href={project.detailUrl}
+                        className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                      >
+                        <FileText size={20} />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
