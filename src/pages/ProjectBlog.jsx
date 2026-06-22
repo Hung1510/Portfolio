@@ -1,154 +1,193 @@
-import { ArrowLeft, Calendar, ExternalLink, Github } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
-import { useToast } from "@/hooks/use-toast";
-import { projects } from "../components/ProjectsSection"; // Import projects
-import { projectBlogs } from "./ProjectBlogs"; // Import blog content
+export const projectBlogs = {
+    // id 1 (Smart Learning Advisor) uses its own dedicated page (SmartAdvisorDetail),
+    // so it intentionally has no generic blog entry here.
 
-export const ProjectBlog = () => {
-    const { id } = useParams();
-    const { toast } = useToast();
-    const project = projects.find(p => p.id === parseInt(id));
-
-    if (!project) {
-        return (
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="text-center">
-                    <h1 className="text-2xl font-bold mb-4">Project Not Found</h1>
-                    <Link to="/" className="cosmic-button">
-                        <ArrowLeft size={16} className="mr-2" />
-                        Back to Home
-                    </Link>
-                </div>
-            </div>
-        );
-    }
-
-    const handleLinkClick = (url) => {
-        if (url === "#") {
-            toast({
-                title: "Link not available",
-                description: "This project link is not currently available.",
-                variant: "destructive",
-            });
-            return false;
-        }
-        return true;
-    };
-
-    const content = projectBlogs[project.id] || {
-        title: `${project.title} - Detailed Overview`,
-        date: "Coming soon",
-        readTime: "0 min read",
+    2: {
+        title: "Quiz & Interview Practice Platform: IT Interview Preparation",
+        date: "2025",
         sections: [
             {
                 type: "text",
-                content: "Detailed blog content is being prepared for this project. Check back soon!"
+                content: "A full-stack platform built to help IT students and job seekers practice technical interviews. It combines a categorized question bank, dynamic quiz generation, and real-time scoring so users can rehearse interview scenarios and track their progress. (Group project.)"
+            },
+            {
+                type: "image",
+                content: "/projects/quizApp.png",
+                caption: "Quiz & Interview Practice Platform"
+            },
+            {
+                type: "heading",
+                content: "Features"
+            },
+            {
+                type: "list",
+                content: [
+                    "Dynamic quiz creation from a categorized question bank",
+                    "Real-time scoring and instant feedback",
+                    "AI-powered question generation",
+                    "Administrative dashboard for managing content and users"
+                ]
+            },
+            {
+                type: "heading",
+                content: "Technical Stack"
+            },
+            {
+                type: "list",
+                content: [
+                    "Frontend: React",
+                    "Backend: NestJS with RESTful APIs",
+                    "Database: MongoDB",
+                    "Deployment: Vercel"
+                ]
+            },
+            {
+                type: "heading",
+                content: "Demo"
+            },
+            {
+                type: "list",
+                content: [
+                    "Name: datly",
+                    "Password: 123456"
+                ]
             }
         ]
-    };
+    },
 
-    return (
-        <div className="min-h-screen pt-24 pb-16 px-4">
-            <div className="container mx-auto max-w-4xl">
-                <Link
-                    to="/"
-                    className="inline-flex items-center text-muted-foreground hover:text-primary mb-8 transition-colors"
-                >
-                    <ArrowLeft size={16} className="mr-2" />
-                    Back to Home
-                </Link>
+    3: {
+        title: "Expense Tracker: Personal Finance Management",
+        date: "April 2025 – June 2025",
+        sections: [
+            {
+                type: "text",
+                content: "A full-stack application for tracking personal expenses and managing budgets. Users can record, classify, and analyze their spending patterns with clear visualizations and insights to support more effective budgeting. (Course project.)"
+            },
+            {
+                type: "image",
+                content: "/projects/expensetracker.png",
+                caption: "Expense Tracker Dashboard"
+            },
+            {
+                type: "heading",
+                content: "Technical Stack"
+            },
+            {
+                type: "list",
+                content: [
+                    "Frontend: React with modern hooks and context",
+                    "Backend: Node.js with Express.js",
+                    "Database: MongoDB",
+                    "API: RESTful endpoints for transactions and categories"
+                ]
+            },
+            {
+                type: "heading",
+                content: "Demo"
+            },
+            {
+                type: "list",
+                content: [
+                    "Email: a@gmail.com",
+                    "Password: 123"
+                ]
+            }
+        ]
+    },
 
-                <article className="bg-card rounded-lg shadow-xs overflow-hidden">
-                    {project.image && (
-                        <div className="h-64 md:h-80 overflow-hidden">
-                            <img
-                                src={project.image}
-                                alt={project.title}
-                                className="w-full h-full object-cover"
-                            />
-                        </div>
-                    )}
+    4: {
+        title: "Galaxy Universe Discord Bot: Multi-System Community Bot",
+        date: "2025",
+        sections: [
+            {
+                type: "text",
+                content: "A multi-system Discord bot built for a Vietnamese community of roughly 350 members. It bundles ten interconnected systems into a single cosmic, space-themed experience with Vietnamese-language responses. (Personal project.)"
+            },
+            // 📌 IMAGE: add a screenshot at public/projects/discordBot.png to show it in the hero and add an image section here.
+            {
+                type: "heading",
+                content: "Systems"
+            },
+            {
+                type: "list",
+                content: [
+                    "Economy and currency",
+                    "Games and mini-activities",
+                    "Moderation tools",
+                    "Ticket / support system",
+                    "Leveling and ranking",
+                    "...and five more systems (ten in total)"
+                ]
+            },
+            {
+                type: "heading",
+                content: "Technical Stack"
+            },
+            {
+                type: "list",
+                content: [
+                    "Language: TypeScript",
+                    "Library: discord.js v14",
+                    "Storage: SQLite via better-sqlite3",
+                    "Deployment: Railway with a persistent volume for the SQLite database"
+                ]
+            }
+        ]
+    },
 
-                    <div className="p-6 md:p-8">
-                        <div className="flex flex-wrap gap-2 mb-4">
-                            {project.tags.map((tag, idx) => (
-                                <span
-                                    key={tag + idx}
-                                    className="px-3 py-1 text-sm font-medium border rounded-full bg-secondary text-secondary-foreground"
-                                >
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-
-                        <h1 className="text-3xl md:text-4xl font-bold mb-4">{content.title}</h1>
-
-                        <div className="flex flex-wrap items-center gap-4 text-muted-foreground mb-6">
-                            <div className="flex items-center">
-                                <Calendar size={16} className="mr-2" />
-                                {content.date}
-                            </div>
-                        </div>
-
-                        <div className="prose prose-lg max-w-none">
-                            {content.sections.map((section, index) => {
-                                switch (section.type) {
-                                    case "heading":
-                                        return <h3 key={index} className="text-xl font-semibold mt-8 mb-4">{section.content}</h3>;
-                                    case "text":
-                                        return <p key={index} className="mb-4">{section.content}</p>;
-                                    case "image":
-                                        return (
-                                            <figure key={index} className="my-6">
-                                                <img
-                                                    src={section.content}
-                                                    alt={section.caption || "Project image"}
-                                                    className="rounded-lg shadow-xs w-full"
-                                                />
-                                                {section.caption && (
-                                                    <figcaption className="text-center text-sm text-muted-foreground mt-2">
-                                                        {section.caption}
-                                                    </figcaption>
-                                                )}
-                                            </figure>
-                                        );
-                                    case "list":
-                                        return (
-                                            <ul key={index} className="list-disc pl-5 mb-4">
-                                                {section.content.map((item, i) => (
-                                                    <li key={i} className="mb-2">{item}</li>
-                                                ))}
-                                            </ul>
-                                        );
-                                    default:
-                                        return null;
-                                }
-                            })}
-                        </div>
-
-                        <div className="flex flex-wrap gap-4 mt-12 pt-6 border-t border-border">
-                            <a
-                                href={project.demoUrl}
-                                target="_blank"
-                                onClick={(e) => !handleLinkClick(project.demoUrl) && e.preventDefault()}
-                                className="cosmic-button flex items-center gap-2"
-                            >
-                                <ExternalLink size={16} />
-                                Live Demo
-                            </a>
-                            <a
-                                href={project.githubUrl}
-                                target="_blank"
-                                onClick={(e) => !handleLinkClick(project.githubUrl) && e.preventDefault()}
-                                className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300 flex items-center gap-2"
-                            >
-                                <Github size={16} />
-                                View Code
-                            </a>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    );
+    5: {
+        title: "Multi-task Detection of Regional Discrimination on Vietnamese Social Media",
+        date: "2026 (in progress)",
+        sections: [
+            {
+                type: "text",
+                content: "A research project proposing an adversarially robust, multi-task machine learning system for detecting regional discrimination in Vietnamese social media text, delivered as a deployable REST API that other applications and sites can call for content moderation. The work is aligned with the content-moderation requirements of Vietnam's Decree 147/2024."
+            },
+            // 📌 IMAGE: add a figure/screenshot at public/projects/regionResearch.png to show it in the hero and add an image section here.
+            {
+                type: "heading",
+                content: "Problem & Motivation"
+            },
+            {
+                type: "text",
+                content: "Regional discrimination (\"phân biệt vùng miền\") is a recognized social problem in Vietnam, appearing daily as slurs, province-level stereotyping, and Telex-obfuscated variants. English-trained moderation tools fail on Vietnamese, and existing Vietnamese hate-speech tools target generic hate rather than regional discrimination specifically. The academic literature contains very little prior work on this exact task."
+            },
+            {
+                type: "heading",
+                content: "Research Goals"
+            },
+            {
+                type: "list",
+                content: [
+                    "Robustness to character-level obfuscation (Telex, tone removal, letter substitution, leetspeak)",
+                    "Span- and target-level outputs beyond a single sentence label",
+                    "Interpretable predictions for moderator review"
+                ]
+            },
+            {
+                type: "heading",
+                content: "Methodology"
+            },
+            {
+                type: "list",
+                content: [
+                    "Base dataset: ViRDC (~17,000 labeled comments)",
+                    "Programmatically generated adversarial test set of obfuscated variants",
+                    "Transformer backbone (ViSoBERT / PhoBERT) with a character-level CNN branch and multi-task heads"
+                ]
+            },
+            {
+                type: "heading",
+                content: "Planned Deployment"
+            },
+            {
+                type: "list",
+                content: [
+                    "FastAPI REST service: POST /classify returns label, target, confidence, and spans",
+                    "Demo dashboard visualizing live classifications",
+                    "Optional Chrome extension flagging discriminatory phrasing on job-search platforms"
+                ]
+            }
+        ]
+    }
 };

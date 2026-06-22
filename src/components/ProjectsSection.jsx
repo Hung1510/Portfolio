@@ -1,7 +1,7 @@
 import { ArrowRight, ExternalLink, Github, FileText } from "lucide-react";
 import { lang } from "../helper/lang";
 
-const projects = [
+export const projects = [
   {
     id: 1,
     title: "EIU/CIT Smart Learning Advisor",
@@ -26,7 +26,7 @@ const projects = [
     tags: ["React", "NestJS", "MongoDB", "REST API"],
     demoUrl: "https://interview-quizz-software.vercel.app/",
     githubUrl: "https://github.com/Hung1510/Capstone_Project_Quizz",
-    detailUrl: "#", // no detail page yet — icon stays hidden until a real one exists
+    detailUrl: "/projects/2",
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ const projects = [
     tags: ["React", "Node.js", "MongoDB"],
     demoUrl: "https://expense-tracker-lemon-omega.vercel.app/",
     githubUrl: "https://github.com/LeTrietHuan-Student/Project-CSW-303.git",
-    detailUrl: "#", // no detail page yet — icon stays hidden until a real one exists
+    detailUrl: "/projects/3",
   },
   {
     id: 4,
@@ -53,7 +53,7 @@ const projects = [
     tags: ["TypeScript", "discord.js", "SQLite", "Railway"],
     demoUrl: "#",
     githubUrl: "https://github.com/Hung1510/Galaxy_discordBot",
-    detailUrl: "#",
+    detailUrl: "/projects/4",
   },
   {
     id: 5,
@@ -67,7 +67,7 @@ const projects = [
     tags: ["Python", "Machine Learning", "NLP", "FastAPI"],
     demoUrl: "#",
     githubUrl: "#",
-    detailUrl: "#",
+    detailUrl: "/projects/5",
   },
 ];
 
