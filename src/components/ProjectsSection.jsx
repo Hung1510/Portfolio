@@ -30,19 +30,6 @@ const projects = [
   },
   {
     id: 3,
-    title: "Ceramic Website",
-    description: lang({
-      vi: "Website bán đồ gốm thủ công, cho phép khách hàng khám phá và mua sắm các sản phẩm trang trí với giá cả hợp lý.",
-      en: "An online platform for handcrafted ceramics, allowing customers to explore and purchase stylish and affordable pottery and home décor.",
-    }),
-    image: "/projects/TCTCeramic.png",
-    tags: ["React", "Node.js", "MongoDB"],
-    demoUrl: "https://web-ceramic-wunm.vercel.app/",
-    githubUrl: "https://github.com/Ly-Dat/web_ceramic",
-    detailUrl: "/projects/ceramic",
-  },
-  {
-    id: 4,
     title: "Expense Tracker",
     description: lang({
       vi: "Ứng dụng theo dõi chi tiêu cá nhân và quản lý ngân sách, cho phép người dùng ghi nhận, phân loại và theo dõi các khoản chi tiêu một cách hiệu quả.",
@@ -55,30 +42,32 @@ const projects = [
     detailUrl: "/projects/expense-tracker",
   },
   {
-    id: 5,
-    title: "Employee Shift Scheduling System",
+    id: 4,
+    title: "Galaxy Universe Discord Bot",
     description: lang({
-      vi: "Hệ thống quản lý ca làm việc cho phép nhân viên đăng ký và theo dõi lịch làm việc hàng tuần, xử lý dữ liệu từ Excel và hỗ trợ xuất PDF.",
-      en: "A web-based shift scheduling system that allows employees to register and manage weekly shifts, process Excel data, track schedules in real time, and export reports as PDF.",
+      vi: "Bot Discord đa hệ thống cho cộng đồng người Việt ~350 thành viên, gồm 10 hệ thống (Economy, Games, Moderation, Ticket, Level) với giao diện chủ đề vũ trụ và phản hồi tiếng Việt.",
+      en: "A multi-system Discord bot for a ~350-member Vietnamese community with 10 systems (Economy, Games, Moderation, Ticket, Level), a cosmic space theme, and Vietnamese-language responses.",
     }),
-    image: "/projects/shift-scheduler.png",
-    tags: ["React", "Excel Data Processing", "Scheduling System", "PDF Export"],
-    demoUrl: "https://warehouse-shift.vercel.app",
-    githubUrl: "https://github.com/Ly-Dat/WarehouseShift",
-    detailUrl: "/projects/shift-scheduler",
+    // 📌 IMAGE: drop your screenshot in public/projects/ then set the path here (e.g. "/projects/discordBot.png")
+    image: "/projects/discordBot.png",
+    tags: ["TypeScript", "discord.js", "SQLite", "Railway"],
+    demoUrl: "#",
+    githubUrl: "https://github.com/Hung1510/Galaxy_discordBot",
+    detailUrl: "#",
   },
   {
-    id: 6,
-    title: "Product Price Management Website",
+    id: 5,
+    title: "Multi-task Detection of Regional Discrimination on Vietnamese Social Media",
     description: lang({
-      vi: "Ứng dụng web React giúp quản lý giá sản phẩm, đọc dữ liệu từ Excel, tự động tính toán tổng tiền, xuất hóa đơn PDF và tạo mã QR thanh toán.",
-      en: "A React-based web application for managing product prices, fetching data from Excel files, calculating totals automatically, generating PDF invoices, and providing QR code payments.",
+      vi: "Hệ thống ML đa nhiệm phát hiện phân biệt vùng miền trong văn bản mạng xã hội tiếng Việt, bền vững trước biến thể Telex/làm nhiễu, triển khai dưới dạng REST API (FastAPI) phục vụ kiểm duyệt nội dung theo Nghị định 147/2024.",
+      en: "A multi-task ML system for detecting regional discrimination in Vietnamese social media text, robust to Telex/obfuscated variants, deployed as a FastAPI REST API for content moderation aligned with Decree 147/2024.",
     }),
-    image: "/projects/ceramicHouse.png",
-    tags: ["React", "Excel Data Fetching", "PDF Export", "QR Payment"],
-    demoUrl: "https://tan-chi-tai-ceramics.vercel.app/bill",
-    githubUrl: "https://github.com/Ly-Dat/TanChiTai_Ceramics",
-    detailUrl: "/projects/price-management",
+    // 📌 IMAGE: drop your screenshot in public/projects/ then set the path here (e.g. "/projects/regionResearch.png")
+    image: "/projects/regionResearch.png",
+    tags: ["Python", "Machine Learning", "NLP", "FastAPI"],
+    demoUrl: "#",
+    githubUrl: "#",
+    detailUrl: "#",
   },
 ];
 
