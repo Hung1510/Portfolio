@@ -16,8 +16,8 @@ export const AboutSection = () => {
           <div className="space-y-6">
             <h3 className="text-2xl font-semibold">
               {lang({
-                vi: "Kỹ sư phần mềm kết hợp kỹ năng full-stack với thiết kế web.",
-                en: "A Software engineer blending full-stack skills with web design.",
+                vi: "Một kỹ sư phần mềm với kinh nghiệm phát triển full-stack, quan tâm đến machine learning.",
+                en: "A software engineer with full stack development experience, with interest in machine learning.",
               })}
             </h3>
 
@@ -59,14 +59,14 @@ export const AboutSection = () => {
                 <div className="text-left">
                   <h4 className="font-semibold text-lg">
                     {lang({
-                      vi: "Phát triển Web",
-                      en: "Web Development",
+                      vi: "Phát triển Full Stack",
+                      en: "Full Stack Development",
                     })}
                   </h4>
                   <p className="text-muted-foreground">
                     {lang({
-                      vi: "Xây dựng website và ứng dụng web responsive, thân thiện với người dùng bằng các framework và công nghệ hiện đại, đảm bảo trải nghiệm mượt mà trên mọi thiết bị.",
-                      en: "Creating responsive and user-friendly websites and web applications using modern frameworks and technologies to deliver seamless experiences across devices.",
+                      vi: "Xây dựng ứng dụng web hoàn chỉnh từ giao diện front-end đến xử lý back-end, làm việc với cơ sở dữ liệu và API để tạo ra sản phẩm hoàn thiện.",
+                      en: "Building complete web applications from front-end interfaces to back-end logic, working with databases and APIs to deliver fully functional products.",
                     })}
                   </p>
                 </div>
@@ -81,14 +81,14 @@ export const AboutSection = () => {
                 <div className="text-left">
                   <h4 className="font-semibold text-lg">
                     {lang({
-                      vi: "Thiết kế UI/UX",
-                      en: "UI/UX Design",
+                      vi: "Nghiên cứu và áp dụng Machine Learning",
+                      en: "Machine Learning & ML application Learner",
                     })}
                   </h4>
                   <p className="text-muted-foreground">
                     {lang({
-                      vi: "Thiết kế giao diện trực quan và xây dựng trải nghiệm người dùng mượt mà, giúp nâng cao tính dễ sử dụng và mức độ tương tác.",
-                      en: "Designing intuitive user interfaces and crafting seamless user experiences that enhance usability and engagement.",
+                      vi: "Đang học và khám phá các kỹ thuật học máy, từ xử lý dữ liệu đến xây dựng và huấn luyện mô hình để giải quyết các bài toán thực tế.",
+                      en: "Learning and exploring machine learning techniques, from data processing to building and training models to solve real-world problems.",
                     })}
                   </p>
                 </div>
