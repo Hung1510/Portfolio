@@ -67,6 +67,8 @@ export const ProjectBlog = ({ slug }: ProjectBlogProps) => {
                             <img
                                 src={project.image}
                                 alt={project.title}
+                                loading="lazy"
+                                decoding="async"
                                 className="w-full h-full object-cover"
                             />
                         </div>
@@ -106,6 +108,8 @@ export const ProjectBlog = ({ slug }: ProjectBlogProps) => {
                                                 <img
                                                     src={section.content}
                                                     alt={section.caption || "Project image"}
+                                                    loading="lazy"
+                                                    decoding="async"
                                                     className="rounded-lg shadow-xs w-full"
                                                 />
                                                 {section.caption && (
