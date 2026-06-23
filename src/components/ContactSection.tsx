@@ -155,7 +155,12 @@ export const ContactSection = () => {
                 {lang({ vi: "Kết nối với tôi", en: "Connect With Me" })}
               </h4>
               <div className="flex space-x-4 justify-center">
-                <a href="https://github.com/Hung1510" target="_blank">
+                <a
+                  href="https://github.com/Hung1510"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub profile"
+                >
                   <Github />
                 </a>
               </div>
