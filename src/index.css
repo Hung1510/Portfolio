@@ -164,6 +164,10 @@
 @utility meteor {
   @apply absolute bg-linear-to-r from-white via-white to-transparent rounded-full;
   box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
+  /* Hidden until its animation runs — prevents meteors from sitting as static
+     horizontal bars during their (now-active) animation-delay. The keyframes
+     set opacity back to 1 at 0%, so each meteor is visible only while streaking. */
+  opacity: 0;
 }
 
 @keyframes cloudMove {
