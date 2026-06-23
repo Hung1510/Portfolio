@@ -2,7 +2,49 @@ import { useEffect, useState } from "react";
 import { Navbar } from "../../components/Navbar";
 import { StarBackground } from "@/components/StarBackground";
 import { SkyBackground } from "@/components/SkyBackground";
-import * as Icons from "lucide-react";
+import {
+  AppWindow,
+  BarChart3,
+  Bot,
+  LineChart,
+  Database,
+  FileOutput,
+  FileText,
+  LockOpen,
+  Map,
+  Monitor,
+  Palette,
+  Printer,
+  Radio,
+  Rocket,
+  Server,
+  Settings,
+  Zap,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+
+// Only the icons actually used on this page are imported, so the whole
+// lucide-react library isn't pulled into the bundle. Dynamic lookups
+// (Icons[name]) below resolve against this map.
+const Icons: Record<string, LucideIcon> = {
+  AppWindow,
+  BarChart3,
+  Bot,
+  ChartLine: LineChart,
+  Database,
+  FileOutput,
+  FileText,
+  LockOpen,
+  Map,
+  Monitor,
+  Palette,
+  Printer,
+  Radio,
+  Rocket,
+  Server,
+  Settings,
+  Zap,
+};
 import { lang } from "@/helper/lang";
 
 // ── Theme hook ────────────────────────────────────────────────────────────────
@@ -406,6 +448,8 @@ function PageCard({ page, isLight }) {
           <img
             src={page.img}
             alt={page.title}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover object-top"
             style={{ maxHeight: "260px" }}
           />
