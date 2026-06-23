@@ -14,8 +14,7 @@ type Meteor = {
   size: number;
   x: number;
   y: number;
-  delay: number;
-  animationDuration: number;
+  duration: number;
 };
 
 export const StarBackground = () => {
@@ -24,22 +23,15 @@ export const StarBackground = () => {
 
   useEffect(() => {
     generateStars();
-    generateMeteors();
 
-    const handleResize = () => {
-      generateStars();
-    };
+    const resize = () => generateStars();
+    window.addEventListener("resize", resize);
 
-    /* respawn meteors continuously */
-    const meteorInterval = setInterval(() => {
-      generateMeteors();
-    }, 5000);
-
-    window.addEventListener("resize", handleResize);
+    // start meteor spawning loop
+    spawnMeteorLoop();
 
     return () => {
-      clearInterval(meteorInterval);
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", resize);
     };
   }, []);
 
@@ -64,27 +56,37 @@ export const StarBackground = () => {
     setStars(newStars);
   };
 
-  const generateMeteors = () => {
-    const numberOfMeteors = 4;
-    const newMeteors: Meteor[] = [];
+  const spawnMeteor = () => {
+    const meteor: Meteor = {
+      id: Date.now() + Math.random(),
+      size: Math.random() * 2 + 1,
+      x: Math.random() * 100,
+      y: Math.random() * 15,
+      duration: Math.random() * 2 + 3,
+    };
 
-    for (let i = 0; i < numberOfMeteors; i++) {
-      newMeteors.push({
-        id: Date.now() + i,
-        size: Math.random() * 2 + 1,
+    // add new meteor
+    setMeteors((prev) => [...prev, meteor]);
 
-        /* spawn near top */
-        x: Math.random() * 100,
-        y: Math.random() * 20,
+    // remove after animation finishes
+    setTimeout(() => {
+      setMeteors((prev) =>
+        prev.filter((m) => m.id !== meteor.id)
+      );
+    }, meteor.duration * 1000);
+  };
 
-        /* short delay */
-        delay: i * 0.8,
+  const spawnMeteorLoop = () => {
+    const loop = () => {
+      spawnMeteor();
 
-        animationDuration: Math.random() * 2 + 3,
-      });
-    }
+      // random next spawn
+      const next = Math.random() * 2000 + 1000;
 
-    setMeteors(newMeteors);
+      setTimeout(loop, next);
+    };
+
+    loop();
   };
 
   return (
@@ -94,12 +96,12 @@ export const StarBackground = () => {
           key={star.id}
           className="star animate-pulse-subtle"
           style={{
-            width: star.size + "px",
-            height: star.size + "px",
-            left: star.x + "%",
-            top: star.y + "%",
+            width: `${star.size}px`,
+            height: `${star.size}px`,
+            left: `${star.x}%`,
+            top: `${star.y}%`,
             opacity: star.opacity,
-            animationDuration: star.animationDuration + "s",
+            animationDuration: `${star.animationDuration}s`,
           }}
         />
       ))}
@@ -109,12 +111,11 @@ export const StarBackground = () => {
           key={meteor.id}
           className="meteor animate-meteor"
           style={{
-            width: meteor.size * 50 + "px",
-            height: meteor.size * 2 + "px",
-            left: meteor.x + "%",
-            top: meteor.y + "%",
-            animationDelay: meteor.delay + "s",
-            animationDuration: meteor.animationDuration + "s",
+            width: `${meteor.size * 60}px`,
+            height: `${meteor.size * 2}px`,
+            left: `${meteor.x}%`,
+            top: `${meteor.y}%`,
+            animationDuration: `${meteor.duration}s`,
           }}
         />
       ))}
