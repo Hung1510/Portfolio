@@ -44,6 +44,9 @@ export const ThemeToggle = () => {
     <div className={cn("flex items-center gap-1", className)}>
       <button
         onClick={toggleLang}
+        aria-label={
+          langMode === "en" ? "Switch to Vietnamese" : "Switch to English"
+        }
         className={cn(
           "p-2 text-lg font-semibold transition-colors",
 
@@ -60,7 +63,8 @@ export const ThemeToggle = () => {
       </button>
       <button
         onClick={toggleTheme}
-        className="p-2 rounded-full focus:outline-hidden"
+        aria-label={isLightMode ? "Switch to dark mode" : "Switch to light mode"}
+        className="p-2 rounded-full"
       >
         {isLightMode ? (
           <Moon className="h-6 w-6 text-blue-900" />
