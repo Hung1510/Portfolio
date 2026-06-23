@@ -30,9 +30,17 @@ export const StarBackground = () => {
       generateStars();
     };
 
+    /* respawn meteors continuously */
+    const meteorInterval = setInterval(() => {
+      generateMeteors();
+    }, 5000);
+
     window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      clearInterval(meteorInterval);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const generateStars = () => {
@@ -62,12 +70,17 @@ export const StarBackground = () => {
 
     for (let i = 0; i < numberOfMeteors; i++) {
       newMeteors.push({
-        id: i,
+        id: Date.now() + i,
         size: Math.random() * 2 + 1,
+
+        /* spawn near top */
         x: Math.random() * 100,
         y: Math.random() * 20,
-        delay: Math.random() * 15,
-        animationDuration: Math.random() * 3 + 3,
+
+        /* short delay */
+        delay: i * 0.8,
+
+        animationDuration: Math.random() * 2 + 3,
       });
     }
 
