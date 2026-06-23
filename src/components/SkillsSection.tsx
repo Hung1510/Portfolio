@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 import { lang } from "../helper/lang";
 
 type Skill = {
@@ -7,6 +9,7 @@ type Skill = {
 };
 
 type SkillGroup = {
+  id: string;
   title: { vi: string; en: string };
   skills: Skill[];
 };
@@ -16,6 +19,7 @@ const ICON_BASE =
 
 const skillGroups: SkillGroup[] = [
   {
+    id: "languages",
     title: { vi: "Ngôn ngữ lập trình", en: "Programming Languages" },
     skills: [
       { name: "TypeScript", icon: "typescript/typescript-original" },
@@ -31,6 +35,7 @@ const skillGroups: SkillGroup[] = [
     ],
   },
   {
+    id: "frameworks",
     title: { vi: "Frameworks & Thư viện", en: "Frameworks & Libraries" },
     skills: [
       { name: "React", icon: "react/react-original" },
@@ -49,6 +54,7 @@ const skillGroups: SkillGroup[] = [
     ],
   },
   {
+    id: "tools",
     title: { vi: "Phần mềm & Công cụ", en: "Software & Tools" },
     skills: [
       { name: "Git", icon: "git/git-original" },
@@ -65,7 +71,21 @@ const skillGroups: SkillGroup[] = [
   },
 ];
 
+const filters: { id: string; label: { vi: string; en: string } }[] = [
+  { id: "all", label: { vi: "Tất cả", en: "All" } },
+  { id: "languages", label: { vi: "Ngôn ngữ", en: "Languages" } },
+  { id: "frameworks", label: { vi: "Frameworks", en: "Frameworks" } },
+  { id: "tools", label: { vi: "Công cụ", en: "Tools" } },
+];
+
 export const SkillsSection = () => {
+  const [activeFilter, setActiveFilter] = useState("all");
+
+  const visibleGroups =
+    activeFilter === "all"
+      ? skillGroups
+      : skillGroups.filter((group) => group.id === activeFilter);
+
   return (
     <section id="skills" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
@@ -76,9 +96,28 @@ export const SkillsSection = () => {
           </span>
         </h2>
 
+        {/* Filter tabs */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {filters.map((filter) => (
+            <button
+              key={filter.id}
+              onClick={() => setActiveFilter(filter.id)}
+              className={cn(
+                "px-5 py-2 rounded-full text-sm transition-colors duration-300",
+                activeFilter === filter.id
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-secondary/70 text-foreground hover:bg-secondary"
+              )}
+            >
+              {lang(filter.label)}
+            </button>
+          ))}
+        </div>
+
+        {/* Skill groups */}
         <div className="space-y-12">
-          {skillGroups.map((group) => (
-            <div key={group.title.en}>
+          {visibleGroups.map((group) => (
+            <div key={group.id}>
               <h3 className="text-lg md:text-xl font-semibold mb-6 flex items-center gap-3">
                 <span className="h-5 w-1 rounded-full bg-primary" />
                 {lang(group.title)}
