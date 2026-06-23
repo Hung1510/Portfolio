@@ -1,7 +1,18 @@
 import { useEffect, useState } from "react";
 
+type Cloud = {
+  id: string;
+  size: number;
+  x: number;
+  y: number;
+  delay: number;
+  duration: number;
+  opacity: number;
+  scale: number;
+};
+
 export const SkyBackground = () => {
-  const [clouds, setClouds] = useState([]);
+  const [clouds, setClouds] = useState<Cloud[]>([]);
 
   useEffect(() => {
     generateClouds();
@@ -16,7 +27,7 @@ export const SkyBackground = () => {
 
   const generateClouds = () => {
     const numberOfClusters = Math.floor(window.innerWidth / 300);
-    const newClouds = [];
+    const newClouds: Cloud[] = [];
 
     for (let i = 0; i < numberOfClusters; i++) {
       const clusterX = (i / numberOfClusters) * 100 + (Math.random() * 5 - 2.5);

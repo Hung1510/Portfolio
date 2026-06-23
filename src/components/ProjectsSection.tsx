@@ -1,7 +1,18 @@
 import { ArrowRight, ExternalLink, Github, FileText } from "lucide-react";
 import { lang } from "../helper/lang";
 
-export const projects = [
+export type Project = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  demoUrl: string;
+  githubUrl: string;
+  slug: string;
+};
+
+export const projects: Project[] = [
   {
     id: 1,
     title: "EIU/CIT Smart Learning Advisor",

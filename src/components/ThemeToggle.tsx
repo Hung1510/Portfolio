@@ -40,7 +40,7 @@ export const ThemeToggle = () => {
     window.location.reload();
   };
 
-  const Buttons = ({ className }) => (
+  const Buttons = ({ className }: { className?: string }) => (
     <div className={cn("flex items-center gap-1", className)}>
       <button
         onClick={toggleLang}

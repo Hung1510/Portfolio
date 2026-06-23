@@ -1,8 +1,21 @@
-export const projectBlogs = {
-    // id 1 (Smart Learning Advisor) uses its own dedicated page (SmartAdvisorDetail),
-    // so it intentionally has no generic blog entry here.
+type BlogSection =
+  | { type: "heading" | "text"; content: string }
+  | { type: "list"; content: string[] }
+  | { type: "image"; content: string; caption?: string };
 
-    2: {
+export type ProjectBlogContent = {
+  title: string;
+  date: string;
+  readTime?: string;
+  sections: BlogSection[];
+};
+
+export const projectBlogs: Record<string, ProjectBlogContent> = {
+    // Keyed by project `slug` (see ProjectsSection.tsx).
+    // "smart-learning-advisor" intentionally has no entry: it uses its own
+    // dedicated page (SmartAdvisorDetail) via the detailPages registry.
+
+    "quiz-platform": {
         title: "Quiz & Interview Practice Platform: IT Interview Preparation",
         date: "2025",
         sections: [
@@ -55,7 +68,7 @@ export const projectBlogs = {
         ]
     },
 
-    3: {
+    "expense-tracker": {
         title: "Expense Tracker: Personal Finance Management",
         date: "April 2025 – June 2025",
         sections: [
@@ -95,7 +108,7 @@ export const projectBlogs = {
         ]
     },
 
-    4: {
+    "discord-bot": {
         title: "Galaxy Universe Discord Bot: Multi-System Community Bot",
         date: "2025",
         sections: [
@@ -135,7 +148,7 @@ export const projectBlogs = {
         ]
     },
 
-    5: {
+    "region-research": {
         title: "Multi-task Detection of Regional Discrimination on Vietnamese Social Media",
         date: "2026 (in progress)",
         sections: [
