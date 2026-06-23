@@ -1,42 +1,58 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import { Home } from "./pages/Home";
-import { NotFound } from "./pages/NotFound";
 import { Toaster } from "@/components/ui/toaster";
-import { ProjectBlog } from "./pages/ProjectBlog";
 import { projects } from "./components/ProjectsSection";
 import { detailPages } from "./pages/projectPage";
-// import { ThemeToggle } from "./components/ThemeToggle";
 
+// Detail pages are loaded on demand, so they don't weigh down the landing page.
+const ProjectBlog = lazy(() =>
+  import("./pages/ProjectBlog").then((m) => ({ default: m.ProjectBlog }))
+);
+const NotFound = lazy(() =>
+  import("./pages/NotFound").then((m) => ({ default: m.NotFound }))
+);
+
+const PageFallback = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="h-10 w-10 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+  </div>
+);
 
 function App() {
   return (
     <>
       <Toaster />
-      {/* <ThemeToggle /> */}
       <BrowserRouter>
-        <Routes>
-          <Route index element={<Home />} />
+        <Suspense fallback={<PageFallback />}>
+          <Routes>
+            <Route index element={<Home />} />
 
-          {/* Project detail routes are generated from the projects array.
-              A project with a slug listed in detailPages gets its dedicated
-              page; every other slugged project gets the generic ProjectBlog. */}
-          {projects
-            .filter((project) => project.slug)
-            .map((project) => {
-              const CustomPage = detailPages[project.slug];
-              return (
-                <Route
-                  key={project.slug}
-                  path={`/projects/${project.slug}`}
-                  element={
-                    CustomPage ? <CustomPage /> : <ProjectBlog slug={project.slug} />
-                  }
-                />
-              );
-            })}
+            {/* Project detail routes are generated from the projects array.
+                A project with a slug listed in detailPages gets its dedicated
+                page; every other slugged project gets the generic ProjectBlog. */}
+            {projects
+              .filter((project) => project.slug)
+              .map((project) => {
+                const CustomPage = detailPages[project.slug];
+                return (
+                  <Route
+                    key={project.slug}
+                    path={`/projects/${project.slug}`}
+                    element={
+                      CustomPage ? (
+                        <CustomPage />
+                      ) : (
+                        <ProjectBlog slug={project.slug} />
+                      )
+                    }
+                  />
+                );
+              })}
 
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </>
   );
