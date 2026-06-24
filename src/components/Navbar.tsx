@@ -1,7 +1,9 @@
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, Search, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
+import { SearchModal } from "./SearchModal";
+import { lang } from "@/helper/lang";
 
 const navItems = [
   { name: "Home", href: "#hero" },
@@ -15,22 +17,36 @@ const navItems = [
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  const isMac =
+    typeof navigator !== "undefined" && /Mac|iPhone|iPad/.test(navigator.userAgent);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.screenY > 10);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Cmd/Ctrl + K toggles the search palette
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen((o) => !o);
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
+
   return (
     <nav
       className={cn(
         "fixed w-full z-40 transition-all duration-300",
-        isScrolled
-          ? "py-3 bg-background/80 backdrop-blur-md shadow-xs"
-          : "py-5",
+        isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5",
       )}
     >
       <div className="container flex items-center justify-between">
@@ -45,7 +61,7 @@ export const Navbar = () => {
         </a>
 
         {/* desktop nav */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex items-center space-x-8">
           {navItems.map((item, key) => (
             <a
               key={key}
@@ -55,13 +71,32 @@ export const Navbar = () => {
               {item.name}
             </a>
           ))}
+
+          {/* search trigger */}
+          <button
+            onClick={() => setSearchOpen(true)}
+            aria-label={lang({ en: "Search", vi: "Tìm kiếm" })}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-md border border-border text-sm text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors"
+          >
+            <Search size={16} />
+            <span>{lang({ en: "Search", vi: "Tìm" })}</span>
+            <kbd className="text-xs border border-border rounded px-1 ml-1">
+              {isMac ? "⌘K" : "Ctrl K"}
+            </kbd>
+          </button>
+
           <ThemeToggle />
         </div>
 
-        {/* Theme toggle fixed cho desktop */}
-
         {/* mobile nav */}
         <div className="md:hidden flex items-center gap-2">
+          <button
+            onClick={() => setSearchOpen(true)}
+            className="p-2 text-foreground"
+            aria-label={lang({ en: "Search", vi: "Tìm kiếm" })}
+          >
+            <Search size={20} />
+          </button>
           <ThemeToggle />
           <button
             onClick={() => setIsMenuOpen((prev) => !prev)}
@@ -95,6 +130,8 @@ export const Navbar = () => {
           </div>
         </div>
       </div>
+
+      <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </nav>
   );
 };
