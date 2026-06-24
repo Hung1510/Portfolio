@@ -6,10 +6,10 @@ export const Footer = () => {
       {" "}
       <div className="text-center md:text-left">
           <p className="text-sm text-muted-foreground/80 font-medium leading-relaxed">
-            &copy; {new Date().getFullYear()} <span className="font-bold text-foreground/90">Phạm Trần Gia Hưng</span>. All rights reserved.
+            &copy; {new Date().getFullYear()} <span className="font-bold text-foreground/90">Phạm Trần Gia Hưng</span>
           </p>
           <p className="text-xs text-muted-foreground/60 mt-1">
-            Made with ❤️ in Vietnam
+            Made with dedication and passion
           </p>
         </div>
       {/* Back to Top Button */}
