@@ -14,6 +14,31 @@ const navItems = [
   { name: "Contact", href: "#contact" },
 ];
 
+// Live local time for Biên Hòa (ICT, UTC+7)
+const LocalTime = () => {
+  const [now, setNow] = useState("");
+  useEffect(() => {
+    const update = () =>
+      setNow(
+        new Intl.DateTimeFormat("en-GB", {
+          timeZone: "Asia/Ho_Chi_Minh",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        }).format(new Date()),
+      );
+    update();
+    const id = window.setInterval(update, 30000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  return (
+    <span className="hidden lg:flex items-center font-mono text-xs text-muted-foreground tracking-wide whitespace-nowrap">
+      BIÊN HÒA · {now} ICT
+    </span>
+  );
+};
+
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,9 +48,7 @@ export const Navbar = () => {
     typeof navigator !== "undefined" && /Mac|iPhone|iPad/.test(navigator.userAgent);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.screenY > 10);
-    };
+    const handleScroll = () => setIsScrolled(window.screenY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -61,31 +84,40 @@ export const Navbar = () => {
         </a>
 
         {/* desktop nav */}
-        <div className="hidden md:flex items-center space-x-8">
-          {navItems.map((item, key) => (
-            <a
-              key={key}
-              href={`/${item.href}`}
-              className="text-foreground/80 hover:text-primary transition-colors duration-300"
+        <div className="hidden md:flex items-center gap-6">
+          <div className="flex items-center space-x-6">
+            {navItems.map((item, key) => (
+              <a
+                key={key}
+                href={`/${item.href}`}
+                className="text-foreground/80 hover:text-primary transition-colors duration-300"
+              >
+                {item.name}
+              </a>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3">
+            <LocalTime />
+
+            <button
+              onClick={() => setSearchOpen(true)}
+              aria-label={lang({ en: "Search", vi: "Tìm kiếm" })}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-border text-sm text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors"
             >
-              {item.name}
+              <Search size={16} />
+              <kbd className="text-xs">{isMac ? "⌘K" : "Ctrl K"}</kbd>
+            </button>
+
+            <a
+              href="/#contact"
+              className="inline-flex items-center gap-1 px-4 py-1.5 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
+            >
+              {lang({ en: "Get in touch", vi: "Liên hệ" })} →
             </a>
-          ))}
 
-          {/* search trigger */}
-          <button
-            onClick={() => setSearchOpen(true)}
-            aria-label={lang({ en: "Search", vi: "Tìm kiếm" })}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-md border border-border text-sm text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors"
-          >
-            <Search size={16} />
-            <span>{lang({ en: "Search", vi: "Tìm" })}</span>
-            <kbd className="text-xs border border-border rounded px-1 ml-1">
-              {isMac ? "⌘K" : "Ctrl K"}
-            </kbd>
-          </button>
-
-          <ThemeToggle />
+            <ThemeToggle />
+          </div>
         </div>
 
         {/* mobile nav */}
@@ -116,7 +148,7 @@ export const Navbar = () => {
               : "opacity-0 pointer-events-none",
           )}
         >
-          <div className="flex flex-col space-y-8 text-xl">
+          <div className="flex flex-col items-center space-y-8 text-xl">
             {navItems.map((item, key) => (
               <a
                 key={key}
@@ -127,6 +159,13 @@ export const Navbar = () => {
                 {item.name}
               </a>
             ))}
+            <a
+              href="/#contact"
+              onClick={() => setIsMenuOpen(false)}
+              className="inline-flex items-center gap-1 px-5 py-2 rounded-md bg-primary text-primary-foreground text-base font-medium"
+            >
+              {lang({ en: "Get in touch", vi: "Liên hệ" })} →
+            </a>
           </div>
         </div>
       </div>
