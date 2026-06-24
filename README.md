@@ -10,7 +10,7 @@ A bilingual (English / Vietnamese), themeable developer portfolio with animated 
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)
 
-D:\Portfolio\public\preview\preview.png
+<img width="1261" height="750" alt="preview" src="https://github.com/user-attachments/assets/917878a6-b627-4280-a902-e8fdc05975fc" />
 
 
 ## About
