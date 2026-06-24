@@ -74,7 +74,7 @@ export const ProjectBlog = ({ slug }: ProjectBlogProps) => {
                         </div>
                     )}
 
-                    <div className="p-6 md:p-8">
+                    <div className="p-6 md:p-8 text-left">
                         <div className="flex flex-wrap gap-2 mb-4">
                             {project.tags.map((tag, idx) => (
                                 <span
@@ -113,7 +113,7 @@ export const ProjectBlog = ({ slug }: ProjectBlogProps) => {
                                                     className="rounded-lg shadow-xs w-full"
                                                 />
                                                 {section.caption && (
-                                                    <figcaption className="text-center text-sm text-muted-foreground mt-2">
+                                                    <figcaption className="text-left text-sm text-muted-foreground mt-2">
                                                         {section.caption}
                                                     </figcaption>
                                                 )}

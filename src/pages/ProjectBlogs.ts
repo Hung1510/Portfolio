@@ -34,7 +34,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
             },
             {
                 type: "text",
-                content: "Preparing for technical interviews usually means scattered question lists with no feedback loop. We wanted a single place where IT students could pull up categorized questions on demand, take timed quizzes, and immediately see where they stood \u2014 without an instructor hand-writing every question."
+                content: "Preparing for technical interviews usually means scattered question lists with no feedback loop. We wanted a single place where IT students could pull up categorized questions on demand, take timed quizzes, and immediately see where they stood - without an instructor hand-writing every question."
             },
             {
                 type: "heading",
@@ -86,7 +86,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
             },
             {
                 type: "text",
-                content: "Two things took the most effort. The first was AI question generation \u2014 getting it to return relevant, well-formed questions that fit the existing categories and scoring. The second was stabilization: because it was a shared codebase, a lot of my time went into tracking down and fixing bugs in other members' code so the parts integrated cleanly and the app stayed deployable."
+                content: "Two things took the most effort. The first was AI question generation - getting it to return relevant, well-formed questions that fit the existing categories and scoring. The second was stabilization: because it was a shared codebase, a lot of my time went into tracking down and fixing bugs in other members' code so the parts integrated cleanly and the app stayed deployable."
             },
             {
                 type: "heading",
@@ -112,7 +112,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
 
     "expense-tracker": {
         title: "Expense Tracker: Personal Finance Management",
-        date: "April 2025 \u2013 June 2025",
+        date: "April 2025 - June 2025",
         sections: [
             {
                 type: "text",
@@ -129,7 +129,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
             },
             {
                 type: "text",
-                content: "Personal spending is easy to lose track of when it's scattered across receipts and banking apps. We built one place to record expenses, classify them by category, and see spending patterns at a glance \u2014 so budgeting decisions come from actual data instead of guesswork."
+                content: "Personal spending is easy to lose track of when it's scattered across receipts and banking apps. We built one place to record expenses, classify them by category, and see spending patterns at a glance - so budgeting decisions come from actual data instead of guesswork."
             },
             {
                 type: "heading",
@@ -137,7 +137,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
             },
             {
                 type: "text",
-                content: "A team project, and like my other group work I worked across the stack \u2014 building the React frontend and the Node/Express + MongoDB API behind it."
+                content: "A team project, and like my other group work I worked across the stack - building the React frontend and the Node/Express + MongoDB API behind it."
             },
             {
                 type: "heading",
@@ -158,7 +158,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
             },
             {
                 type: "text",
-                content: "This was the first project I built as part of a team, so the hardest part wasn't the code \u2014 it was the collaboration. Coordinating work across several people, and especially learning Git properly: branching, merging, and resolving conflicts without overwriting each other's work. It's where Git went from a personal save button to a real team workflow for me."
+                content: "This was the first project I built as part of a team, so the hardest part wasn't the code - it was the collaboration. Coordinating work across several people, and especially learning Git properly: branching, merging, and resolving conflicts without overwriting each other's work. It's where Git went from a personal save button to a real team workflow for me."
             },
             {
                 type: "heading",
@@ -166,7 +166,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
             },
             {
                 type: "text",
-                content: "The application was deployed and is fully usable end to end \u2014 you can record, categorize, and review expenses in a live build."
+                content: "The application was deployed and is fully usable end to end - you can record, categorize, and review expenses in a live build."
             },
             {
                 type: "heading",
@@ -188,7 +188,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
         sections: [
             {
                 type: "text",
-                content: "A multi-system Discord bot built entirely solo for a Vietnamese gaming community. It bundles ten interconnected systems into a single cosmic, space-themed experience with Vietnamese-language responses, and now runs in a community server of over 5,000 members. (Personal project \u2014 designed, built, and hosted by me.)"
+                content: "A multi-system Discord bot built entirely solo for a Vietnamese gaming community. It bundles ten interconnected systems into a single cosmic, space-themed experience with Vietnamese-language responses, and now runs in a community server of over 5,000 members. (Personal project - designed, built, and hosted by me.)"
             },
             // 📌 IMAGE: add a screenshot at public/projects/discordBot.png to show it in the hero and add an image section here.
             {
@@ -197,7 +197,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
             },
             {
                 type: "text",
-                content: "Most Discord communities stitch together half a dozen separate bots \u2014 one for economy, one for moderation, one for tickets \u2014 each with its own setup, downtime, and clashing style. I wanted a single bot that covered what a community actually needs, in one consistent space-themed voice and in Vietnamese, so admins wouldn't have to juggle several tools."
+                content: "Most Discord communities stitch together half a dozen separate bots - one for economy, one for moderation, one for tickets - each with its own setup, downtime, and clashing style. I wanted a single bot that covered what a community actually needs, in one consistent space-themed voice and in Vietnamese, so admins wouldn't have to juggle several tools."
             },
             {
                 type: "heading",
@@ -205,7 +205,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
             },
             {
                 type: "text",
-                content: "I built this one entirely on my own \u2014 the architecture, all ten systems, the database design, and the hosting. There were no other contributors, so every part of it (and every bug) was mine to own end to end."
+                content: "I built this one entirely on my own - the architecture, all ten systems, the database design, and the hosting. There were no other contributors, so every part of it (and every bug) was mine to own end to end."
             },
             {
                 type: "heading",
@@ -241,7 +241,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
             },
             {
                 type: "text",
-                content: "The toughest part wasn't writing commands \u2014 it was getting the bot to run as a reliable, always-on service. I self-host it on an Onidel VPS, so I set up the Linux server myself and had to keep the bot online 24/7 \u2014 surviving crashes, restarts, and the server itself rebooting \u2014 instead of just running a script on my laptop. A community bot has to behave like a small backend service you actually operate."
+                content: "The toughest part wasn't writing commands - it was getting the bot to run as a reliable, always-on service. I self-host it on an Onidel VPS, so I set up the Linux server myself and had to keep the bot online 24/7 - surviving crashes, restarts, and the server itself rebooting - instead of just running a script on my laptop. A community bot has to behave like a small backend service you actually operate."
             },
             {
                 type: "heading",
@@ -249,7 +249,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
             },
             {
                 type: "text",
-                content: "The bot is deployed and in active daily use in a friend's community server of over 5,000 members \u2014 a real production environment, and a much larger audience than most student projects ever reach."
+                content: "The bot is deployed and in active daily use in a friend's community server of over 5,000 members - a real production environment, and a much larger audience than most student projects ever reach."
             }
         ]
     },
@@ -269,7 +269,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
             },
             {
                 type: "text",
-                content: "I carried out this research under the academic supervision of my professor \u2014 from framing the problem and assembling the data through building, fine-tuning, running, and evaluating the model. The research direction and the hands-on ML work are my own; my professor provided guidance and oversight."
+                content: "I carried out this research under the academic supervision of my professor - from framing the problem and assembling the data through building, fine-tuning, running, and evaluating the model. The research direction and the hands-on ML work are my own; my professor provided guidance and oversight."
             },
             {
                 type: "heading",
@@ -309,7 +309,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
             },
             {
                 type: "text",
-                content: "Two things were hardest: the data and the tuning. Vietnamese regional-discrimination data is scarce, so assembling and cleaning a usable labeled set \u2014 and generating obfuscated adversarial variants on top of it \u2014 took real effort. The second was fine-tuning the transformer to learn this specific task reliably, rather than collapsing into generic hate-speech detection, which meant a lot of iteration on the training setup."
+                content: "Two things were hardest: the data and the tuning. Vietnamese regional-discrimination data is scarce, so assembling and cleaning a usable labeled set - and generating obfuscated adversarial variants on top of it - took real effort. The second was fine-tuning the transformer to learn this specific task reliably, rather than collapsing into generic hate-speech detection, which meant a lot of iteration on the training setup."
             },
             {
                 type: "heading",
@@ -317,7 +317,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
             },
             {
                 type: "text",
-                content: "After fine-tuning, the model classifies the dataset with over 90% accuracy \u2014 a strong result for a low-resource, domain-specific Vietnamese NLP task that has very little prior work to build on."
+                content: "After fine-tuning, the model classifies the dataset with over 90% accuracy - a strong result for a low-resource, domain-specific Vietnamese NLP task that has very little prior work to build on."
             },
             {
                 type: "heading",
