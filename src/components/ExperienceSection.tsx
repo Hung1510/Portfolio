@@ -52,10 +52,10 @@ const items: TimelineItem[] = [
       vi: "Đại học Quốc tế Miền Đông (EIU)",
       en: "Eastern International University (EIU)",
     },
-    period: { vi: "Hiện tại", en: "Current" },
+    period: { vi: "Đã tốt nghiệp", en: "Graduated" },
     description: {
-      vi: "Sinh viên năm 3, tập trung vào phát triển full-stack, kỹ thuật backend và ứng dụng machine learning.",
-      en: "Third-year student focused on full-stack development, backend engineering, and applied machine learning.",
+      vi: "Tốt nghiệp Kỹ thuật Phần mềm trong 2 năm 9 tháng. Tập trung vào phát triển full-stack, kỹ thuật backend và ứng dụng machine learning.",
+      en: "Graduated with a B.Eng in Software Engineering, completed in 2 years 9 months. Focused on full-stack development, backend engineering, and applied machine learning.",
     },
   },
   {
