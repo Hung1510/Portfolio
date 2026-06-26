@@ -33,7 +33,7 @@ const LocalTime = () => {
   }, []);
 
   return (
-    <span className="hidden lg:flex items-center font-mono text-xs text-muted-foreground tracking-wide whitespace-nowrap">
+    <span className="hidden lg:flex items-center font-mono text-sm text-muted-foreground tracking-wide whitespace-nowrap">
       BIÊN HÒA · {now} ICT
     </span>
   );
@@ -84,7 +84,7 @@ export const Navbar = () => {
         </a>
 
         {/* desktop nav */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-10">
           <div className="flex items-center space-x-6">
             {navItems.map((item, key) => (
               <a

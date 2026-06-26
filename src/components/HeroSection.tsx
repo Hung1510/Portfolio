@@ -1,6 +1,13 @@
 import { ArrowDown } from "lucide-react";
 import { lang } from "../helper/lang";
 
+const heroStats = [
+  { value: "5,000+", label: { vi: "Người dùng bot", en: "Bot Users" } },
+  { value: "90%+", label: { vi: "Độ chính xác ML", en: "ML Accuracy" } },
+  { value: "5", label: { vi: "Dự án", en: "Projects" } },
+  { value: "2", label: { vi: "Vị trí SE", en: "SE Roles" } },
+];
+
 export const HeroSection = () => {
   return (
     <section
@@ -9,6 +16,19 @@ export const HeroSection = () => {
     >
       <div className="container max-w-4xl mx-auto text-center z-10">
         <div className="space-y-6">
+          <div className="flex items-center justify-center gap-2 opacity-0 animate-fade-in">
+            <span className="relative flex h-2 w-2 shrink-0">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 animate-ping"></span>
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
+            </span>
+            <span className="font-mono text-xs md:text-sm uppercase tracking-wider text-muted-foreground">
+              {lang({
+                en: "Software Engineer @ Astute Industries · 3rd-year SE @ EIU",
+                vi: "Kỹ sư phần mềm @ Astute Industries · Sinh viên năm 3 @ EIU",
+              })}
+            </span>
+          </div>
+
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
             <span className="opacity-0 animate-fade-in">
               {lang({ vi: "Xin chào, tôi là", en: "Hi, I'm" })}
@@ -35,6 +55,21 @@ export const HeroSection = () => {
             <a href="#projects" className="cosmic-button">
               {lang({ vi: "Xem dự án", en: "View My Work" })}
             </a>
+          </div>
+
+          <div className="pt-10 opacity-0 animate-fade-in-delay-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-2xl mx-auto">
+              {heroStats.map((s) => (
+                <div key={s.label.en} className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-primary">
+                    {s.value}
+                  </div>
+                  <div className="text-xs md:text-sm text-muted-foreground mt-1">
+                    {lang(s.label)}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

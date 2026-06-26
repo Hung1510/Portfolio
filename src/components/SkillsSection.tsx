@@ -89,6 +89,9 @@ export const SkillsSection = () => {
   return (
     <section id="skills" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
+        <p className="font-mono text-xs md:text-sm text-primary tracking-[0.25em] mb-3 text-center">
+          {lang({ en: "03 / SKILLS", vi: "03 / KỸ NĂNG" })}
+        </p>
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
           {lang({ vi: "Kỹ năng của", en: "My" })}{" "}
           <span className="text-primary">

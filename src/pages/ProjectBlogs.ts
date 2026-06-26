@@ -332,5 +332,56 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
                 ]
             }
         ]
+    },
+    "shorekeeper-startup": {
+        title: "Shorekeeper Startup Voice: A Windows Login Sound Player",
+        date: "2025",
+        sections: [
+            {
+                type: "text",
+                content: "A fun personal project: a tiny, no-window Windows program that plays a short game voice line every time you log in, paired with a pipeline that extracts and cleans those clips from Square Enix audio banks. It works with any short .wav, so the voice is swappable."
+            },
+            {
+                type: "heading",
+                content: "The Idea"
+            },
+            {
+                type: "text",
+                content: "I wanted my PC to greet me with a voice line on login - the kind of small, personal touch that makes a machine feel like yours. The catch: the audio lived inside packed Square Enix .sab voice banks, and the player had to run completely silently in the background with no console window flashing on screen."
+            },
+            {
+                type: "heading",
+                content: "How It Works"
+            },
+            {
+                type: "list",
+                content: [
+                    "Extraction pipeline (Bash, Linux/WSL): builds vgmstream to decode the SAB / CRI-HCA banks, pulls phrase-length lines, then loudness-normalizes and fades them with ffmpeg into clean .wav clips",
+                    "Silent player (C++ / Win32): a windowless executable that plays the clip via the PlaySound API - no console, no flicker",
+                    "Zero-install alternatives: VBScript and PowerShell players for setups where compiling isn't wanted",
+                    "Autostart: a Windows Task Scheduler 'At log on' trigger fires the player at login"
+                ]
+            },
+            {
+                type: "heading",
+                content: "Technical Stack"
+            },
+            {
+                type: "list",
+                content: [
+                    "Player: C++ (Win32, winmm / PlaySound), plus VBScript and PowerShell variants",
+                    "Audio pipeline: Bash, vgmstream, ffmpeg",
+                    "Autostart: Windows Task Scheduler"
+                ]
+            },
+            {
+                type: "heading",
+                content: "Highlights"
+            },
+            {
+                type: "text",
+                content: "The interesting parts were outside web dev: decoding a proprietary game audio format (CRI-HCA inside .sab banks) with vgmstream, normalizing loudness so the greeting isn't jarring, and writing a genuinely windowless Win32 player so nothing pops up at login. Shipping three player variants (compiled and zero-install) means it runs on almost any Windows setup."
+            }
+        ]
     }
 };

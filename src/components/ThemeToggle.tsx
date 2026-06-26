@@ -75,13 +75,5 @@ export const ThemeToggle = () => {
     </div>
   );
 
-  return (
-    <>
-      {/* Mobile */}
-      <Buttons className="md:hidden" />
-
-      {/* Desktop */}
-      <Buttons className="hidden md:flex fixed top-5 right-5 z-50" />
-    </>
-  );
+  return <Buttons />;
 };

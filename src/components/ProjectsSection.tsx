@@ -59,7 +59,7 @@ export const projects: Project[] = [
       vi: "Bot Discord đa hệ thống cho cộng đồng người Việt ~350 thành viên, gồm 10 hệ thống (Economy, Games, Moderation, Ticket, Level) với giao diện chủ đề vũ trụ và phản hồi tiếng Việt.",
       en: "A multi-system Discord bot for a ~350-member Vietnamese community with 10 systems (Economy, Games, Moderation, Ticket, Level), a cosmic space theme, and Vietnamese-language responses.",
     }),
-    // 📌 IMAGE: drop your screenshot in public/projects/ then set the path here (e.g. "/projects/discordBot.png")
+    // drop your screenshot in public/projects/ then set the path here (e.g. "/projects/discordBot.png")
     image: "/projects/discordBot.png",
     tags: ["TypeScript", "discord.js", "SQLite", "Railway"],
     demoUrl: "#",
@@ -73,12 +73,26 @@ export const projects: Project[] = [
       vi: "Hệ thống ML đa nhiệm phát hiện phân biệt vùng miền trong văn bản mạng xã hội tiếng Việt, bền vững trước biến thể Telex/làm nhiễu, triển khai dưới dạng REST API (FastAPI) phục vụ kiểm duyệt nội dung theo Nghị định 147/2024.",
       en: "A multi-task ML system for detecting regional discrimination in Vietnamese social media text, robust to Telex/obfuscated variants, deployed as a FastAPI REST API for content moderation aligned with Decree 147/2024.",
     }),
-    // 📌 IMAGE: drop your screenshot in public/projects/ then set the path here (e.g. "/projects/regionResearch.png")
+    // drop your screenshot in public/projects/ then set the path here (e.g. "/projects/regionResearch.png")
     image: "/projects/regionResearch.png",
     tags: ["Python", "Machine Learning", "NLP", "FastAPI"],
     demoUrl: "#",
     githubUrl: "#",
     slug: "region-research",
+  },
+  {
+    id: 6,
+    title: "Shorekeeper Startup Voice",
+    description: lang({
+      vi: "Trình phát không cửa sổ trên Windows phát một câu thoại game khi đăng nhập, kèm pipeline Bash/ffmpeg để trích xuất và chuẩn hóa âm lượng các đoạn âm thanh từ kho SAB của Square Enix.",
+      en: "A no-window Windows player that plays a game voice line at login, plus a Bash/ffmpeg pipeline to extract and loudness-normalize clips from Square Enix SAB audio banks.",
+    }),
+    // drop a screenshot in public/projects/ then set the path here
+    image: "/projects/shorekeeperStartup.png",
+    tags: ["C++", "Win32", "Bash", "ffmpeg"],
+    demoUrl: "#",
+    githubUrl: "https://github.com/Hung1510/Shorekeeper-window-startup-greeting",
+    slug: "shorekeeper-startup",
   },
 ];
 
@@ -86,6 +100,9 @@ export const ProjectsSection = () => {
   return (
     <section id="projects" className="py-24 px-4 relative">
       <div className="container mx-auto max-w-5xl">
+        <p className="font-mono text-xs md:text-sm text-primary tracking-[0.25em] mb-3 text-center">
+          {lang({ en: "04 / PROJECTS", vi: "04 / DỰ ÁN" })}
+        </p>
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
           {" "}
           {lang({ vi: "Dự án", en: "Featured" })}{" "}
