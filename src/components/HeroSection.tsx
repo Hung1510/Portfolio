@@ -23,8 +23,8 @@ export const HeroSection = () => {
             </span>
             <span className="font-mono text-xs md:text-sm uppercase tracking-wider text-muted-foreground">
               {lang({
-                en: "Software Engineer @ Astute Industries · 3rd-year SE @ EIU",
-                vi: "Kỹ sư phần mềm @ Astute Industries · Sinh viên năm 3 @ EIU",
+                en: "Software Engineer @ Astute Industries · SE Graduate @ EIU",
+                vi: "Kỹ sư phần mềm @ Astute Industries · Tốt nghiệp KTPM @ EIU",
               })}
             </span>
           </div>
