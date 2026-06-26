@@ -26,8 +26,8 @@ export const AboutSection = () => {
 
             <p className="text-muted-foreground">
               {lang({
-                vi: "Là sinh viên năm 3 đang chuẩn bị tốt nghiệp, tôi có nền tảng vững chắc về lập trình và đam mê mạnh mẽ với phát triển full-stack cũng như xây dựng các ứng dụng web hiện đại.",
-                en: "As a third-year student preparing for graduation, I have a solid foundation in programming and a strong passion for full-stack development and building modern web applications.",
+                vi: "Là một kỹ sư phần mềm mới tốt nghiệp, tôi có nền tảng vững chắc về lập trình và đam mê mạnh mẽ với phát triển full-stack cũng như xây dựng các ứng dụng web hiện đại.",
+                en: "As a Software Engineering graduate, I have a solid foundation in programming and a strong passion for full-stack development and building modern web applications.",
               })}
             </p>
 
