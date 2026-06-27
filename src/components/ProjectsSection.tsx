@@ -33,8 +33,8 @@ export const projects: Project[] = [
       vi: "Trình phát không cửa sổ trên Windows phát một câu thoại game khi đăng nhập, kèm pipeline Bash/ffmpeg trích xuất và chuẩn hóa âm lượng các đoạn âm thanh từ kho Wwise (.bnk/.wem) và Square Enix SAB.",
       en: "A no-window Windows player that plays a game voice line at login, plus a Bash/ffmpeg pipeline that extracts and loudness-normalizes clips from Wwise (.bnk/.wem) and Square Enix SAB audio banks.",
     }),
-    // drop a screenshot in public/projects/ then set the path here
-    image: "projects/shorekeeper.png",
+    // 📌 IMAGE: drop a screenshot in public/projects/ then set the path here
+    image: "/projects/shorekeeperStartup.png",
     tags: ["C++", "Win32", "Wwise", "ffmpeg"],
     demoUrl: "#",
     githubUrl: "https://github.com/Hung1510/Shorekeeper-window-startup-greeting",
@@ -73,7 +73,7 @@ export const projects: Project[] = [
       vi: "Bot Discord đa hệ thống cho cộng đồng người Việt ~350 thành viên, gồm 10 hệ thống (Economy, Games, Moderation, Ticket, Level) với giao diện chủ đề vũ trụ và phản hồi tiếng Việt.",
       en: "A multi-system Discord bot for a ~350-member Vietnamese community with 10 systems (Economy, Games, Moderation, Ticket, Level), a cosmic space theme, and Vietnamese-language responses.",
     }),
-    // drop your screenshot in public/projects/ then set the path here (e.g. "/projects/discordBot.png")
+    // 📌 IMAGE: drop your screenshot in public/projects/ then set the path here (e.g. "/projects/discordBot.png")
     image: "/projects/discordBot.png",
     tags: ["TypeScript", "discord.js", "SQLite", "Railway"],
     demoUrl: "#",
@@ -87,12 +87,25 @@ export const projects: Project[] = [
       vi: "Hệ thống ML đa nhiệm phát hiện phân biệt vùng miền trong văn bản mạng xã hội tiếng Việt, bền vững trước biến thể Telex/làm nhiễu, triển khai dưới dạng REST API (FastAPI) phục vụ kiểm duyệt nội dung theo Nghị định 147/2024.",
       en: "A multi-task ML system for detecting regional discrimination in Vietnamese social media text, robust to Telex/obfuscated variants, deployed as a FastAPI REST API for content moderation aligned with Decree 147/2024.",
     }),
-    // drop your screenshot in public/projects/ then set the path here (e.g. "/projects/regionResearch.png")
+    // 📌 IMAGE: drop your screenshot in public/projects/ then set the path here (e.g. "/projects/regionResearch.png")
     image: "/projects/regionResearch.png",
     tags: ["Python", "Machine Learning", "NLP", "FastAPI"],
     demoUrl: "#",
     githubUrl: "#",
     slug: "region-research",
+  },
+  {
+    id: 7,
+    title: "Rainmeter Waifu Desktop",
+    description: lang({
+      vi: "Bộ widget Rainmeter nhẹ mang phong cách 'ricing' của Linux lên Windows - hình nhân vật, thời tiết trực tiếp không cần API key (Open-Meteo), đồng hồ, lịch tháng và nhiệt độ CPU.",
+      en: "A suite of lightweight Rainmeter widgets that bring a clean Linux-style 'ricing' look to Windows - a character cutout, keyless live weather (Open-Meteo), a clock, a month calendar, and CPU temp.",
+    }),
+    image: "/projects/rainmeterWaifu.png",
+    tags: ["Rainmeter", "Lua", "Open-Meteo", "Windows"],
+    demoUrl: "https://hung1510.github.io/rainmeter-waifu-desktop/",
+    githubUrl: "https://github.com/Hung1510/rainmeter-waifu-desktop",
+    slug: "rainmeter-waifu-desktop",
   },
 ];
 

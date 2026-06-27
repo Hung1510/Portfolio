@@ -190,7 +190,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
                 type: "text",
                 content: "A multi-system Discord bot built entirely solo for a Vietnamese gaming community. It bundles ten interconnected systems into a single cosmic, space-themed experience with Vietnamese-language responses, and now runs in a community server of over 5,000 members. (Personal project - designed, built, and hosted by me.)"
             },
-            // add a screenshot at public/projects/discordBot.png to show it in the hero and add an image section here.
+            // 📌 IMAGE: add a screenshot at public/projects/discordBot.png to show it in the hero and add an image section here.
             {
                 type: "heading",
                 content: "The Problem"
@@ -262,7 +262,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
                 type: "text",
                 content: "A research project developing an adversarially robust, multi-task machine learning system for detecting regional discrimination in Vietnamese social media text, designed to be delivered as a deployable REST API that other applications and sites can call for content moderation. The work is aligned with the content-moderation requirements of Vietnam's Decree 147/2024."
             },
-            // add a figure/screenshot at public/projects/regionResearch.png to show it in the hero and add an image section here.
+            // 📌 IMAGE: add a figure/screenshot at public/projects/regionResearch.png to show it in the hero and add an image section here.
             {
                 type: "heading",
                 content: "My Role"
@@ -394,6 +394,68 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
             {
                 type: "text",
                 content: "Adding Wwise was the big step - it's one of the most widely used game audio middlewares, so the tool now works with a large swath of games rather than just Square Enix titles. The interesting engineering is in the decoding (handling proprietary and middleware audio formats and their many subsongs through vgmstream) and in keeping the player genuinely windowless. I also kept it copyright-conscious: the repo ships only the tooling, never any game audio - that stays the rights holders' property, and you bring your own files."
+            }
+        ]
+    },
+    "rainmeter-waifu-desktop": {
+        title: "Rainmeter Waifu Desktop: A Windows Desktop Widget Suite",
+        date: "2025",
+        sections: [
+            {
+                type: "text",
+                content: "A small suite of Rainmeter widgets that give Windows the clean 'ricing' look usually associated with Linux desktops - a character cutout plus live weather, a clock, a month calendar, and CPU temperature. Four lightweight skins you can read top to bottom, with a live browser demo of the clock, calendar, and weather."
+            },
+            {
+                type: "heading",
+                content: "The Idea"
+            },
+            {
+                type: "text",
+                content: "Desktop customization ('ricing') is big on Linux but fiddly on Windows. I wanted a tidy, low-footprint set of widgets that looked intentional rather than cluttered, and that anyone could drop in, point at their own city and character art, and use."
+            },
+            {
+                type: "heading",
+                content: "Keyless Live Weather"
+            },
+            {
+                type: "text",
+                content: "The weather widget needs no account, no API key, and sends no telemetry. It makes a single HTTP GET to Open-Meteo, asking for the fields in a fixed order so one regex can pull each value out by position. The numeric weather code then runs through a small Lua table that turns it into readable words like 'Partly cloudy'."
+            },
+            {
+                type: "heading",
+                content: "What's Inside"
+            },
+            {
+                type: "list",
+                content: [
+                    "Waifu: the character cutout (load several to rotate)",
+                    "Weather: live Open-Meteo data, no key",
+                    "Clock: time and date",
+                    "Calendar: a month grid with today highlighted, in pure Lua",
+                    "CpuTemp: the hottest core via the Core Temp plugin",
+                    "@Resources: a single Variables.inc plus Lua helpers and images - the one place you edit location, units, fonts, colors, and art"
+                ]
+            },
+            {
+                type: "heading",
+                content: "Technical Stack"
+            },
+            {
+                type: "list",
+                content: [
+                    "Rainmeter (Windows desktop skins)",
+                    "Lua for the calendar logic and weather-code mapping",
+                    "WebParser + regex for the Open-Meteo request",
+                    "Core Temp plugin for CPU temperature"
+                ]
+            },
+            {
+                type: "heading",
+                content: "Highlights"
+            },
+            {
+                type: "text",
+                content: "It's deliberately light - around 30 MB on disk, tens of MB of RAM, and roughly 0% CPU at idle. Everything configurable lives in one Variables.inc, so swapping your city and character art makes it yours without touching the skin logic. Like my other tools, it's MIT-licensed and ships no copyrighted art - you bring your own."
             }
         ]
     }
