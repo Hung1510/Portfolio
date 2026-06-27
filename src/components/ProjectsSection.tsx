@@ -27,6 +27,20 @@ export const projects: Project[] = [
     slug: "smart-learning-advisor",
   },
   {
+    id: 6,
+    title: "Shorekeeper Startup Voice",
+    description: lang({
+      vi: "Trình phát không cửa sổ trên Windows phát một câu thoại game khi đăng nhập, kèm pipeline Bash/ffmpeg trích xuất và chuẩn hóa âm lượng các đoạn âm thanh từ kho Wwise (.bnk/.wem) và Square Enix SAB.",
+      en: "A no-window Windows player that plays a game voice line at login, plus a Bash/ffmpeg pipeline that extracts and loudness-normalizes clips from Wwise (.bnk/.wem) and Square Enix SAB audio banks.",
+    }),
+    // drop a screenshot in public/projects/ then set the path here
+    image: "/projects/shorekeeperStartup.png",
+    tags: ["C++", "Win32", "Wwise", "ffmpeg"],
+    demoUrl: "#",
+    githubUrl: "https://github.com/Hung1510/Shorekeeper-window-startup-greeting",
+    slug: "shorekeeper-startup",
+  },
+  {
     id: 2,
     title: "Quiz & Interview Practice Platform",
     description: lang({
@@ -79,20 +93,6 @@ export const projects: Project[] = [
     demoUrl: "#",
     githubUrl: "#",
     slug: "region-research",
-  },
-  {
-    id: 6,
-    title: "Shorekeeper Startup Voice",
-    description: lang({
-      vi: "Trình phát không cửa sổ trên Windows phát một câu thoại game khi đăng nhập, kèm pipeline Bash/ffmpeg để trích xuất và chuẩn hóa âm lượng các đoạn âm thanh từ kho SAB của Square Enix.",
-      en: "A no-window Windows player that plays a game voice line at login, plus a Bash/ffmpeg pipeline to extract and loudness-normalize clips from Square Enix SAB audio banks.",
-    }),
-    // drop a screenshot in public/projects/ then set the path here
-    image: "/projects/shorekeeperStartup.png",
-    tags: ["C++", "Win32", "Bash", "ffmpeg"],
-    demoUrl: "#",
-    githubUrl: "https://github.com/Hung1510/Shorekeeper-window-startup-greeting",
-    slug: "shorekeeper-startup",
   },
 ];
 

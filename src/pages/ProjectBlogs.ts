@@ -190,7 +190,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
                 type: "text",
                 content: "A multi-system Discord bot built entirely solo for a Vietnamese gaming community. It bundles ten interconnected systems into a single cosmic, space-themed experience with Vietnamese-language responses, and now runs in a community server of over 5,000 members. (Personal project - designed, built, and hosted by me.)"
             },
-            // 📌 IMAGE: add a screenshot at public/projects/discordBot.png to show it in the hero and add an image section here.
+            // add a screenshot at public/projects/discordBot.png to show it in the hero and add an image section here.
             {
                 type: "heading",
                 content: "The Problem"
@@ -262,7 +262,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
                 type: "text",
                 content: "A research project developing an adversarially robust, multi-task machine learning system for detecting regional discrimination in Vietnamese social media text, designed to be delivered as a deployable REST API that other applications and sites can call for content moderation. The work is aligned with the content-moderation requirements of Vietnam's Decree 147/2024."
             },
-            // 📌 IMAGE: add a figure/screenshot at public/projects/regionResearch.png to show it in the hero and add an image section here.
+            // add a figure/screenshot at public/projects/regionResearch.png to show it in the hero and add an image section here.
             {
                 type: "heading",
                 content: "My Role"
@@ -339,7 +339,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
         sections: [
             {
                 type: "text",
-                content: "A fun personal project: a tiny, no-window Windows program that plays a short game voice line every time you log in, paired with a pipeline that extracts and cleans those clips from Square Enix audio banks. It works with any short .wav, so the voice is swappable."
+                content: "A fun personal project: a tiny, no-window Windows program that plays a short game voice line every time you log in, paired with a pipeline that extracts and cleans those clips from game audio banks. It started with Square Enix SAB banks and now also pulls from Wwise (.bnk / .wem) - the audio middleware behind a huge range of games. Any short .wav works, so the voice is fully swappable."
             },
             {
                 type: "heading",
@@ -347,20 +347,32 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
             },
             {
                 type: "text",
-                content: "I wanted my PC to greet me with a voice line on login - the kind of small, personal touch that makes a machine feel like yours. The catch: the audio lived inside packed Square Enix .sab voice banks, and the player had to run completely silently in the background with no console window flashing on screen."
+                content: "I wanted my PC to greet me with a specific character voice line on login, but I couldn't find usable audio without recording it in-game by hand. So I built a tool to pull the lines straight from the game's own audio banks - for my own use, and for anyone who wants the same. The player also had to run completely silently in the background, with no console window flashing on screen."
             },
             {
                 type: "heading",
                 content: "How It Works"
             },
             {
+                type: "text",
+                content: "The repo is organized so each audio format is self-contained, with its own extractor, player, and docs. The extraction pipeline runs in four steps:"
+            },
+            {
                 type: "list",
                 content: [
-                    "Extraction pipeline (Bash, Linux/WSL): builds vgmstream to decode the SAB / CRI-HCA banks, pulls phrase-length lines, then loudness-normalizes and fades them with ffmpeg into clean .wav clips",
-                    "Silent player (C++ / Win32): a windowless executable that plays the clip via the PlaySound API - no console, no flicker",
-                    "Zero-install alternatives: VBScript and PowerShell players for setups where compiling isn't wanted",
-                    "Autostart: a Windows Task Scheduler 'At log on' trigger fires the player at login"
+                    "Identify: detect the container - SAB banks (magic 'sabf'), or Wwise .bnk banks and .wem streams",
+                    "Decode: vgmstream reads the container and auto-detects the codec (CRI HCA for SAB; Vorbis / Opus / ADPCM / PCM for Wwise), expanding the many subsongs a bank holds",
+                    "Filter: keep only streams above a length threshold, skipping tiny grunts and blips",
+                    "Curate: keep the fullest takes, loudness-normalize, and add a short fade-out with ffmpeg"
                 ]
+            },
+            {
+                type: "heading",
+                content: "The Player"
+            },
+            {
+                type: "text",
+                content: "The player is format-agnostic - it just plays the final .wav and doesn't care where the audio came from. It uses the Windows MCI engine, so it handles any WAV variant plus mp3, and ships as C++, VBScript, and PowerShell builds so it runs on almost any setup. A Task Scheduler 'At log on' trigger fires it at login, with no console window on screen."
             },
             {
                 type: "heading",
@@ -369,8 +381,9 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
             {
                 type: "list",
                 content: [
-                    "Player: C++ (Win32, winmm / PlaySound), plus VBScript and PowerShell variants",
+                    "Players: C++ (Win32, MCI via winmm), plus VBScript and PowerShell variants",
                     "Audio pipeline: Bash, vgmstream, ffmpeg",
+                    "Supported banks: Wwise (.bnk / .wem) and Square Enix SAB (CRI HCA)",
                     "Autostart: Windows Task Scheduler"
                 ]
             },
@@ -380,7 +393,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
             },
             {
                 type: "text",
-                content: "The interesting parts were outside web dev: decoding a proprietary game audio format (CRI-HCA inside .sab banks) with vgmstream, normalizing loudness so the greeting isn't jarring, and writing a genuinely windowless Win32 player so nothing pops up at login. Shipping three player variants (compiled and zero-install) means it runs on almost any Windows setup."
+                content: "Adding Wwise was the big step - it's one of the most widely used game audio middlewares, so the tool now works with a large swath of games rather than just Square Enix titles. The interesting engineering is in the decoding (handling proprietary and middleware audio formats and their many subsongs through vgmstream) and in keeping the player genuinely windowless. I also kept it copyright-conscious: the repo ships only the tooling, never any game audio - that stays the rights holders' property, and you bring your own files."
             }
         ]
     }
