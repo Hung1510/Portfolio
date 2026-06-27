@@ -34,7 +34,7 @@ export const projects: Project[] = [
       en: "A no-window Windows player that plays a game voice line at login, plus a Bash/ffmpeg pipeline that extracts and loudness-normalizes clips from Wwise (.bnk/.wem) and Square Enix SAB audio banks.",
     }),
     // drop a screenshot in public/projects/ then set the path here
-    image: "/projects/shorekeeperStartup.png",
+    image: "projects/shorekeeper.png",
     tags: ["C++", "Win32", "Wwise", "ffmpeg"],
     demoUrl: "#",
     githubUrl: "https://github.com/Hung1510/Shorekeeper-window-startup-greeting",
