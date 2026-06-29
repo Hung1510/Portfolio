@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Navbar } from "../../components/Navbar";
 import { StarBackground } from "@/components/StarBackground";
 import { SkyBackground } from "@/components/SkyBackground";
@@ -504,6 +505,17 @@ function SmartAdvisorDetail() {
         isLight ? "bg-white text-slate-800" : "bg-background text-foreground"
       }`}
     >
+      <Helmet>
+        <title>Smart Learning Advisor | Gia Hung Pham</title>
+        <meta
+          name="description"
+          content="Smart Learning Advisor - an AI-powered academic advisor with GPA tracking and course recommendations, built by Gia Hung Pham."
+        />
+        <link
+          rel="canonical"
+          href="https://giahung-portfolio.vercel.app/projects/smart-learning-advisor"
+        />
+      </Helmet>
       {isLight ? <SkyBackground /> : <StarBackground />}
       <Navbar />
 

@@ -1,5 +1,6 @@
 import { ArrowLeft, Calendar, ExternalLink, Github } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useToast } from "@/hooks/use-toast";
 import { projects } from "../components/ProjectsSection"; // Import projects
 import { projectBlogs } from "./ProjectBlogs"; // Import blog content
@@ -52,6 +53,14 @@ export const ProjectBlog = ({ slug }: ProjectBlogProps) => {
 
     return (
         <div className="min-h-screen pt-24 pb-16 px-4">
+            <Helmet>
+                <title>{`${project.title} | Gia Hung Pham`}</title>
+                <meta name="description" content={project.description} />
+                <link rel="canonical" href={`https://giahung-portfolio.vercel.app/projects/${slug}`} />
+                <meta property="og:title" content={`${project.title} | Gia Hung Pham`} />
+                <meta property="og:description" content={project.description} />
+                <meta property="og:url" content={`https://giahung-portfolio.vercel.app/projects/${slug}`} />
+            </Helmet>
             <div className="container mx-auto max-w-4xl">
                 <Link
                     to="/"
