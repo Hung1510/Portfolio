@@ -1,0 +1,5 @@
+# https://giahung-portfolio.vercel.app
+User-agent: *
+Allow: /
+
+Sitemap: https://giahung-portfolio.vercel.app/sitemap.xml
