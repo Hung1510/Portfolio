@@ -7,6 +7,8 @@ import {
   AppWindow,
   BarChart3,
   Bot,
+  Gauge,
+  KeyRound,
   LineChart,
   Database,
   FileOutput,
@@ -14,12 +16,14 @@ import {
   LockOpen,
   Map,
   Monitor,
+  Network,
   Palette,
   Printer,
   Radio,
   Rocket,
   Server,
   Settings,
+  ShieldCheck,
   Zap,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -35,15 +39,19 @@ const Icons: Record<string, LucideIcon> = {
   Database,
   FileOutput,
   FileText,
+  Gauge,
+  KeyRound,
   LockOpen,
   Map,
   Monitor,
+  Network,
   Palette,
   Printer,
   Radio,
   Rocket,
   Server,
   Settings,
+  ShieldCheck,
   Zap,
 };
 import { lang } from "@/helper/lang";
@@ -71,33 +79,33 @@ function useTheme() {
 const PAGES = [
   {
     num: "01",
-    icon: "LockOpen",
+    icon: "ShieldCheck",
     iconBg: "bg-blue-900/40",
     title: lang({ vi: "Trang đăng nhập", en: "Login Page" }),
     subtitle: lang({
-      vi: "Xác thực sinh viên bằng mã số sinh viên",
-      en: "Student authentication using student ID",
+      vi: "Đăng nhập Google hoặc tài khoản sinh viên EIU",
+      en: "Google sign-in or EIU student login",
     }),
     features: [
       lang({
-        vi: "Xác thực id sinh viên EIU",
-        en: "EIU student ID authentication",
+        vi: "Đăng nhập bằng Google (OAuth) hoặc tài khoản sinh viên EIU",
+        en: "Google OAuth or EIU student login",
       }),
       lang({
-        vi: "Session management với Express Session",
-        en: "Session management using Express Session",
+        vi: "Xác thực bằng JWT và cookie bảo mật",
+        en: "JWT authentication with secure cookies",
       }),
       lang({
         vi: "Bảo vệ route với middleware xác thực",
         en: "Route protection using authentication middleware",
       }),
       lang({
-        vi: "Giao diện Bootstrap responsive",
-        en: "Responsive UI with Bootstrap",
+        vi: "Giới hạn số lần đăng nhập bằng Redis",
+        en: "Login rate-limiting via Redis",
       }),
     ],
     dotColor: "bg-blue-500",
-    tags: ["Express Session", "Middleware", "Bootstrap"],
+    tags: ["Google OAuth", "JWT", "Redis"],
     tagDark: "bg-blue-900/50 text-blue-300 border border-blue-700/40",
     tagLight: "bg-blue-100 text-blue-700 border border-blue-200",
     img: "/SmartAdvisor/login.png",
@@ -200,7 +208,7 @@ const PAGES = [
       en: "Smart academic advising",
     }),
     features: [
-      lang({ vi: "Tích hợp AI open source", en: "Integrate open-source AI" }),
+      lang({ vi: "Tích hợp LLM qua OpenRouter", en: "LLM integration via OpenRouter" }),
       lang({
         vi: "Nhận diện GPA & lộ trình",
         en: "Context-aware GPA & roadmap",
@@ -210,12 +218,12 @@ const PAGES = [
         en: "Vietnamese & English support",
       }),
       lang({
-        vi: "Streaming response real-time",
-        en: "Real-time streaming response",
+        vi: "Streaming response real-time (SSE)",
+        en: "Real-time streaming response (SSE)",
       }),
     ],
     dotColor: "bg-orange-500",
-    tags: ["AI API", "Node.js", "Streaming"],
+    tags: ["OpenRouter", "SSE Streaming", "Node.js"],
     tagDark: "bg-orange-900/40 text-orange-300 border border-orange-700/40",
     tagLight: "bg-orange-100 text-orange-700 border border-orange-200",
     img: "/SmartAdvisor/ai.png",
@@ -226,12 +234,15 @@ const TECH = [
   { icon: "Zap", name: "Node.js", role: "Runtime" },
   { icon: "Server", name: "Express.js", role: "Framework" },
   { icon: "FileText", name: "EJS", role: "Template Engine" },
+  { icon: "ShieldCheck", name: "Google OAuth", role: "Auth (Passport)" },
+  { icon: "KeyRound", name: "JWT", role: "Sessions" },
+  { icon: "Bot", name: "OpenRouter", role: "AI (LLM)" },
   { icon: "Database", name: "MongoDB", role: "Database" },
-  { icon: "Bot", name: "AI API", role: "AI Integration" },
-  { icon: "Palette", name: "Bootstrap", role: "UI Framework" },
+  { icon: "Gauge", name: "Upstash Redis", role: "Cache & Rate-limit" },
+  { icon: "Network", name: "Python API", role: "Live EIU Data" },
   { icon: "BarChart3", name: "D3.js", role: "Flowchart" },
-  { icon: "Radio", name: "Firebase", role: "Real-time" },
-  { icon: "Printer", name: "Browser Print", role: "Print / Export PDF" },
+  { icon: "Palette", name: "Bootstrap", role: "UI Framework" },
+  { icon: "Printer", name: "Browser Print", role: "Export PDF" },
 ];
 
 const ARCH = [
@@ -241,7 +252,7 @@ const ARCH = [
     dark: "border-sky-500/30 bg-sky-900/10",
     light: "border-sky-200 bg-sky-50",
     titleColor: "text-sky-500",
-    desc: "EJS Templates · Bootstrap · D3.js · Firebase · Responsive UI",
+    desc: "EJS Templates · Bootstrap · D3.js / SVG · Responsive UI",
   },
   {
     icon: "Settings",
@@ -249,7 +260,7 @@ const ARCH = [
     dark: "border-orange-500/30 bg-orange-900/10",
     light: "border-orange-200 bg-orange-50",
     titleColor: "text-orange-500",
-    desc: "Express.js · Node.js · MVC Pattern · AI API · Browser Print · Firebase",
+    desc: "Express.js · Node.js · Passport (Google OAuth) · JWT · OpenRouter (SSE streaming) · Redis rate-limiting",
   },
   {
     icon: "Database",
@@ -257,7 +268,7 @@ const ARCH = [
     dark: "border-emerald-500/30 bg-emerald-900/10",
     light: "border-emerald-200 bg-emerald-50",
     titleColor: "text-emerald-600",
-    desc: "MongoDB Atlas · Mongoose ODM · Users, Courses, Scores, Messages",
+    desc: "MongoDB · Upstash Redis (cache) · Python API for live EIU transcript data",
   },
 ];
 
@@ -330,8 +341,8 @@ const MY_ROLE_STEPS = [
         en: "Contributed to prompt design for GPA and personalized roadmap understanding",
       }),
       lang({
-        vi: "Tích hợp Firebase cho chat real-time giữa sinh viên và cố vấn",
-        en: "Integrated Firebase for real-time chat between students and advisors",
+        vi: "Xây dựng chat nhắn tin giữa sinh viên và cố vấn (lưu trên MongoDB)",
+        en: "Built student-advisor chat messaging (stored in MongoDB)",
       }),
     ],
   },
@@ -602,14 +613,8 @@ function SmartAdvisorDetail() {
             </div>
 
             <div className="flex gap-3 flex-wrap">
-              {/* <a
-                href="https://smart-learning-chi.vercel.app/login"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-medium transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(21,101,192,0.4)]"
-              > */}
               <a
-                href="https://smart-learning-jvakdob3j-datlys-projects.vercel.app/login"
+                href="https://smart-learning-advisor.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-medium transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(21,101,192,0.4)]"
@@ -618,7 +623,7 @@ function SmartAdvisorDetail() {
                 {lang({ vi: "Xem demo", en: "Live Demo" })}
               </a>
               <a
-                href="https://github.com/Ly-Dat/SmartLearning"
+                href="https://github.com/Hung1510/smart-learning-advisor"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all hover:-translate-y-0.5 border ${

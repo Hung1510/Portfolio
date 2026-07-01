@@ -17,13 +17,13 @@ export const projects: Project[] = [
     id: 1,
     title: "EIU/CIT Smart Learning Advisor",
     description: lang({
-      vi: "Ứng dụng web tích hợp AI giúp theo dõi GPA, trực quan hóa lộ trình học và cung cấp thông tin môn học cho sinh viên EIU.",
-      en: "An AI-powered web application for tracking GPA, visualizing learning paths, and providing course insights for EIU students.",
+      vi: "Ứng dụng web full-stack cho sinh viên EIU: đăng nhập Google để tải bảng điểm thật, theo dõi GPA, dựng lộ trình môn học và nhận tư vấn AI cá nhân hóa theo thời gian thực.",
+      en: "A full-stack web app for EIU students: Google sign-in pulls live transcript data, tracks GPA, maps the course roadmap, and streams personalized AI advice in real time.",
     }),
     image: "/projects/smartadvisor.png",
-    tags: ["Express.js", "Node.js", "EJS", "Bootstrap"],
-    demoUrl: "https://smart-learning-jvakdob3j-datlys-projects.vercel.app/login",
-    githubUrl: "https://github.com/Ly-Dat/SmartLearning",
+    tags: ["Node.js", "Express", "Google OAuth", "OpenRouter AI"],
+    demoUrl: "https://smart-learning-advisor.vercel.app/",
+    githubUrl: "https://github.com/Hung1510/smart-learning-advisor",
     slug: "smart-learning-advisor",
   },
   {
@@ -101,6 +101,7 @@ export const projects: Project[] = [
       vi: "Bộ widget Rainmeter nhẹ mang phong cách 'ricing' của Linux lên Windows - hình nhân vật, thời tiết trực tiếp không cần API key (Open-Meteo), đồng hồ, lịch tháng và nhiệt độ CPU.",
       en: "A suite of lightweight Rainmeter widgets that bring a clean Linux-style 'ricing' look to Windows - a character cutout, keyless live weather (Open-Meteo), a clock, a month calendar, and CPU temp.",
     }),
+    // 📌 IMAGE: drop a screenshot in public/projects/ then set the path here
     image: "/projects/rainmeterWaifu.png",
     tags: ["Rainmeter", "Lua", "Open-Meteo", "Windows"],
     demoUrl: "https://hung1510.github.io/rainmeter-waifu-desktop/",
