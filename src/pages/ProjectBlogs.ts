@@ -397,6 +397,80 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
             }
         ]
     },
+    "somnium-weaver": {
+        title: "Somnium Weaver: A Living Desktop Overlay in C#",
+        date: "2025",
+        sections: [
+            {
+                type: "text",
+                content: "A living desktop overlay for Windows that turns your machine's own vitals into drifting light. CPU, RAM, and network load become cyan 'motes' that breathe across the screen, and sharp CPU spikes or dips bloom into gold-and-pink butterfly bursts. It's transparent, click-through, runs fully local with no telemetry, and was inspired by the Shorekeeper from Wuthering Waves."
+            },
+            {
+                type: "heading",
+                content: "The Idea"
+            },
+            {
+                type: "text",
+                content: "I wanted an ambient desktop companion that actually reflects what my PC is doing, instead of a static wallpaper. The overlay sits on top of everything, stays click-through so it never gets in the way, and reacts in real time - the busier the machine, the busier the particles. Everything runs offline and free; it phones nowhere."
+            },
+            {
+                type: "heading",
+                content: "How It Works"
+            },
+            {
+                type: "text",
+                content: "Live system metrics drive the particle field:"
+            },
+            {
+                type: "list",
+                content: [
+                    "CPU load sets how fast motes are emitted and how brightly they glow",
+                    "RAM pressure changes their drift speed",
+                    "Network throughput feeds an optional on-screen HUD",
+                    "A CPU spike above 80% or a dip below 15% triggers a butterfly burst - a swarm of gold and pink motes that spirals out for about two seconds"
+                ]
+            },
+            {
+                type: "heading",
+                content: "Audio-Reactive Mode"
+            },
+            {
+                type: "text",
+                content: "An opt-in mode makes the motes dance to whatever the system is playing. It captures desktop audio through WASAPI loopback (no microphone), runs a 1024-point FFT, and splits the spectrum into bass, mid, and treble plus overall loudness, each with adaptive gain. Bass swells push the particles, loudness speeds them up, treble brightens them, and a beat detector - comparing bass energy against a rolling average - fires butterfly bursts on the beat."
+            },
+            {
+                type: "heading",
+                content: "The Hardest Part"
+            },
+            {
+                type: "text",
+                content: "Keeping it smooth. A particle overlay can allocate garbage every frame and stutter, so I pooled particles with a free-list (no per-frame allocations), reused paint objects, and capped the render loop off the compositor clock with a hard ceiling of 5000 particles. Per-pixel window transparency was its own constraint: the GPU-accelerated Skia element can't do it, so the overlay renders on the CPU raster surface on purpose to keep the see-through, click-through window."
+            },
+            {
+                type: "heading",
+                content: "Technical Stack"
+            },
+            {
+                type: "list",
+                content: [
+                    "Framework: WPF on .NET 8, C#",
+                    "Rendering: SkiaSharp (SKElement, CPU raster for per-pixel transparency)",
+                    "Audio: WASAPI loopback capture, 1024-point FFT, band splitting and beat detection",
+                    "Overlay: transparent, click-through, always-on-top window with global hotkeys",
+                    "Persistence: settings saved to %AppData% as JSON, with Low / Medium / High quality presets",
+                    "CI/CD: GitHub Actions builds a self-contained single-file win-x64 release on version tags"
+                ]
+            },
+            {
+                type: "heading",
+                content: "Highlights"
+            },
+            {
+                type: "text",
+                content: "The satisfying part is that the whole scene is procedural - no game assets are shipped, just light generated from math and the machine's own state. The performance work (pooling, paint reuse, an FPS-capped raster loop) keeps a 5000-particle field fluid, and the audio path taught me real-time DSP: loopback capture, FFT band analysis, adaptive gain, and beat detection. Global hotkeys start and stop the weave, toggle the HUD and audio mode, and fire a manual burst."
+            }
+        ]
+    },
     "rainmeter-waifu-desktop": {
         title: "Rainmeter Waifu Desktop: A Windows Desktop Widget Suite",
         date: "2025",

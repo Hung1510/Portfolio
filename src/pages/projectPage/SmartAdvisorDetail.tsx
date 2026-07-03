@@ -138,7 +138,7 @@ const PAGES = [
       }),
     ],
     dotColor: "bg-yellow-500",
-    tags: ["EJS Template", "MongoDB", "REST API"],
+    tags: ["React", "Express API", "Redis Cache"],
     tagDark: "bg-yellow-900/40 text-yellow-300 border border-yellow-700/40",
     tagLight: "bg-yellow-100 text-yellow-700 border border-yellow-200",
     img: "/SmartAdvisor/dashboard.png",
@@ -165,7 +165,7 @@ const PAGES = [
       lang({ vi: "Xuất PDF bảng điểm", en: "Export transcript to PDF" }),
     ],
     dotColor: "bg-green-500",
-    tags: ["EJS", "MongoDB Aggregate", "Bootstrap Table"],
+    tags: ["React", "Live EIU Data", "PDF Export"],
     tagDark: "bg-green-900/40 text-green-300 border border-green-700/40",
     tagLight: "bg-green-100 text-green-700 border border-green-200",
     img: "/SmartAdvisor/scores.png",
@@ -208,7 +208,7 @@ const PAGES = [
       en: "Smart academic advising",
     }),
     features: [
-      lang({ vi: "Tích hợp LLM qua OpenRouter", en: "LLM integration via OpenRouter" }),
+      lang({ vi: "Tích hợp LLM qua GitHub Models", en: "LLM integration via GitHub Models" }),
       lang({
         vi: "Nhận diện GPA & lộ trình",
         en: "Context-aware GPA & roadmap",
@@ -223,7 +223,7 @@ const PAGES = [
       }),
     ],
     dotColor: "bg-orange-500",
-    tags: ["OpenRouter", "SSE Streaming", "Node.js"],
+    tags: ["GitHub Models", "SSE Streaming", "React"],
     tagDark: "bg-orange-900/40 text-orange-300 border border-orange-700/40",
     tagLight: "bg-orange-100 text-orange-700 border border-orange-200",
     img: "/SmartAdvisor/ai.png",
@@ -231,17 +231,20 @@ const PAGES = [
 ];
 
 const TECH = [
+  { icon: "Monitor", name: "React 18 + Vite", role: "Frontend SPA" },
+  { icon: "Map", name: "React Router", role: "Routing" },
+  { icon: "Server", name: "Express.js", role: "JSON API" },
   { icon: "Zap", name: "Node.js", role: "Runtime" },
-  { icon: "Server", name: "Express.js", role: "Framework" },
-  { icon: "FileText", name: "EJS", role: "Template Engine" },
   { icon: "ShieldCheck", name: "Google OAuth", role: "Auth (Passport)" },
-  { icon: "KeyRound", name: "JWT", role: "Sessions" },
-  { icon: "Bot", name: "OpenRouter", role: "AI (LLM)" },
-  { icon: "Database", name: "MongoDB", role: "Database" },
+  { icon: "KeyRound", name: "JWT", role: "Cookie sessions" },
+  { icon: "Bot", name: "GitHub Models", role: "AI (LLM)" },
   { icon: "Gauge", name: "Upstash Redis", role: "Cache & Rate-limit" },
+  { icon: "Radio", name: "Firebase RTDB", role: "Live Chat" },
   { icon: "Network", name: "Python API", role: "Live EIU Data" },
-  { icon: "BarChart3", name: "D3.js", role: "Flowchart" },
-  { icon: "Palette", name: "Bootstrap", role: "UI Framework" },
+  { icon: "BarChart3", name: "D3.js", role: "Roadmap Flowchart" },
+  { icon: "FileText", name: "EJS", role: "SEO Landing" },
+  { icon: "Palette", name: "Bootstrap 5", role: "UI Framework" },
+  { icon: "LockOpen", name: "Helmet", role: "CSP / HSTS" },
   { icon: "Printer", name: "Browser Print", role: "Export PDF" },
 ];
 
@@ -252,7 +255,7 @@ const ARCH = [
     dark: "border-sky-500/30 bg-sky-900/10",
     light: "border-sky-200 bg-sky-50",
     titleColor: "text-sky-500",
-    desc: "EJS Templates · Bootstrap · D3.js / SVG · Responsive UI",
+    desc: "React 18 + Vite (SPA) · React Router · Bootstrap 5 · D3.js flowchart",
   },
   {
     icon: "Settings",
@@ -260,7 +263,7 @@ const ARCH = [
     dark: "border-orange-500/30 bg-orange-900/10",
     light: "border-orange-200 bg-orange-50",
     titleColor: "text-orange-500",
-    desc: "Express.js · Node.js · Passport (Google OAuth) · JWT · OpenRouter (SSE streaming) · Redis rate-limiting",
+    desc: "Express JSON API · Node.js · Passport (Google OAuth) · JWT cookies · GitHub Models (SSE streaming) · Helmet CSP/HSTS · Redis rate-limiting",
   },
   {
     icon: "Database",
@@ -268,7 +271,7 @@ const ARCH = [
     dark: "border-emerald-500/30 bg-emerald-900/10",
     light: "border-emerald-200 bg-emerald-50",
     titleColor: "text-emerald-600",
-    desc: "MongoDB · Upstash Redis (cache) · Python API for live EIU transcript data",
+    desc: "Upstash Redis (cache) · Firebase Realtime DB (chat) · Python API for live EIU transcript data · EJS landing for SEO",
   },
 ];
 
@@ -290,8 +293,8 @@ const MY_ROLE_STEPS = [
         en: "Built dynamic flowcharts using D3.js / SVG for the roadmap page",
       }),
       lang({
-        vi: "Xây dựng layout EJS template cho trang lộ trình và chat advisor",
-        en: "Developed EJS templates for roadmap and advisor chat pages",
+        vi: "Xây dựng các trang React SPA (lộ trình, chat advisor) với React Router",
+        en: "Built the React SPA pages (roadmap, advisor chat) with React Router",
       }),
       lang({
         vi: "Phát triển giao diện chat AI với streaming response theo real-time",
@@ -308,16 +311,16 @@ const MY_ROLE_STEPS = [
     title: lang({ vi: "Phát triển Backend", en: "Backend Development" }),
     items: [
       lang({
-        vi: "Xây dựng REST API với Express.js theo mô hình MVC",
-        en: "Built REST APIs with Express.js following MVC architecture",
+        vi: "Xây dựng Express JSON API (api-routes.js) phục vụ ứng dụng React",
+        en: "Built the Express JSON API (api-routes.js) serving the React SPA",
       }),
       lang({
-        vi: "Thiết kế schema MongoDB cho hệ thống flowchart (nodes & paths)",
-        en: "Designed MongoDB schema for flowchart system (nodes & paths)",
+        vi: "Mô hình hóa đồ thị môn tiên quyết (nodes & paths) cho lộ trình D3",
+        en: "Modeled the course prerequisite graph (nodes & paths) for the D3 roadmap",
       }),
       lang({
-        vi: "Tích hợp MongoDB Atlas + Mongoose để quản lý dữ liệu",
-        en: "Integrated MongoDB Atlas and Mongoose for data management",
+        vi: "Tích hợp Upstash Redis để cache và giới hạn tần suất theo IP",
+        en: "Integrated Upstash Redis for caching and per-IP rate-limiting",
       }),
     ],
   },
@@ -333,16 +336,16 @@ const MY_ROLE_STEPS = [
     }),
     items: [
       lang({
-        vi: "Tìm model AI API (openai/gpt-oss-20b:free) với streaming response",
-        en: "Researched AI models (openai/gpt-oss-20b:free) with streaming response",
+        vi: "Tích hợp GitHub Models cho advisor AI dạng streaming (SSE)",
+        en: "Integrated GitHub Models for the streaming AI advisor (SSE)",
       }),
       lang({
         vi: "Tham gia xây dựng câu prompt cho AI nhận diện GPA & lộ trình cá nhân",
         en: "Contributed to prompt design for GPA and personalized roadmap understanding",
       }),
       lang({
-        vi: "Xây dựng chat nhắn tin giữa sinh viên và cố vấn (lưu trên MongoDB)",
-        en: "Built student-advisor chat messaging (stored in MongoDB)",
+        vi: "Xây dựng chat real-time giữa sinh viên và cố vấn (Firebase Realtime DB)",
+        en: "Built real-time student-advisor chat with Firebase Realtime Database",
       }),
     ],
   },

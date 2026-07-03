@@ -17,11 +17,11 @@ export const projects: Project[] = [
     id: 1,
     title: "EIU/CIT Smart Learning Advisor",
     description: lang({
-      vi: "Ứng dụng web full-stack cho sinh viên EIU: đăng nhập Google để tải bảng điểm thật, theo dõi GPA, dựng lộ trình môn học và nhận tư vấn AI cá nhân hóa theo thời gian thực.",
-      en: "A full-stack web app for EIU students: Google sign-in pulls live transcript data, tracks GPA, maps the course roadmap, and streams personalized AI advice in real time.",
+      vi: "Ứng dụng SPA React (Vite) trên nền Express JSON API cho sinh viên EIU: đăng nhập Google tải bảng điểm thật, theo dõi GPA, dựng lộ trình môn học bằng D3 và nhận tư vấn AI cá nhân hóa dạng streaming (GitHub Models, SSE).",
+      en: "A React (Vite) SPA on an Express JSON API for EIU students: Google sign-in pulls live transcript data, tracks GPA, maps the course roadmap with D3, and streams personalized AI advice (GitHub Models, SSE).",
     }),
     image: "/projects/smartadvisor.png",
-    tags: ["Node.js", "Express", "Google OAuth", "OpenRouter AI"],
+    tags: ["React", "Express API", "Google OAuth", "GitHub Models"],
     demoUrl: "https://smart-learning-advisor.vercel.app/",
     githubUrl: "https://github.com/Hung1510/smart-learning-advisor",
     slug: "smart-learning-advisor",
@@ -39,6 +39,20 @@ export const projects: Project[] = [
     demoUrl: "#",
     githubUrl: "https://github.com/Hung1510/Shorekeeper-window-startup-greeting",
     slug: "shorekeeper-startup",
+  },
+  {
+    id: 8,
+    title: "Somnium Weaver",
+    description: lang({
+      vi: "Lớp phủ desktop Windows sống động (WPF / .NET 8 + SkiaSharp) biến tải CPU, RAM và mạng thành các hạt sáng trôi nổi; chế độ phản ứng âm thanh WASAPI tùy chọn dùng FFT để phát hiện beat và bung hiệu ứng đàn bướm. Trong suốt, xuyên chuột, chạy hoàn toàn cục bộ.",
+      en: "A living Windows desktop overlay (WPF / .NET 8 + SkiaSharp) that weaves CPU, RAM, and network load into drifting particles; an opt-in WASAPI audio-reactive mode uses an FFT to detect beats and fire butterfly bursts. Transparent, click-through, and fully local.",
+    }),
+    // 📌 IMAGE: drop a screenshot in public/projects/ then set the path here
+    image: "/projects/somniumWeaver.png",
+    tags: ["C#", "WPF / .NET 8", "SkiaSharp", "Windows"],
+    demoUrl: "#",
+    githubUrl: "https://github.com/Hung1510/Somnium-Weaver",
+    slug: "somnium-weaver",
   },
   {
     id: 2,
