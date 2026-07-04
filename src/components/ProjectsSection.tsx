@@ -46,7 +46,6 @@ export const projects: Project[] = [
       vi: "Trình tối ưu và quét echo native cho Wuthering Waves viết bằng Rust: chụp màn hình + OCR đọc echo trực tiếp từ game, rồi dùng giải thuật di truyền tính ra build tốt nhất về mặt toán học.",
       en: "A native Rust echo optimizer and scanner for Wuthering Waves: screen-capture + OCR read echoes straight from the game, then a genetic algorithm computes the mathematically best build.",
     }),
-    // 📌 IMAGE: drop a screenshot in public/projects/ then set the path here
     image: "/projects/tethys.png",
     tags: ["Rust", "Genetic Algorithm", "OCR", "Screen Capture"],
     demoUrl: "https://tethys-gray.vercel.app",
@@ -60,7 +59,6 @@ export const projects: Project[] = [
       vi: "Web app full-stack (React 18 + Vite, Express API, TypeScript) roll ngẫu nhiên một battlegroup WARNO và dựng deck theo phong cách 'fun' hoặc 'meta'; mỗi lần roll có seed nên tái tạo và chia sẻ được qua link, phủ 56 battlegroup của 14 quốc gia.",
       en: "A full-stack web app (React 18 + Vite, Express API, TypeScript) that rolls a random WARNO battlegroup and builds a 'fun' or 'meta' deck; every roll is seeded, so it's reproducible and shareable by link, across 56 battlegroups and 14 nations.",
     }),
-    // 📌 IMAGE: drop a screenshot in public/projects/ then set the path here
     image: "/projects/warnoRandomizer.png",
     tags: ["React 18", "TypeScript", "Express API", "Seeded RNG"],
     demoUrl: "https://warno-deck-randomizer.vercel.app",
