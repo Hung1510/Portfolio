@@ -14,6 +14,19 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: 2,
+    title: "Quiz & Interview Practice Platform",
+    description: lang({
+      vi: "Nền tảng luyện tập phỏng vấn và học IT full-stack sử dụng React và NestJS, hỗ trợ tạo quiz động, chấm điểm real-time và tích hợp AI tạo câu hỏi.",
+      en: "A full-stack quiz platform using React and NestJS for interview practice and IT learning, featuring dynamic quiz creation, real-time scoring, and AI-powered question generation.",
+    }),
+    image: "/projects/quizApp.png",
+    tags: ["React", "NestJS", "MongoDB", "REST API"],
+    demoUrl: "https://interview-quizz-software.vercel.app/",
+    githubUrl: "https://github.com/Hung1510/Capstone_Project_Quizz",
+    slug: "quiz-platform",
+  },
+  {
     id: 1,
     title: "EIU/CIT Smart Learning Advisor",
     description: lang({
@@ -27,18 +40,32 @@ export const projects: Project[] = [
     slug: "smart-learning-advisor",
   },
   {
-    id: 6,
-    title: "Shorekeeper Startup Voice",
+    id: 9,
+    title: "Tethys",
     description: lang({
-      vi: "Trình phát không cửa sổ trên Windows phát một câu thoại game khi đăng nhập, kèm pipeline Bash/ffmpeg trích xuất và chuẩn hóa âm lượng các đoạn âm thanh từ kho Wwise (.bnk/.wem) và Square Enix SAB.",
-      en: "A no-window Windows player that plays a game voice line at login, plus a Bash/ffmpeg pipeline that extracts and loudness-normalizes clips from Wwise (.bnk/.wem) and Square Enix SAB audio banks.",
+      vi: "Trình tối ưu và quét echo native cho Wuthering Waves viết bằng Rust: chụp màn hình + OCR đọc echo trực tiếp từ game, rồi dùng giải thuật di truyền tính ra build tốt nhất về mặt toán học.",
+      en: "A native Rust echo optimizer and scanner for Wuthering Waves: screen-capture + OCR read echoes straight from the game, then a genetic algorithm computes the mathematically best build.",
     }),
     // 📌 IMAGE: drop a screenshot in public/projects/ then set the path here
-    image: "/projects/shorekeeperStartup.png",
-    tags: ["C++", "Win32", "Wwise", "ffmpeg"],
-    demoUrl: "#",
-    githubUrl: "https://github.com/Hung1510/Shorekeeper-window-startup-greeting",
-    slug: "shorekeeper-startup",
+    image: "/projects/tethys.png",
+    tags: ["Rust", "Genetic Algorithm", "OCR", "Screen Capture"],
+    demoUrl: "https://tethys-gray.vercel.app",
+    githubUrl: "https://github.com/Hung1510/Tethys",
+    slug: "tethys",
+  },
+  {
+    id: 10,
+    title: "WARNO Deck Randomizer",
+    description: lang({
+      vi: "Web app full-stack (React 18 + Vite, Express API, TypeScript) roll ngẫu nhiên một battlegroup WARNO và dựng deck theo phong cách 'fun' hoặc 'meta'; mỗi lần roll có seed nên tái tạo và chia sẻ được qua link, phủ 56 battlegroup của 14 quốc gia.",
+      en: "A full-stack web app (React 18 + Vite, Express API, TypeScript) that rolls a random WARNO battlegroup and builds a 'fun' or 'meta' deck; every roll is seeded, so it's reproducible and shareable by link, across 56 battlegroups and 14 nations.",
+    }),
+    // 📌 IMAGE: drop a screenshot in public/projects/ then set the path here
+    image: "/projects/warnoRandomizer.png",
+    tags: ["React 18", "TypeScript", "Express API", "Seeded RNG"],
+    demoUrl: "https://warno-deck-randomizer.vercel.app",
+    githubUrl: "https://github.com/Hung1510/Warno-Deck-Randomizer",
+    slug: "warno-deck-randomizer",
   },
   {
     id: 8,
@@ -55,17 +82,18 @@ export const projects: Project[] = [
     slug: "somnium-weaver",
   },
   {
-    id: 2,
-    title: "Quiz & Interview Practice Platform",
+    id: 6,
+    title: "Shorekeeper Startup Voice",
     description: lang({
-      vi: "Nền tảng luyện tập phỏng vấn và học IT full-stack sử dụng React và NestJS, hỗ trợ tạo quiz động, chấm điểm real-time và tích hợp AI tạo câu hỏi.",
-      en: "A full-stack quiz platform using React and NestJS for interview practice and IT learning, featuring dynamic quiz creation, real-time scoring, and AI-powered question generation.",
+      vi: "Trình phát không cửa sổ trên Windows phát một câu thoại game khi đăng nhập, kèm pipeline Bash/ffmpeg trích xuất và chuẩn hóa âm lượng các đoạn âm thanh từ kho Wwise (.bnk/.wem) và Square Enix SAB.",
+      en: "A no-window Windows player that plays a game voice line at login, plus a Bash/ffmpeg pipeline that extracts and loudness-normalizes clips from Wwise (.bnk/.wem) and Square Enix SAB audio banks.",
     }),
-    image: "/projects/quizApp.png",
-    tags: ["React", "NestJS", "MongoDB", "REST API"],
-    demoUrl: "https://interview-quizz-software.vercel.app/",
-    githubUrl: "https://github.com/Hung1510/Capstone_Project_Quizz",
-    slug: "quiz-platform",
+    // 📌 IMAGE: drop a screenshot in public/projects/ then set the path here
+    image: "/projects/shorekeeperStartup.png",
+    tags: ["C++", "Win32", "Wwise", "ffmpeg"],
+    demoUrl: "#",
+    githubUrl: "https://github.com/Hung1510/Shorekeeper-window-startup-greeting",
+    slug: "shorekeeper-startup",
   },
   {
     id: 3,

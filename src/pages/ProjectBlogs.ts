@@ -15,6 +15,136 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
     // "smart-learning-advisor" intentionally has no entry: it uses its own
     // dedicated page (SmartAdvisorDetail) via the detailPages registry.
 
+    "tethys": {
+        title: "Tethys: A Native Wuthering Waves Echo Optimizer in Rust",
+        date: "2025",
+        sections: [
+            {
+                type: "text",
+                content: "Tethys is a native desktop tool that reads your Wuthering Waves echoes straight off the screen with OCR, then computes the mathematically best 5-echo build with a genetic algorithm. It grew out of a gap: the community's go-to optimizer was archived after patch 2.1, and almost everything else is web-based - so I built a maintained, native alternative in Rust."
+            },
+            {
+                type: "heading",
+                content: "The Idea"
+            },
+            {
+                type: "text",
+                content: "Echo optimization in Wuthering Waves is a real combinatorics problem - five slots, a 4-3-3-1-1 cost layout, and a large inventory of echoes with random substats. Picking the best set by hand is tedious and error-prone. I wanted a tool that scans the inventory for you and returns a provably good build, running locally with no account login and no game automation."
+            },
+            {
+                type: "heading",
+                content: "Architecture"
+            },
+            {
+                type: "text",
+                content: "The project is a Cargo workspace split into three crates so the interesting logic stays testable and platform-independent:"
+            },
+            {
+                type: "list",
+                content: [
+                    "tethys-core - the domain model, scoring, and optimizer. No I/O and no platform code, so it unit-tests on any OS",
+                    "tethys-scanner - capture-region math (pure and tested), screen capture, and OCR, each behind a feature flag so the default build stays pure Rust",
+                    "tethys-app - a CLI plus a feature-gated egui GUI"
+                ]
+            },
+            {
+                type: "heading",
+                content: "The Optimizer"
+            },
+            {
+                type: "text",
+                content: "Two solvers sit behind one interface. A genetic algorithm treats each build as a genome (one echo per slot) and evolves it with tournament selection, uniform crossover, mutation, elitism, and a repair step that stops the same echo being used twice. An exhaustive solver brute-forces every valid combination for a provable optimum. The clever part is that the exhaustive solver doubles as the test oracle: a unit test asserts the genetic algorithm reaches the brute-forced optimum within a tiny tolerance, so I can trust the fast path. Scoring lives behind an Evaluator trait, so a full damage-formula model can be added later without touching the optimizer."
+            },
+            {
+                type: "heading",
+                content: "Reading the Screen"
+            },
+            {
+                type: "text",
+                content: "The scanner captures the game window by title, then computes the true 16:9 content rectangle - skipping any letterbox or pillarbox bars - and places each UI region as a fraction of that content area. That keeps it working across exact-16:9, ultrawide, and 16:10 setups, all verified with unit tests. A calibrate command draws colored boxes over the detected regions so you can confirm alignment, and a grid layout tiles the inventory for batch scanning. It only ever reads the screen - it never clicks or automates the game, to stay within the game's terms."
+            },
+            {
+                type: "heading",
+                content: "Technical Stack"
+            },
+            {
+                type: "list",
+                content: [
+                    "Language: Rust (Cargo workspace, three crates)",
+                    "Optimizer: genetic algorithm plus an exhaustive oracle, Evaluator trait for scoring",
+                    "Scanning: xcap screen capture and Tesseract OCR, both feature-flagged",
+                    "UI: CLI plus an optional egui desktop GUI",
+                    "Site: a landing page with JSON-LD, OG cards, and PWA assets, deployed on Vercel",
+                    "CI: GitHub Actions"
+                ]
+            },
+            {
+                type: "heading",
+                content: "Highlights"
+            },
+            {
+                type: "text",
+                content: "The engineering I'm proudest of is the test strategy - using a brute-force solver as a live oracle for a heuristic one is a clean way to keep a genetic algorithm honest. The feature-flag design also means the pure, portable core builds and tests without any native OCR or capture dependencies, which keeps CI simple and the domain logic fast to iterate on."
+            }
+        ]
+    },
+    "warno-deck-randomizer": {
+        title: "WARNO Deck Randomizer: Seeded Battlegroup Rolls",
+        date: "2025",
+        sections: [
+            {
+                type: "text",
+                content: "A full-stack TypeScript web app that rolls a random WARNO battlegroup and fills it with a randomized deck. It covers 56 battlegroups across 14 nations, with two flavors of roll: a chaotic 'fun' mix, and a 'meta' mix that drafts a competent, budget-aware deck. Every roll is seeded, so any result is reproducible and shareable by link."
+            },
+            {
+                type: "heading",
+                content: "The Idea"
+            },
+            {
+                type: "text",
+                content: "WARNO players like self-imposed challenges - 'play whatever the dice give you.' I wanted a roller that does more than pick a division at random: it should build an actual, legal deck within the game's activation-point budget, and let you share the exact roll with a friend so you both play the same thing."
+            },
+            {
+                type: "heading",
+                content: "Fun vs Meta"
+            },
+            {
+                type: "text",
+                content: "The two modes are different algorithms. Fun leans into chaos - it's biased toward napalm, rockets, spam, and gimmick cards for a deliberately silly deck. Meta plays like a draft: it secures recon, tanks, and anti-air first, then stacks the strongest available cards while respecting each category's card limits and a rising slot-cost curve, where each additional card in a category costs progressively more activation points. Meta division picks are also weighted by a competitive rating that acts as a win-rate proxy."
+            },
+            {
+                type: "heading",
+                content: "Seeds and Deck Codes"
+            },
+            {
+                type: "text",
+                content: "Reproducibility is the backbone. A mulberry32 seeded RNG means the same seed always produces the same roll, so results are shareable and debuggable. On top of that, each deck is encoded into a portable base64url deck code that carries the actual cards, so a roll can be handed around without the server."
+            },
+            {
+                type: "heading",
+                content: "Technical Stack"
+            },
+            {
+                type: "list",
+                content: [
+                    "Frontend: React 18 + Vite, TypeScript",
+                    "Backend: Node.js + Express, TypeScript (ESM via tsx), a small REST API (/api/randomize, /api/decode, /api/divisions)",
+                    "Data: plain TypeScript modules - real per-category card limits from the WARNO wiki, no database",
+                    "Randomness: mulberry32 seeded RNG, base64url deck codes",
+                    "Security: helmet headers, a content security policy, per-IP rate limiting, and a small request-body cap",
+                    "Deploy: Vercel - static frontend plus the Express API as a serverless function; CI on GitHub Actions"
+                ]
+            },
+            {
+                type: "heading",
+                content: "Highlights"
+            },
+            {
+                type: "text",
+                content: "The satisfying design problem was making randomness feel intentional. The meta roller isn't just weighted random - it drafts in priority order and respects a real cost curve, so it produces decks that could actually be played. Seeded RNG plus portable deck codes turn a throwaway novelty into something reproducible and social, and the whole data layer is plain typed modules, which keeps it easy to update when a patch changes the card limits."
+            }
+        ]
+    },
     "quiz-platform": {
         title: "Quiz & Interview Practice Platform: IT Interview Preparation",
         date: "2025",
