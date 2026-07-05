@@ -1,4 +1,4 @@
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Download } from "lucide-react";
 import { lang } from "../helper/lang";
 
 const heroStats = [
@@ -51,9 +51,17 @@ export const HeroSection = () => {
             })}
           </p>
 
-          <div className="pt-4 opacity-0 animate-fade-in-delay-4">
+          <div className="pt-4 flex flex-wrap items-center justify-center gap-4 opacity-0 animate-fade-in-delay-4">
             <a href="#projects" className="cosmic-button">
               {lang({ vi: "Xem dự án", en: "View My Work" })}
+            </a>
+            <a
+              href="/cv/CV_GiaHung.pdf"
+              download
+              className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
+            >
+              <Download size={16} />
+              {lang({ vi: "Tải CV", en: "Download CV" })}
             </a>
           </div>
 

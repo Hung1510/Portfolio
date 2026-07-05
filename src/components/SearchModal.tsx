@@ -17,6 +17,7 @@ const sections = [
   { id: "experience", label: { en: "Experience", vi: "Kinh nghiệm" } },
   { id: "skills", label: { en: "Skills", vi: "Kỹ năng" } },
   { id: "projects", label: { en: "Projects", vi: "Dự án" } },
+  { id: "writing", label: { en: "Writing", vi: "Bài viết" } },
   { id: "contact", label: { en: "Contact", vi: "Liên hệ" } },
 ];
 

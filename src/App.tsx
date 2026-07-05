@@ -12,6 +12,9 @@ const ProjectBlog = lazy(() =>
 const NotFound = lazy(() =>
   import("./pages/NotFound").then((m) => ({ default: m.NotFound }))
 );
+const BlogPost = lazy(() =>
+  import("./pages/BlogPost").then((m) => ({ default: m.BlogPost }))
+);
 
 const PageFallback = () => (
   <div className="min-h-screen flex items-center justify-center">
@@ -27,6 +30,9 @@ function App() {
         <Suspense fallback={<PageFallback />}>
           <Routes>
             <Route index element={<Home />} />
+
+            {/* Dev-log / blog posts, rendered by slug from BlogPosts.ts */}
+            <Route path="/blog/:slug" element={<BlogPost />} />
 
             {/* Project detail routes are generated from the projects array.
                 A project with a slug listed in detailPages gets its dedicated

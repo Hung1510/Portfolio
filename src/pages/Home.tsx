@@ -7,6 +7,7 @@ import { AboutSection } from "../components/AboutSection";
 import { ExperienceSection } from "../components/ExperienceSection";
 import { SkillsSection } from "../components/SkillsSection";
 import { ProjectsSection } from "../components/ProjectsSection";
+import { WritingSection } from "../components/WritingSection";
 import { ContactSection } from "../components/ContactSection";
 import { Footer } from "../components/Footer";
 import { useEffect, useState } from "react";
@@ -55,6 +56,7 @@ export const Home = () => {
         <ExperienceSection />
         <SkillsSection />
         <ProjectsSection />
+        <WritingSection />
         <ContactSection />
       </main>
 
