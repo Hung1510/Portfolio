@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import SmartAdvisorDetail from "./SmartAdvisorDetail";
+import TethysDetail from "./TethysDetail";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // DEDICATED DETAIL-PAGE REGISTRY
@@ -16,4 +17,5 @@ import SmartAdvisorDetail from "./SmartAdvisorDetail";
 // ─────────────────────────────────────────────────────────────────────────────
 export const detailPages: Record<string, ComponentType> = {
   "smart-learning-advisor": SmartAdvisorDetail,
+  "tethys": TethysDetail,
 };
