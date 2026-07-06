@@ -430,20 +430,24 @@ const ARCH = [
 
 const MY_ROLE_STEPS = [
   {
-    icon: "Sparkles",
-    color: "text-purple-500",
-    dot: "bg-purple-500",
-    ringDark: "ring-purple-500/20",
-    ringLight: "ring-purple-200",
-    title: lang({ vi: "Tính năng AI", en: "AI Features" }),
+    icon: "Monitor",
+    color: "text-sky-500",
+    dot: "bg-sky-500",
+    ringDark: "ring-sky-500/20",
+    ringLight: "ring-sky-200",
+    title: lang({ vi: "Frontend (React)", en: "Frontend (React)" }),
     items: [
       lang({
-        vi: "Xây bộ tạo quiz bằng AI (chủ đề → câu hỏi qua GitHub Models)",
-        en: "Built the AI quiz generator (topic → questions via GitHub Models)",
+        vi: "Xây giao diện phía người dùng và quản trị viên",
+        en: "Built both the user-facing and admin interfaces",
       }),
       lang({
-        vi: "Xây chatbot advisor gợi ý quiz phù hợp",
-        en: "Built the chatbot advisor that recommends quizzes",
+        vi: "Luồng làm quiz có giờ, dashboard, và xem lại kết quả",
+        en: "Timed quiz-taking flow, dashboards, and result review",
+      }),
+      lang({
+        vi: "Thiết kế responsive dùng trên desktop và mobile",
+        en: "Responsive design for desktop and mobile",
       }),
     ],
   },
@@ -453,33 +457,37 @@ const MY_ROLE_STEPS = [
     dot: "bg-orange-500",
     ringDark: "ring-orange-500/20",
     ringLight: "ring-orange-200",
-    title: lang({ vi: "Backend & dữ liệu", en: "Backend & Data" }),
+    title: lang({ vi: "Backend & API", en: "Backend & APIs" }),
     items: [
       lang({
-        vi: "Lưu và quản lý quiz do AI sinh ra trong MongoDB",
-        en: "Stored and managed AI-generated quizzes in MongoDB",
+        vi: "Xây REST API Spring Boot (Controllers → Services → Repositories)",
+        en: "Built the Spring Boot REST API (Controllers → Services → Repositories)",
       }),
       lang({
-        vi: "Đóng góp vào REST API backend và mô hình hoá dữ liệu",
-        en: "Contributed to backend REST APIs and data modeling",
+        vi: "Xác thực JWT và phân quyền RBAC bằng Spring Security",
+        en: "JWT authentication and RBAC via Spring Security",
+      }),
+      lang({
+        vi: "Mô hình hoá dữ liệu MongoDB và tài liệu API bằng Swagger",
+        en: "MongoDB data modeling and Swagger API documentation",
       }),
     ],
   },
   {
-    icon: "Route",
-    color: "text-sky-500",
-    dot: "bg-sky-500",
-    ringDark: "ring-sky-500/20",
-    ringLight: "ring-sky-200",
-    title: lang({ vi: "Lộ trình & phòng họp", en: "Roadmap & Rooms" }),
+    icon: "Sparkles",
+    color: "text-purple-500",
+    dot: "bg-purple-500",
+    ringDark: "ring-purple-500/20",
+    ringLight: "ring-purple-200",
+    title: lang({ vi: "Tích hợp AI", en: "AI Integration" }),
     items: [
       lang({
-        vi: "Thiết kế cấu trúc lộ trình DSA",
-        en: "Designed the DSA roadmap structure",
+        vi: "Bộ tạo quiz bằng AI (chủ đề → câu hỏi qua GitHub Models)",
+        en: "AI quiz generator (topic → questions via GitHub Models)",
       }),
       lang({
-        vi: "Xây giao diện tham gia phòng cho phiên phỏng vấn",
-        en: "Built the join-room UI for interview sessions",
+        vi: "Chatbot advisor gợi ý quiz phù hợp",
+        en: "Chatbot advisor that recommends quizzes",
       }),
     ],
   },
@@ -489,15 +497,15 @@ const MY_ROLE_STEPS = [
     dot: "bg-emerald-500",
     ringDark: "ring-emerald-500/20",
     ringLight: "ring-emerald-200",
-    title: lang({ vi: "Kiểm thử & QA", en: "Testing & QA" }),
+    title: lang({ vi: "Thời gian thực & QA", en: "Real-time & QA" }),
     items: [
       lang({
-        vi: "Kiểm thử tích hợp các luồng chính (đăng nhập → quiz → AI → phòng)",
-        en: "Integration-tested core flows (login → quiz → AI → rooms)",
+        vi: "Phòng phỏng vấn thời gian thực (Metered) và lộ trình DSA",
+        en: "Real-time interview rooms (Metered) and the DSA roadmap",
       }),
       lang({
-        vi: "Chạy đợt sửa lỗi trước khi bàn giao",
-        en: "Ran a bug-fixing pass before delivery",
+        vi: "Kiểm thử tích hợp các luồng chính và sửa lỗi trước bàn giao",
+        en: "Integration-tested core flows and fixed bugs before delivery",
       }),
     ],
   },
@@ -804,8 +812,8 @@ function QuizPlatformDetail() {
             pre={lang({ vi: "Vai trò của", en: "My" })}
             accent={lang({ vi: "bản thân", en: "Role" })}
             desc={lang({
-              vi: "Đồ án nhóm 4 người tại EIU. Tôi tập trung vào các tính năng AI, dữ liệu quiz ở backend, lộ trình DSA, và kiểm thử tích hợp.",
-              en: "A 4-person capstone at EIU. I focused on the AI features, quiz data on the backend, the DSA roadmap, and integration testing.",
+              vi: "Đồ án nhóm 4 người tại EIU, nơi tôi làm xuyên suốt cả stack — xây frontend React, backend & API Spring Boot, các tính năng AI, và phòng phỏng vấn thời gian thực.",
+              en: "A 4-person capstone at EIU where I worked across the full stack — building the React frontend, the Spring Boot backend and APIs, the AI features, and the real-time interview rooms.",
             })}
             isLight={isLight}
           />
