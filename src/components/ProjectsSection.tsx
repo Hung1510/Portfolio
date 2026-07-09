@@ -53,6 +53,19 @@ export const projects: Project[] = [
     slug: "tethys",
   },
   {
+    id: 11,
+    title: "Code Navigator",
+    description: lang({
+      vi: "Công cụ hỏi đáp codebase chạy cục bộ: kết hợp embedding ngữ nghĩa với tìm kiếm từ khóa BM25 (RRF + cross-encoder re-rank), chia nhỏ mã bằng tree-sitter cho 9 ngôn ngữ và dựng call graph, trả lời kèm trích dẫn file:dòng. Có CLI và app desktop Tauri, không cần cloud.",
+      en: "A local, ask-your-codebase tool: it fuses semantic embeddings with BM25 keyword search (RRF + cross-encoder re-rank), chunks code with tree-sitter across 9 languages, and builds a call graph, answering with file:line citations. Ships a CLI and a Tauri desktop app, no cloud.",
+    }),
+    image: "/projects/codeNavigator.png",
+    tags: ["Python", "RAG", "tree-sitter", "Tauri"],
+    demoUrl: "#",
+    githubUrl: "https://github.com/Hung1510/Code-Navigator",
+    slug: "code-navigator",
+  },
+  {
     id: 10,
     title: "WARNO Deck Randomizer",
     description: lang({
