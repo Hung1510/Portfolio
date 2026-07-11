@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { useTheme, Pill, SectionTitle } from "./_shared";
 import { Navbar } from "../../components/Navbar";
 import { StarBackground } from "@/components/StarBackground";
 import { SkyBackground } from "@/components/SkyBackground";
@@ -57,24 +57,6 @@ const Icons: Record<string, LucideIcon> = {
 import { lang } from "@/helper/lang";
 
 // ── Theme hook ────────────────────────────────────────────────────────────────
-function useTheme() {
-  const [isLight, setIsLight] = useState(() =>
-    document.documentElement.classList.contains("light"),
-  );
-  useEffect(() => {
-    setIsLight(document.documentElement.classList.contains("light"));
-    const observer = new MutationObserver(() => {
-      setIsLight(document.documentElement.classList.contains("light"));
-    });
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-    return () => observer.disconnect();
-  }, []);
-  return isLight;
-}
-
 // ── Tags có 2 variant riêng light/dark ───────────────────────────────────────
 const PAGES = [
   {
@@ -373,39 +355,6 @@ const MY_ROLE_STEPS = [
 ];
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
-function Pill({ label, isLight }) {
-  return (
-    <span
-      className={`inline-block px-3 py-1 rounded-full text-[11px] tracking-widest uppercase border mb-3 font-semibold ${
-        isLight
-          ? "bg-blue-50 border-blue-200 text-blue-600"
-          : "bg-blue-900/30 border-blue-400/25 text-sky-400"
-      }`}
-    >
-      {label}
-    </span>
-  );
-}
-
-function SectionTitle({ pre, accent, desc, isLight }) {
-  return (
-    <>
-      <h2
-        className={`text-3xl font-black mb-2 ${isLight ? "text-slate-800" : "text-white"}`}
-      >
-        {pre} <span className="text-sky-500">{accent}</span>
-      </h2>
-      <p
-        className={`text-sm leading-relaxed mb-10 max-w-xl mx-auto text-center ${
-          isLight ? "text-slate-500" : "text-slate-400"
-        }`}
-      >
-        {desc}
-      </p>
-    </>
-  );
-}
-
 // ── Page Card ─────────────────────────────────────────────────────────────────
 function PageCard({ page, isLight }) {
   const IconComponent = Icons[page.icon];

@@ -1,5 +1,11 @@
-import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import {
+  type Feature,
+  useTheme,
+  Pill,
+  SectionTitle,
+  FeatureCard,
+} from "./_shared";
 import { Navbar } from "../../components/Navbar";
 import { StarBackground } from "@/components/StarBackground";
 import { SkyBackground } from "@/components/SkyBackground";
@@ -57,39 +63,7 @@ const LIVE_URL = "https://interview-quizz-software.vercel.app";
 const REPO_URL = "#"; // TODO: replace with the Quiz Platform repository URL
 
 // ── Theme hook ────────────────────────────────────────────────────────────────
-function useTheme() {
-  const [isLight, setIsLight] = useState(() =>
-    document.documentElement.classList.contains("light"),
-  );
-  useEffect(() => {
-    setIsLight(document.documentElement.classList.contains("light"));
-    const observer = new MutationObserver(() => {
-      setIsLight(document.documentElement.classList.contains("light"));
-    });
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-    return () => observer.disconnect();
-  }, []);
-  return isLight;
-}
-
 // ── Feature type ──────────────────────────────────────────────────────────────
-type Feature = {
-  num: string;
-  icon: string;
-  iconBg: string;
-  title: string;
-  subtitle: string;
-  features: string[];
-  dotColor: string;
-  tags: string[];
-  tagDark: string;
-  tagLight: string;
-  img: string;
-};
-
 const FEATURES: Feature[] = [
   {
     num: "01",
@@ -512,160 +486,8 @@ const MY_ROLE_STEPS = [
 ];
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
-function Pill({ label, isLight }) {
-  return (
-    <span
-      className={`inline-block px-3 py-1 rounded-full text-[11px] tracking-widest uppercase border mb-3 font-semibold ${
-        isLight
-          ? "bg-blue-50 border-blue-200 text-blue-600"
-          : "bg-blue-900/30 border-blue-400/25 text-sky-400"
-      }`}
-    >
-      {label}
-    </span>
-  );
-}
-
-function SectionTitle({ pre, accent, desc, isLight }) {
-  return (
-    <>
-      <h2
-        className={`text-3xl font-black mb-2 ${isLight ? "text-slate-800" : "text-white"}`}
-      >
-        {pre} <span className="text-sky-500">{accent}</span>
-      </h2>
-      <p
-        className={`text-sm leading-relaxed mb-10 max-w-xl mx-auto text-center ${
-          isLight ? "text-slate-500" : "text-slate-400"
-        }`}
-      >
-        {desc}
-      </p>
-    </>
-  );
-}
-
 // ── Screenshot (graceful fallback while the image file isn't added yet) ────────
-function Screenshot({ src, alt }: { src: string; alt: string }) {
-  const [error, setError] = useState(false);
-
-  if (error) {
-    return (
-      <div className="w-full h-full min-h-[220px] flex items-center justify-center bg-slate-900/30 px-4">
-        <span className="text-[11px] font-mono text-slate-500 text-center">
-          {src}
-        </span>
-      </div>
-    );
-  }
-
-  return (
-    <img
-      src={src}
-      alt={alt}
-      loading="lazy"
-      decoding="async"
-      onError={() => setError(true)}
-      className="w-full h-full object-cover object-top"
-      style={{ maxHeight: "260px" }}
-    />
-  );
-}
-
 // ── Feature Card ──────────────────────────────────────────────────────────────
-function FeatureCard({ page, isLight }: { page: Feature; isLight: boolean }) {
-  const IconComponent = Icons[page.icon];
-
-  return (
-    <div
-      className={`rounded-2xl overflow-hidden border transition-all duration-300 mb-14 ${
-        isLight
-          ? "border-slate-200 bg-white shadow-md hover:shadow-xl hover:border-blue-300"
-          : "border-white/10 bg-white/[0.03] hover:border-blue-400/30 hover:shadow-[0_0_40px_rgba(21,101,192,0.12)]"
-      }`}
-    >
-      {/* Header */}
-      <div
-        className={`flex items-center gap-4 px-7 py-5 border-b ${
-          isLight
-            ? "border-slate-100 bg-slate-50"
-            : "border-white/5 bg-white/[0.02]"
-        }`}
-      >
-        <div
-          className={`w-11 h-11 rounded-xl flex items-center justify-center text-xl flex-shrink-0 ${page.iconBg}`}
-        >
-          {IconComponent && <IconComponent />}
-        </div>
-        <div>
-          <h3
-            className={`font-bold text-base ${isLight ? "text-slate-800" : "text-white"}`}
-          >
-            {page.title}
-          </h3>
-          <p
-            className={`text-xs mt-0.5 ${isLight ? "text-slate-500" : "text-slate-400"}`}
-          >
-            {page.subtitle}
-          </p>
-        </div>
-        <span
-          className={`ml-auto font-black text-5xl select-none ${
-            isLight ? "text-slate-200" : "text-white/5"
-          }`}
-        >
-          {page.num}
-        </span>
-      </div>
-
-      {/* Body */}
-      <div className="grid grid-cols-1 md:grid-cols-2">
-        {/* Screenshot */}
-        <div
-          className={`border-b md:border-b-0 md:border-r overflow-hidden ${
-            isLight ? "border-slate-100" : "border-white/5"
-          }`}
-        >
-          <Screenshot src={page.img} alt={page.title} />
-        </div>
-
-        {/* Info */}
-        <div className="p-7">
-          <ul className="flex flex-col gap-3 mb-5">
-            {page.features.map((f) => (
-              <li
-                key={f}
-                className={`flex items-start gap-2.5 text-sm leading-relaxed ${
-                  isLight ? "text-slate-600" : "text-slate-400"
-                }`}
-              >
-                <span
-                  className={`w-1.5 h-1.5 rounded-full flex-shrink-0 mt-2 ${page.dotColor}`}
-                />
-                {f}
-              </li>
-            ))}
-          </ul>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2">
-            {page.tags.map((t) => (
-              <span
-                key={t}
-                className={`px-3 py-1 rounded-lg text-xs font-semibold ${
-                  isLight ? page.tagLight : page.tagDark
-                }`}
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 // ── Main ──────────────────────────────────────────────────────────────────────
 function QuizPlatformDetail() {
   const isLight = useTheme();
@@ -911,7 +733,7 @@ function QuizPlatformDetail() {
           isLight={isLight}
         />
         {FEATURES.map((page) => (
-          <FeatureCard key={page.num} page={page} isLight={isLight} />
+          <FeatureCard key={page.num} page={page} isLight={isLight} icons={Icons} />
         ))}
 
         {/* ── Tech Stack ── */}

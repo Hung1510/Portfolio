@@ -1,5 +1,6 @@
 import { ArrowRight, ExternalLink, Github, FileText } from "lucide-react";
 import { lang } from "../helper/lang";
+import { prefetchDetailPage } from "../pages/projectPage";
 
 export type Project = {
   id: number;
@@ -238,6 +239,8 @@ export const ProjectsSection = () => {
                     {project.slug && (
                       <a
                         href={`/projects/${project.slug}`}
+                        onMouseEnter={() => prefetchDetailPage(project.slug)}
+                        onFocus={() => prefetchDetailPage(project.slug)}
                         className="text-foreground/80 hover:text-primary transition-colors duration-300"
                       >
                         <FileText size={20} />
