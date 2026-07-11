@@ -59,24 +59,12 @@ export const projects: Project[] = [
       vi: "Công cụ hỏi đáp codebase chạy cục bộ: kết hợp embedding ngữ nghĩa với tìm kiếm từ khóa BM25 (RRF + cross-encoder re-rank), chia nhỏ mã bằng tree-sitter cho 9 ngôn ngữ và dựng call graph, trả lời kèm trích dẫn file:dòng. Có CLI và app desktop Tauri, không cần cloud.",
       en: "A local, ask-your-codebase tool: it fuses semantic embeddings with BM25 keyword search (RRF + cross-encoder re-rank), chunks code with tree-sitter across 9 languages, and builds a call graph, answering with file:line citations. Ships a CLI and a Tauri desktop app, no cloud.",
     }),
+    // 📌 IMAGE: drop a screenshot in public/projects/ then set the path here
     image: "/projects/codeNavigator.png",
     tags: ["Python", "RAG", "tree-sitter", "Tauri"],
     demoUrl: "#",
     githubUrl: "https://github.com/Hung1510/Code-Navigator",
     slug: "code-navigator",
-  },
-  {
-    id: 10,
-    title: "WARNO Deck Randomizer",
-    description: lang({
-      vi: "Web app full-stack (React 18 + Vite, Express API, TypeScript) roll ngẫu nhiên một battlegroup WARNO và dựng deck theo phong cách 'fun' hoặc 'meta'; mỗi lần roll có seed nên tái tạo và chia sẻ được qua link, phủ 56 battlegroup của 14 quốc gia.",
-      en: "A full-stack web app (React 18 + Vite, Express API, TypeScript) that rolls a random WARNO battlegroup and builds a 'fun' or 'meta' deck; every roll is seeded, so it's reproducible and shareable by link, across 56 battlegroups and 14 nations.",
-    }),
-    image: "/projects/warnoRandomizer.png",
-    tags: ["React 18", "TypeScript", "Express API", "Seeded RNG"],
-    demoUrl: "https://warno-deck-randomizer.vercel.app",
-    githubUrl: "https://github.com/Hung1510/Warno-Deck-Randomizer",
-    slug: "warno-deck-randomizer",
   },
   {
     id: 8,
@@ -96,15 +84,28 @@ export const projects: Project[] = [
     id: 6,
     title: "Shorekeeper Startup Voice",
     description: lang({
-      vi: "Trình phát không cửa sổ trên Windows phát một câu thoại game khi đăng nhập, kèm pipeline Bash/ffmpeg trích xuất và chuẩn hóa âm lượng các đoạn âm thanh từ kho Wwise (.bnk/.wem) và Square Enix SAB.",
-      en: "A no-window Windows player that plays a game voice line at login, plus a Bash/ffmpeg pipeline that extracts and loudness-normalizes clips from Wwise (.bnk/.wem) and Square Enix SAB audio banks.",
+      vi: "Trình phát không cửa sổ trên Windows phát một câu thoại game khi đăng nhập, kèm pipeline reverse-engineering (Bash + vgmstream + ffmpeg) trích xuất và chuẩn hóa âm lượng các đoạn giọng nói từ kho Square Enix SAB, Wwise, FMOD và CRI ADX2.",
+      en: "A no-window Windows player that plays a game voice line at login, plus a reverse-engineering pipeline (Bash + vgmstream + ffmpeg) that extracts and loudness-normalizes clips from Square Enix SAB, Wwise, FMOD, and CRI ADX2 audio banks.",
     }),
     // 📌 IMAGE: drop a screenshot in public/projects/ then set the path here
     image: "/projects/shorekeeperStartup.png",
-    tags: ["C++", "Win32", "Wwise", "ffmpeg"],
+    tags: ["C++", "Bash", "vgmstream", "ffmpeg"],
     demoUrl: "#",
-    githubUrl: "https://github.com/Hung1510/Shorekeeper-window-startup-greeting",
+    githubUrl: "https://github.com/Hung1510/window-startup-greeting",
     slug: "shorekeeper-startup",
+  },
+  {
+    id: 10,
+    title: "WARNO Deck Randomizer",
+    description: lang({
+      vi: "Web app full-stack (React 18 + Vite, Express API, TypeScript) roll ngẫu nhiên một battlegroup WARNO và dựng deck theo phong cách 'fun' hoặc 'meta'; mỗi lần roll có seed nên tái tạo và chia sẻ được qua link, phủ 56 battlegroup của 14 quốc gia.",
+      en: "A full-stack web app (React 18 + Vite, Express API, TypeScript) that rolls a random WARNO battlegroup and builds a 'fun' or 'meta' deck; every roll is seeded, so it's reproducible and shareable by link, across 56 battlegroups and 14 nations.",
+    }),
+    image: "/projects/warnoRandomizer.png",
+    tags: ["React 18", "TypeScript", "Express API", "Seeded RNG"],
+    demoUrl: "https://warno-deck-randomizer.vercel.app",
+    githubUrl: "https://github.com/Hung1510/Warno-Deck-Randomizer",
+    slug: "warno-deck-randomizer",
   },
   {
     id: 3,

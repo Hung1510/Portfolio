@@ -2,6 +2,9 @@ import type { ComponentType } from "react";
 import SmartAdvisorDetail from "./SmartAdvisorDetail";
 import TethysDetail from "./TethysDetail";
 import QuizPlatformDetail from "./QuizPlatformDetail";
+import CodeNavigatorDetail from "./CodeNavigatorDetail";
+import SomniumWeaverDetail from "./SomniumWeaverDetail";
+import ShorekeeperStartupDetail from "./ShorekeeperStartupDetail";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // DEDICATED DETAIL-PAGE REGISTRY
@@ -20,4 +23,7 @@ export const detailPages: Record<string, ComponentType> = {
   "smart-learning-advisor": SmartAdvisorDetail,
   "tethys": TethysDetail,
   "quiz-platform": QuizPlatformDetail,
+  "code-navigator": CodeNavigatorDetail,
+  "somnium-weaver": SomniumWeaverDetail,
+  "shorekeeper-startup": ShorekeeperStartupDetail,
 };
