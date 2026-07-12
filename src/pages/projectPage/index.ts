@@ -32,6 +32,7 @@ const loaders: Record<string, Loader> = {
   "code-navigator": () => import("./CodeNavigatorDetail"),
   "somnium-weaver": () => import("./SomniumWeaverDetail"),
   "shorekeeper-startup": () => import("./ShorekeeperStartupDetail"),
+  "warno-deck-randomizer": () => import("./WarnoDetail"),
 };
 
 export const detailPages: Record<string, LazyExoticComponent<ComponentType>> =
