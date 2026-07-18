@@ -12,13 +12,12 @@ import type { ComponentType, LazyExoticComponent } from "react";
 //                           from that slug's entry in ProjectBlogs.ts.
 //
 // Each page is lazy()-loaded, so Vite emits it as its own chunk and the
-// homepage no longer ships the code for six project pages nobody has opened.
+// homepage no longer ships the code for the project pages nobody has opened.
 //
-// ⚠️ Whatever renders these MUST be wrapped in <Suspense fallback={…}>, or
-//    React will throw. See ProjectPage.tsx.
+// ⚠️ Whatever renders these MUST be wrapped in <Suspense fallback={…}>. App.tsx
+//    already wraps <Routes> in one, so nothing else is needed.
 //
 // To add a dedicated page later: add one loader line to `loaders` below.
-// No changes to App.tsx are needed.
 // ─────────────────────────────────────────────────────────────────────────────
 
 type Loader = () => Promise<{ default: ComponentType }>;
@@ -33,6 +32,7 @@ const loaders: Record<string, Loader> = {
   "somnium-weaver": () => import("./SomniumWeaverDetail"),
   "shorekeeper-startup": () => import("./ShorekeeperStartupDetail"),
   "warno-deck-randomizer": () => import("./WarnoDetail"),
+  "eco-faker": () => import("./EcoFakerDetail"),
 };
 
 export const detailPages: Record<string, LazyExoticComponent<ComponentType>> =

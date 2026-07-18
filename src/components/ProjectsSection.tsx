@@ -15,6 +15,20 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: 12,
+    title: "eco-faker",
+    description: lang({
+      vi: "Thư viện/CLI TypeScript (đã publish lên npm) sinh dữ liệu giả cho e-commerce nhưng nhất quán về quan hệ: mọi Cart, Order, Shipment và ReturnRequest đều xuất phát từ cùng một state machine, nên dataset đọc như lịch sử của một cửa hàng thật. Kèm mock REST API, chaos mode, kịch bản business và tái tạo được bằng seed.",
+      en: "A TypeScript library/CLI (published on npm) that generates relationally-consistent fake e-commerce data: every Cart, Order, Shipment, and ReturnRequest derives from one state machine, so the dataset reads like a real store's history. Ships a mock REST API, chaos mode, business scenarios, and seeded reproducibility.",
+    }),
+    // 📌 IMAGE: drop a screenshot in public/projects/ then set the path here
+    image: "/projects/ecoFaker.png",
+    tags: ["TypeScript", "npm", "State Machine", "CLI"],
+    demoUrl: "https://www.npmjs.com/package/eco-faker",
+    githubUrl: "https://github.com/Hung1510/Eco-Faker",
+    slug: "eco-faker",
+  },
+  {
     id: 2,
     title: "Quiz & Interview Practice Platform",
     description: lang({
