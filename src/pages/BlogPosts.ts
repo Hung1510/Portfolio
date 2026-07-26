@@ -19,6 +19,69 @@ export type BlogPostContent = {
 };
 
 export const blogPosts: Record<string, BlogPostContent> = {
+  "modeling-a-fake-stores-history-the-state-machine-behind-eco-faker": {
+    title: "Modeling a Fake Store's History: The State Machine Behind eco-faker",
+    date: "May 2026",
+    readTime: "7 min read",
+    excerpt:
+      "Most fake-data generators hand you a pile of unrelated JSON. eco-faker builds a whole store's history instead - every cart, order, and return traces back to one underlying state machine.",
+    tags: ["TypeScript", "Node.js", "Testing"],
+    sections: [
+      {
+        type: "text",
+        content:
+          "Most fake-data tools are glorified random-string generators: call a function, get a plausible-looking name or address, done. That's fine until you need a whole dataset that behaves like a real system - where an order's total actually equals its line items, a return only exists for something that was actually delivered, and a shipment's tracking events happen in the right order. eco-faker is my answer to that: a stateful, relationally-consistent fake-data generator for e-commerce, where every table is derived from the same underlying state machine instead of being faked independently.",
+      },
+      { type: "heading", content: "The problem with independent randomness" },
+      {
+        type: "text",
+        content:
+          "If you generate users, carts, orders, shipments, and returns as five separate random processes, you get five tables that don't agree with each other - orders referencing carts that don't exist, delivered shipments with no matching order, returns on orders that were never delivered. That's obviously wrong, but it's also the default outcome of most naive generators, because nothing enforces the relationships between tables after the fact.",
+      },
+      { type: "heading", content: "One pipeline: users to carts to orders to shipments to returns" },
+      {
+        type: "text",
+        content:
+          "eco-faker's generator instead runs a single pipeline. A user gets one or more carts. Each cart either gets abandoned or converts into an order, and never both. A converted order becomes a shipment, which moves through a realistic sequence of tracking stages. Only an order whose shipment actually reached delivered is eligible to spawn a return request. Every downstream record is built from the upstream one, so a shipment's line items are always the same line items its originating cart had, and a return can never exist in isolation.",
+      },
+      { type: "heading", content: "Keeping the money honest" },
+      {
+        type: "text",
+        content:
+          "A subtler failure mode is financial: subtotal, tax, shipping, and total drifting out of sync through floating-point rounding. eco-faker computes the subtotal as the exact sum of already-rounded line totals, rounds tax and shipping independently, and sums those into the total - so the invariant subtotal + tax + shipping = total holds by construction, even when an anomaly like a remote-shipping surcharge adjusts the numbers afterward.",
+      },
+      { type: "heading", content: "Determinism as a feature, not an afterthought" },
+      {
+        type: "text",
+        content:
+          "Everything runs through a single seeded PRNG, so the same seed and the same reference timestamp always produce a byte-identical dataset. That determinism is what makes a 'snapshot' cheap: instead of storing a whole generated dataset for a bug report, I can store just the seed, the config overrides, and the reference time, then replay it later to reproduce the exact same data. A few lines of JSON standing in for a multi-megabyte fixture.",
+      },
+      { type: "heading", content: "What the test suite actually guards" },
+      {
+        type: "list",
+        content: [
+          "Relational integrity - no orphaned carts, orders, shipments, or returns",
+          "Timeline realism - tracking events strictly increase and follow a valid stage order",
+          "Financial exactness - totals always reconcile, anomalies included",
+          "Determinism - same seed and reference time reproduce the same dataset byte-for-byte",
+          "Return eligibility - a return can only exist for a fully delivered order",
+        ],
+      },
+      { type: "heading", content: "A bug the tests caught: false-positive schema drift" },
+      {
+        type: "text",
+        content:
+          "The dataset-diff command compares two runs and flags schema drift - fields added or removed between them. Early on it had a real bug: if a table happened to sample zero rows in one of the two runs, the empty array looked like a missing field and got flagged as drift, even though nothing had actually changed. The fix was to only compare field sets when both sides had at least one sampled row for that table. There's now a regression test locking that in, alongside a similar one for a bug where explicit CLI flags could silently clobber a scenario preset's nested anomaly config instead of merging with it.",
+      },
+      { type: "heading", content: "The takeaway" },
+      {
+        type: "text",
+        content:
+          "Fake data is only as useful as the guarantees it holds. The moment you need it to look like a real system's history - not just realistic-looking fields, but consistent relationships, honest math, and reproducible runs - randomness alone isn't enough. Routing everything through one state machine, one PRNG, and one set of invariants is what lets the rest of the tool (scenarios, anomalies, the mock API, the webhook replay) build on top of data it can actually trust.",
+      },
+    ],
+  },
+
   "testing-a-genetic-algorithm-with-a-brute-force-oracle": {
     title: "Testing a Genetic Algorithm with a Brute-Force Oracle",
     date: "Feb 2026",
