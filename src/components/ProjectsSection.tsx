@@ -1,4 +1,4 @@
-import { ArrowRight, ExternalLink, Github, FileText } from "lucide-react";
+import { ArrowRight, ExternalLink, Github, FileText, Sparkles } from "lucide-react";
 import { lang } from "../helper/lang";
 import { prefetchDetailPage } from "../pages/projectPage";
 
@@ -13,21 +13,28 @@ export type Project = {
   slug: string;
 };
 
+// The one project pulled out of the grid and spotlighted on its own -
+// currently a real published npm package with its own case-study page.
+export const flagshipProject = {
+  title: "eco-faker",
+  description: lang({
+    vi: "Thư viện/CLI TypeScript (đã publish lên npm) sinh dữ liệu giả cho e-commerce nhất quán về quan hệ: 18 bảng đều xuất phát từ cùng một state machine, nên dataset đọc như lịch sử của một cửa hàng thật. Kèm mock API với bộ chuyển MSW/tRPC/GraphQL, MCP server, fuzz ngữ nghĩa, mô phỏng gian lận và event sourcing.",
+    en: "A TypeScript library/CLI, published on npm, that generates relationally-consistent fake e-commerce data: 18 tables all derive from one state machine, so the dataset reads like a real store's history. Ships a mock API with MSW/tRPC/GraphQL adapters, an MCP server, semantic fuzzing, fraud simulation, and event sourcing.",
+  }),
+  image: "/projects/ecoFaker.png",
+  tags: ["TypeScript", "npm", "MCP Server", "State Machine"],
+  stats: [
+    { n: "npm", l: lang({ vi: "Đã publish", en: "Published" }) },
+    { n: "18", l: lang({ vi: "Bảng dữ liệu", en: "Tables" }) },
+    { n: "299", l: lang({ vi: "Bài test", en: "Tests" }) },
+    { n: "Seeded", l: lang({ vi: "Tất định", en: "Deterministic" }) },
+  ],
+  demoUrl: "https://www.npmjs.com/package/eco-faker",
+  githubUrl: "https://github.com/Hung1510/Eco-Faker",
+  slug: "eco-faker",
+};
+
 export const projects: Project[] = [
-  {
-    id: 12,
-    title: "eco-faker",
-    description: lang({
-      vi: "Thư viện/CLI TypeScript (đã publish lên npm) sinh dữ liệu giả cho e-commerce nhất quán về quan hệ: 18 bảng đều xuất phát từ cùng một state machine, nên dataset đọc như lịch sử của một cửa hàng thật. Kèm mock API với bộ chuyển MSW/tRPC/GraphQL, MCP server, fuzz ngữ nghĩa, mô phỏng gian lận và event sourcing.",
-      en: "A TypeScript library/CLI (published on npm) that generates relationally-consistent fake e-commerce data: 18 tables all derive from one state machine, so the dataset reads like a real store's history. Ships a mock API with MSW/tRPC/GraphQL adapters, an MCP server, semantic fuzzing, fraud simulation, and event sourcing.",
-    }),
-    // 📌 IMAGE: drop a screenshot in public/projects/ then set the path here
-    image: "/projects/ecoFaker.png",
-    tags: ["TypeScript", "npm", "MCP Server", "State Machine"],
-    demoUrl: "https://www.npmjs.com/package/eco-faker",
-    githubUrl: "https://github.com/Hung1510/Eco-Faker",
-    slug: "eco-faker",
-  },
   {
     id: 2,
     title: "Quiz & Interview Practice Platform",
@@ -201,6 +208,88 @@ export const ProjectsSection = () => {
             en: "Here are some of my recent projects, where I learn and build through a project-based approach. Each project is an opportunity to experiment, explore, and overcome new challenges.",
           })}
         </p>
+
+        {/* Flagship spotlight - pulled out of the grid, gets a bigger showcase */}
+        <div className="mb-14 rounded-2xl overflow-hidden border border-sky-500/20 bg-card shadow-lg">
+          <div className="grid grid-cols-1 lg:grid-cols-2">
+            <div className="h-56 lg:h-full overflow-hidden">
+              <img
+                src={flagshipProject.image}
+                alt={flagshipProject.title}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div className="p-8 flex flex-col justify-center">
+              <div className="inline-flex items-center gap-2 w-fit rounded-full px-3 py-1 text-xs font-semibold mb-4 border border-sky-500/30 bg-sky-500/10 text-sky-500">
+                <Sparkles size={14} />
+                {lang({ vi: "DỰ ÁN CHỦ LỰC", en: "FLAGSHIP PROJECT" })}
+              </div>
+
+              <h3 className="text-2xl md:text-3xl font-bold mb-3">
+                eco<span className="text-sky-500">-faker</span>
+              </h3>
+
+              <p className="text-muted-foreground text-sm mb-6">
+                {flagshipProject.description}
+              </p>
+
+              <div className="flex gap-6 mb-6 flex-wrap">
+                {flagshipProject.stats.map((s) => (
+                  <div key={s.l}>
+                    <div className="text-xl font-black text-sky-500">
+                      {s.n}
+                    </div>
+                    <div className="text-xs text-muted-foreground">{s.l}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-2 mb-6">
+                {flagshipProject.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap items-center gap-4">
+                <a
+                  href={`/projects/${flagshipProject.slug}`}
+                  onMouseEnter={() => prefetchDetailPage(flagshipProject.slug)}
+                  onFocus={() => prefetchDetailPage(flagshipProject.slug)}
+                  className="cosmic-button w-fit flex items-center gap-2 !bg-sky-500 hover:!shadow-[0_0_10px_rgba(14,165,233,0.5)]"
+                >
+                  {lang({ vi: "Xem chi tiết", en: "Read the case study" })}
+                  <ArrowRight size={16} />
+                </a>
+                <a
+                  href={flagshipProject.demoUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 text-sm text-foreground/80 hover:text-sky-500 transition-colors duration-300"
+                >
+                  <ExternalLink size={16} />
+                  {lang({ vi: "npm", en: "npm" })}
+                </a>
+                <a
+                  href={flagshipProject.githubUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 text-sm text-foreground/80 hover:text-sky-500 transition-colors duration-300"
+                >
+                  <Github size={16} />
+                  {lang({ vi: "Mã nguồn", en: "Source" })}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, key) => (
