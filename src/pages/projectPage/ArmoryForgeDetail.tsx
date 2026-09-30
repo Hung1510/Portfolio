@@ -21,6 +21,7 @@ import {
   Layers,
   Package,
   Rocket,
+  ShieldCheck,
   Shuffle,
   Terminal,
   Wrench,
@@ -42,6 +43,7 @@ const Icons: Record<string, LucideIcon> = {
   Layers,
   Package,
   Rocket,
+  ShieldCheck,
   Shuffle,
   Terminal,
   Wrench,
@@ -52,6 +54,8 @@ const REPO_URL = "https://github.com/Hung1510/Super-Earth-Armory-Forge";
 const WEB_URL = "https://hung1510.github.io/Super-Earth-Armory-Forge/";
 const AYAKA_URL = "https://ayakamods.com/mods/super-earth-armory-forge.4359/";
 const ORIGIN_URL = "https://ayakamods.com/mods/modular-armor-passives.4350/";
+const NEXUS_URL = "https://www.nexusmods.com/helldivers2/mods/16789";
+const ARCH_DOC_URL = `${REPO_URL}/blob/main/docs/ARCHITECTURE.md`;
 
 const IMG = "/projects/armoryForge";
 
@@ -79,12 +83,20 @@ const FEATURES: Feature[] = [
         en: "One tab per armor passive, several independent stacks at once; overlapping effects resolve as Stack all or Strongest only",
       }),
       lang({
+        vi: "Mỗi passive có mô tả một dòng, danh sách giáp mang passive đó, và nhãn đã/chưa xác nhận trong game; mục Stack summary cộng dồn mọi hiệu ứng",
+        en: "Every passive has a one-line description, the armors that carry it, and a confirmed-in-game mark; a Stack summary adds every effect up",
+      }),
+      lang({
+        vi: "Hỗ trợ tay cầm (XInput): D-pad di chuyển khung focus tới nút gần nhất, danh sách tự cuộn; cộng thêm tìm kiếm (Ctrl+F), đổi phím, kéo thả và phóng to panel",
+        en: "Controller support (XInput): the D-pad moves a focus box to the nearest button and lists scroll under it; plus search (Ctrl+F), rebindable keys, drag, and 80-150% sizing",
+      }),
+      lang({
         vi: "Undo 30 bước (Ctrl+Z), copy/paste build thành một dòng mã để chia sẻ",
         en: "30-step undo (Ctrl+Z), and copy/paste a build as a one-line share code",
       }),
     ],
     dotColor: "bg-yellow-500",
-    tags: ["Lua / LuaJIT", "Live memory patching", "Immediate-mode UI"],
+    tags: ["Lua / LuaJIT", "Live memory patching", "Immediate-mode UI", "XInput"],
     tagDark: "bg-yellow-900/40 text-yellow-300 border border-yellow-700/40",
     tagLight: "bg-yellow-100 text-yellow-700 border border-yellow-200",
     img: `${IMG}/panel-gunslinger.png`,
@@ -199,29 +211,35 @@ $ python tools/picker.py build loadout.ini \\
     }),
     features: [
       lang({
-        vi: "Harness Python giả lập bộ nhớ, GUI engine, bàn phím và chuột để chạy mod thật trên LuaJIT",
-        en: "A Python harness fakes memory, the engine GUI, keyboard, and mouse so the real mod runs under LuaJIT",
+        vi: "Harness Python giả lập bộ nhớ, GUI engine, bàn phím, chuột và tay cầm để chạy mod thật trên LuaJIT, thao tác như một người chơi",
+        en: "A Python harness fakes memory, the engine GUI, keyboard, mouse, and an Xbox controller so the real mod runs under LuaJIT, driven like a player",
       }),
       lang({
         vi: "Kiểm tra các hàng patch khớp với picker.py, luồng panel, lưu/khôi phục, zip release và save từ trước khi đổi tên",
         en: "Checks patched rows match picker.py, panel flows, save/restore, the release zip, and pre-rename saves",
       }),
       lang({
-        vi: "Test layout đảm bảo không chữ nào chồng lấn hay bị cắt trong mọi màn hình của panel",
-        en: "A layout test guarantees no overlapping or clipped text in any panel view",
+        vi: "Test layout đo chữ bằng font thật ở 720p tới 4K và 80-150%: không chồng lấn, không bị cắt, luôn đúng từng pixel",
+        en: "Layout checks measure text with a real font from 720p to 4K at 80-150%: no overlaps, no clipping, every edge on a whole pixel",
+      }),
+      lang({
+        vi: "Mỗi bản phát hành có thêm một lượt review độc lập; lỗi tìm được đều thành test mới",
+        en: "Each release also gets an independent code review, and every bug it finds becomes a new test",
       }),
     ],
     dotColor: "bg-emerald-500",
-    tags: ["5 test suites", "GitHub Actions", "LuaJIT harness"],
+    tags: ["460+ checks", "11 suites", "GitHub Actions", "LuaJIT harness"],
     tagDark: "bg-emerald-900/40 text-emerald-300 border border-emerald-700/40",
     tagLight: "bg-emerald-100 text-emerald-700 border border-emerald-200",
-    code: `$ python tools/picker.py export-web --check
-$ python tests/test_ingame.py
-$ python tests/test_panel_features.py
-$ python tests/test_release.py
-$ python tests/test_panel_layout.py
-$ node tests/test_web_parity.js
-# web output == python output, byte for byte`,
+    code: `$ ruff check tools tests
+$ python tests/run_all.py
+test_ingame.py            45  engine vs fake game
+test_panel_layout.py     190  720p..4K, no overlaps
+test_controller.py        24  fake Xbox pad
+test_swap_edition.py      23  can't exceed vanilla
+test_web_parity.js         9  web == python, bytes
+...
+460 checks, 0 failed`,
   },
   {
     num: "06",
@@ -242,8 +260,8 @@ $ node tests/test_web_parity.js
         en: "It dumps every passive with the game's own values; check-dump prints ready-to-paste CATALOG lines",
       }),
       lang({
-        vi: "Tag một version, GitHub Actions dựng zip và gắn vào Release",
-        en: "Push a tag and GitHub Actions builds the zip and attaches it to the release",
+        vi: "Tag một version: GitHub Actions chạy toàn bộ test, dựng cả hai bản, viết release notes từ CHANGELOG; zip chỉ chứa file trong danh sách cho phép",
+        en: "Push a tag: GitHub Actions runs every test, builds both editions, and writes the release notes from the CHANGELOG; zips are allow-listed so no script slips in",
       }),
     ],
     dotColor: "bg-rose-500",
@@ -256,7 +274,36 @@ $ node tests/test_web_parity.js
 $ python tools/picker.py check-dump
 NEW      <passive>  -> paste into CATALOG
 CHANGED  <passive>.<effect>  0.75 -> 0.80
-$ git tag v5.0 && git push origin v5.0`,
+$ git tag v5.5 && git push origin v5.5`,
+  },
+  {
+    num: "07",
+    icon: "ShieldCheck",
+    iconBg: "bg-teal-900/30",
+    title: lang({ vi: "Hai phiên bản, một codebase", en: "Two Editions, One Codebase" }),
+    subtitle: lang({
+      vi: "Bản đầy đủ cho AyakaMods, bản Lite được Nexus Mods duyệt",
+      en: "The full mod for AyakaMods, a Lite edition approved by Nexus Mods",
+    }),
+    features: [
+      lang({
+        vi: "Nexus gỡ bản đầy đủ vì cân bằng multiplayer; tôi làm bản Passive Swap: mỗi giáp một passive, giá trị copy thẳng từ dữ liệu của game",
+        en: "Nexus removed the full mod over multiplayer balance, so I built a Passive Swap edition: one passive per armor, values copied straight from the game's own data",
+      }),
+      lang({
+        vi: "Giới hạn được engine cưỡng chế, không chỉ ẩn trên UI; test tấn công bằng file save sửa tay để chứng minh không vượt được vanilla",
+        en: "The limit is enforced in the engine, not just hidden in the UI; a test attacks it with a hand-edited save to prove it can't exceed vanilla",
+      }),
+      lang({
+        vi: "Làm việc với đội hỗ trợ của Nexus và được duyệt đăng lại dưới dạng mod mới",
+        en: "Worked it through with Nexus support and got approval to publish it as a new mod",
+      }),
+    ],
+    dotColor: "bg-teal-500",
+    tags: ["Build flags", "Engine-enforced limits", "Nexus Mods"],
+    tagDark: "bg-teal-900/40 text-teal-300 border border-teal-700/40",
+    tagLight: "bg-teal-100 text-teal-700 border border-teal-200",
+    img: `${IMG}/swap-panel.png`,
   },
 ];
 
@@ -269,8 +316,10 @@ const TECH = [
   { icon: "GitBranch", name: "GitHub Actions", role: "CI + releases" },
   { icon: "FlaskConical", name: "lupa", role: "Lua from Python tests" },
   { icon: "Gamepad2", name: "Bingus Shared Loader", role: "Mod loader" },
-  { icon: "Rocket", name: "AyakaMods", role: "Distribution" },
-  { icon: "CheckCircle2", name: "5 test suites", role: "Game-free verification" },
+  { icon: "Rocket", name: "AyakaMods + Nexus", role: "Distribution" },
+  { icon: "Keyboard", name: "Win32 + XInput FFI", role: "Mouse, keys, controller" },
+  { icon: "Wrench", name: "ruff", role: "Python lint in CI" },
+  { icon: "CheckCircle2", name: "460+ checks", role: "Game-free verification" },
 ];
 
 const ARCH = [
@@ -288,7 +337,7 @@ const ARCH = [
     dark: "border-yellow-500/30 bg-yellow-900/10",
     light: "border-yellow-200 bg-yellow-50",
     titleColor: "text-yellow-600",
-    desc: "engine.lua finds the perk records in memory and applies or restores stacks; panel.lua draws the F7 terminal and handles mouse and keyboard; main.lua runs the per-frame tick. Everything saves to the same loadout.ini.",
+    desc: "engine.lua scans for the perk table in a per-frame time budget and swaps a record's modifier array with one verified, double-buffered 16-byte store, so every original byte can be restored. panel.lua draws the F7 terminal and handles mouse, keyboard and controller; main.lua runs the per-frame tick.",
   },
   {
     icon: "Globe",
@@ -316,6 +365,10 @@ const MY_ROLE_STEPS = [
       lang({
         vi: "Hệ thống loadout: preset, lưu/đổi tên/xóa, đổi nhanh bằng F9",
         en: "The loadout system: presets, save/rename/delete, and F9 quick-swap",
+      }),
+      lang({
+        vi: "Hỗ trợ tay cầm với điều hướng focus theo không gian, tìm kiếm, đổi phím, và thông tin passive lấy từ dữ liệu",
+        en: "Controller support with spatial focus navigation, search, rebindable keys, and data-driven passive info",
       }),
     ],
   },
@@ -360,12 +413,16 @@ const MY_ROLE_STEPS = [
     title: lang({ vi: "Kiểm thử & phát hành", en: "Testing & Release" }),
     items: [
       lang({
-        vi: "Harness game giả cho LuaJIT, 5 bộ test chạy trong CI",
-        en: "A fake-game harness for LuaJIT and five test suites running in CI",
+        vi: "Harness game giả cho LuaJIT, 11 bộ test (460+ kiểm thử) chạy trong CI, lint bằng ruff",
+        en: "A fake-game harness for LuaJIT, 11 test suites (460+ checks) in CI, and ruff linting",
       }),
       lang({
-        vi: "Release tự động qua tag, công cụ check-dump cho ngày patch, phát hành trên AyakaMods",
-        en: "Tag-driven releases, check-dump tooling for patch day, and publishing on AyakaMods",
+        vi: "Release tự động qua tag, công cụ check-dump cho ngày patch, phát hành trên AyakaMods và Nexus Mods (bản Lite được duyệt)",
+        en: "Tag-driven releases, check-dump tooling for patch day, and publishing on AyakaMods and Nexus Mods (the approved Lite edition)",
+      }),
+      lang({
+        vi: "Hỗ trợ người chơi: đọc log họ gửi, sửa lỗi họ báo (cuộn danh sách, nút xóa rõ hơn, đổi phím) trong vài giờ",
+        en: "Player support: reading the logs they post and shipping fixes for what they report (scrolling lists, a clearer remove button, key rebinding) within hours",
       }),
     ],
   },
@@ -387,7 +444,7 @@ function ArmoryForgeDetail() {
         <title>Super Earth Armory Forge | Gia Hung Pham</title>
         <meta
           name="description"
-          content="Super Earth Armory Forge - a Helldivers 2 armor passive editor mod: stack any of the 31 armor passives and set every value live in game through an F7 Lua terminal, with loadouts, a Python generator, and a byte-identical web builder."
+          content="Super Earth Armory Forge - a Helldivers 2 armor passive editor that patches the game's memory live: an F7 Lua terminal with mouse, keyboard and controller support, loadouts, a byte-identical web builder, 460+ automated checks, and a Nexus-approved Lite edition."
         />
         <link
           rel="canonical"
@@ -422,7 +479,7 @@ function ArmoryForgeDetail() {
               }`}
             >
               <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-              Lua · Python · JavaScript · Published on AyakaMods
+              Lua · Python · JavaScript · AyakaMods + Nexus Mods
             </div>
 
             <h1
@@ -439,16 +496,16 @@ function ArmoryForgeDetail() {
               }`}
             >
               {lang({
-                vi: "Mod chỉnh passive giáp cho Helldivers 2: ghép bất kỳ passive nào trong 31 passive lên bộ giáp đang mặc và chỉnh mọi giá trị trực tiếp trong game qua terminal F7. Một lần cài, lưu và đổi loadout bằng F9, cộng web builder tùy chọn cho ra đúng từng byte như generator Python.",
-                en: "A Helldivers 2 armor passive editor: stack any of the 31 armor passives onto the armor you wear and set every value live in game through an F7 terminal. One install, loadouts saved and swapped with F9, plus an optional web builder that produces byte-for-byte the same build as the Python generator.",
+                vi: "Mod chỉnh passive giáp cho Helldivers 2, sửa dữ liệu của game ngay trong bộ nhớ khi đang chơi: ghép bất kỳ passive nào trong 31 passive lên bộ giáp và chỉnh mọi giá trị qua terminal F7, bằng chuột, bàn phím hoặc tay cầm. Một lần cài, lưu và đổi loadout bằng F9, cộng web builder cho ra đúng từng byte như generator Python. Có thêm bản Lite (một passive mỗi giáp, giá trị gốc của game) được Nexus Mods duyệt.",
+                en: "A Helldivers 2 armor passive editor that patches the game's data in memory while it runs: stack any of the 31 armor passives onto your armor and set every value through an F7 terminal, by mouse, keyboard or controller. One install, loadouts swapped with F9, and a web builder that produces byte-for-byte the same build as the Python generator. A Lite edition (one passive per armor, the game's own values) is approved on Nexus Mods.",
               })}
             </p>
 
             <div className="flex gap-8 mb-8 flex-wrap justify-center">
               {[
                 { n: "31/31", l: lang({ vi: "Passive giáp", en: "Armor passives" }) },
-                { n: "F7", l: lang({ vi: "Sửa trực tiếp trong game", en: "Live in-game editor" }) },
-                { n: "5", l: lang({ vi: "Bộ test trong CI", en: "Test suites in CI" }) },
+                { n: "460+", l: lang({ vi: "Kiểm thử trong CI", en: "Checks in CI" }) },
+                { n: "2", l: lang({ vi: "Phiên bản, một codebase", en: "Editions, one codebase" }) },
                 { n: "1:1", l: lang({ vi: "Web ↔ Python", en: "Web ↔ Python parity" }) },
               ].map((s) => (
                 <div key={s.l} className="text-center">
@@ -481,8 +538,8 @@ function ArmoryForgeDetail() {
                 Passive Picker v3
               </a>
               {lang({
-                vi: " của mostlycloudy. Lõi memory-patching, định dạng archive và dữ liệu passive vẫn đến từ mod đó (credit engine cho SHODAN). Terminal trong game, hệ thống loadout, lớp cấu hình, web builder và bộ test là phần tôi xây.",
-                en: " by mostlycloudy. Its memory-patching core, archive format, and passive data still come from that mod (engine credit to SHODAN). The in-game terminal, loadouts, config layer, web builder, and test suite are my work.",
+                vi: " của mostlycloudy. Lõi memory-patching, định dạng archive và dữ liệu passive vẫn đến từ mod đó (credit engine cho SHODAN). Terminal trong game, hỗ trợ tay cầm, hệ thống loadout, lớp cấu hình, web builder, hai phiên bản và bộ test là phần tôi xây.",
+                en: " by mostlycloudy. Its memory-patching core, archive format, and passive data still come from that mod (engine credit to SHODAN). The in-game terminal, controller support, loadouts, config layer, web builder, both editions, and the test suite are my work.",
               })}
             </div>
 
@@ -509,6 +566,18 @@ function ArmoryForgeDetail() {
                 {GameIcon && <GameIcon />} AyakaMods
               </a>
               <a
+                href={NEXUS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all hover:-translate-y-0.5 border ${
+                  isLight
+                    ? "border-slate-300 text-slate-700 hover:border-sky-400 hover:text-sky-600"
+                    : "border-white/20 text-white hover:border-sky-400 hover:text-sky-400"
+                }`}
+              >
+                {GameIcon && <GameIcon />} Nexus Mods (Lite)
+              </a>
+              <a
                 href={REPO_URL}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -519,6 +588,18 @@ function ArmoryForgeDetail() {
                 }`}
               >
                 {ZapIcon && <ZapIcon />} GitHub
+              </a>
+              <a
+                href={ARCH_DOC_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all hover:-translate-y-0.5 border ${
+                  isLight
+                    ? "border-slate-300 text-slate-700 hover:border-sky-400 hover:text-sky-600"
+                    : "border-white/20 text-white hover:border-sky-400 hover:text-sky-400"
+                }`}
+              >
+                {ZapIcon && <ZapIcon />} {lang({ vi: "Tài liệu kiến trúc", en: "Architecture doc" })}
               </a>
             </div>
           </div>
