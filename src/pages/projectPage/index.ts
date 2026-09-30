@@ -33,6 +33,7 @@ const loaders: Record<string, Loader> = {
   "shorekeeper-startup": () => import("./ShorekeeperStartupDetail"),
   "warno-deck-randomizer": () => import("./WarnoDetail"),
   "eco-faker": () => import("./EcoFakerDetail"),
+  "super-earth-armory-forge": () => import("./ArmoryForgeDetail"),
 };
 
 export const detailPages: Record<string, LazyExoticComponent<ComponentType>> =

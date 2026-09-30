@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { Home } from "./pages/Home";
 import { Toaster } from "@/components/ui/toaster";
-import { projects, flagshipProjects } from "./components/ProjectsSection";
+import { flagshipProjects, projects } from "./components/ProjectsSection";
 import { detailPages } from "./pages/projectPage";
 
 // Detail pages are loaded on demand, so they don't weigh down the landing page.
@@ -34,10 +34,9 @@ function App() {
             {/* Dev-log / blog posts, rendered by slug from BlogPosts.ts */}
             <Route path="/blog/:slug" element={<BlogPost />} />
 
-            {/* Project detail routes are generated from the projects array
-                (flagship spotlights plus the regular grid). A project with a
-                slug listed in detailPages gets its dedicated page; every
-                other slugged project gets the generic ProjectBlog. */}
+            {/* Project detail routes are generated from the flagship + projects arrays.
+                A project with a slug listed in detailPages gets its dedicated
+                page; every other slugged project gets the generic ProjectBlog. */}
             {[...flagshipProjects, ...projects]
               .filter((project) => project.slug)
               .map((project) => {

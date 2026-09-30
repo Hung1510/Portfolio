@@ -3,7 +3,7 @@ import type { ReactNode, KeyboardEvent as ReactKeyboardEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, FileText, Hash, CornerDownLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { projects } from "./ProjectsSection";
+import { flagshipProjects, projects } from "./ProjectsSection";
 import { lang } from "@/helper/lang";
 
 type Props = {
@@ -49,7 +49,7 @@ export const SearchModal = ({ open, onClose }: Props) => {
   const sectionResults = sections.filter(
     (s) => !q || lang(s.label).toLowerCase().includes(q)
   );
-  const projectResults = projects.filter(
+  const projectResults = [...flagshipProjects, ...projects].filter(
     (p) =>
       !q ||
       p.title.toLowerCase().includes(q) ||
