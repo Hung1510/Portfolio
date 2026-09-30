@@ -29,6 +29,9 @@ export type FlagshipProject = {
   demoLabel: string;
   githubUrl: string;
   slug: string;
+  // Extra resource links shown after the demo/GitHub links (e.g. a mirror
+  // on another mod site). Optional - most flagships won't need it.
+  extraLinks?: { label: string; url: string }[];
 };
 
 export const flagshipProjects: FlagshipProject[] = [
@@ -67,13 +70,19 @@ export const flagshipProjects: FlagshipProject[] = [
     stats: [
       { n: "31/31", l: lang({ vi: "Passive giáp", en: "Armor passives" }) },
       { n: "F7", l: lang({ vi: "Sửa trong game", en: "Live in game" }) },
-      { n: "5", l: lang({ vi: "Bộ test CI", en: "Test suites" }) },
-      { n: "1:1", l: lang({ vi: "Web ↔ Python", en: "Web ↔ Python" }) },
+      { n: "2.5K+", l: lang({ vi: "Lượt xem", en: "Views" }) },
+      { n: "500+", l: lang({ vi: "Lượt tải", en: "Downloads" }) },
     ],
     demoUrl: "https://hung1510.github.io/Super-Earth-Armory-Forge/",
     demoLabel: "Web builder",
     githubUrl: "https://github.com/Hung1510/Super-Earth-Armory-Forge",
     slug: "super-earth-armory-forge",
+    extraLinks: [
+      {
+        label: lang({ vi: "AyakaMods", en: "AyakaMods" }),
+        url: "https://ayakamods.com/mods/super-earth-armory-forge.4359/",
+      },
+    ],
   },
 ];
 
@@ -345,6 +354,18 @@ export const ProjectsSection = () => {
                   <Github size={16} />
                   {lang({ vi: "Mã nguồn", en: "Source" })}
                 </a>
+                {flagshipProject.extraLinks?.map((link) => (
+                  <a
+                    key={link.url}
+                    href={link.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2 text-sm text-foreground/80 hover:text-sky-500 transition-colors duration-300"
+                  >
+                    <ExternalLink size={16} />
+                    {link.label}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
