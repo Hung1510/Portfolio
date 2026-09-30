@@ -44,6 +44,7 @@ export const flagshipProjects: FlagshipProject[] = [
       en: "A TypeScript library/CLI, published on npm, that generates relationally-consistent fake e-commerce data: 18 tables all derive from one state machine, so the dataset reads like a real store's history. Ships a mock API with MSW/tRPC/GraphQL adapters, an MCP server, semantic fuzzing, fraud simulation, and event sourcing.",
     }),
     image: "/projects/ecoFaker.png",
+    imageFit: "contain",
     tags: ["TypeScript", "npm", "MCP Server", "State Machine"],
     stats: [
       { n: "npm", l: lang({ vi: "Đã publish", en: "Published" }) },
