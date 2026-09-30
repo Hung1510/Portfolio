@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { ArrowRight, ExternalLink, Github, FileText, Sparkles } from "lucide-react";
 import { lang } from "../helper/lang";
 import { prefetchDetailPage } from "../pages/projectPage";
@@ -15,6 +16,17 @@ export type Project = {
 
 // Projects pulled out of the grid and spotlighted on their own, each with its
 // own case-study page. Rendered in order, image side alternating.
+export type FlagshipStat = {
+  n: string;
+  l: string;
+  /**
+   * Optional live value: read `key` from the flagship's liveStatsUrl JSON and
+   * show max(floor, live), rounded down ("2.6K+", "500+"). `floor` is the last
+   * known number, so the card never shows less than that, even offline.
+   */
+  live?: { key: string; floor: number };
+};
+
 export type FlagshipProject = {
   title: string;
   titlePre: string;
@@ -24,7 +36,11 @@ export type FlagshipProject = {
   /** "contain" shows the whole image (letterboxed) instead of cropping it. */
   imageFit?: "cover" | "contain";
   tags: string[];
-  stats: { n: string; l: string }[];
+  stats: FlagshipStat[];
+  /** JSON fetched in the browser to refresh stats marked `live`. */
+  liveStatsUrl?: string;
+  /** Wide (~1.91:1) image for link previews; defaults to `image`. */
+  ogImage?: string;
   demoUrl: string;
   demoLabel: string;
   githubUrl: string;
@@ -44,6 +60,7 @@ export const flagshipProjects: FlagshipProject[] = [
       en: "A TypeScript library/CLI, published on npm, that generates relationally-consistent fake e-commerce data: 18 tables all derive from one state machine, so the dataset reads like a real store's history. Ships a mock API with MSW/tRPC/GraphQL adapters, an MCP server, semantic fuzzing, fraud simulation, and event sourcing.",
     }),
     image: "/projects/ecoFaker.png",
+    ogImage: "/projects/ecoFaker-og.png",
     imageFit: "contain",
     tags: ["TypeScript", "npm", "MCP Server", "State Machine"],
     stats: [
@@ -71,9 +88,21 @@ export const flagshipProjects: FlagshipProject[] = [
     stats: [
       { n: "31/31", l: lang({ vi: "Passive giáp", en: "Armor passives" }) },
       { n: "F7", l: lang({ vi: "Sửa trong game", en: "Live in game" }) },
-      { n: "2.5K+", l: lang({ vi: "Lượt xem", en: "Views" }) },
-      { n: "500+", l: lang({ vi: "Lượt tải", en: "Downloads" }) },
+      {
+        n: "2.6K+",
+        l: lang({ vi: "Lượt xem", en: "Views" }),
+        live: { key: "views", floor: 2661 },
+      },
+      {
+        n: "500+",
+        l: lang({ vi: "Lượt tải", en: "Downloads" }),
+        live: { key: "downloads", floor: 573 },
+      },
     ],
+    // Written every 6h by the mod repo's AyakaMods workflow (badges branch).
+    liveStatsUrl:
+      "https://raw.githubusercontent.com/Hung1510/Super-Earth-Armory-Forge/badges/ayakamods.json",
+    ogImage: "/projects/armoryForge/feature.png",
     demoUrl: "https://hung1510.github.io/Super-Earth-Armory-Forge/",
     demoLabel: "Web builder",
     githubUrl: "https://github.com/Hung1510/Super-Earth-Armory-Forge",
@@ -86,6 +115,49 @@ export const flagshipProjects: FlagshipProject[] = [
     ],
   },
 ];
+
+/** "2.6K+" / "500+" / "42": rounded down so the claim is always true. */
+const roundDown = (n: number) =>
+  n >= 1000
+    ? `${Math.floor(n / 100) / 10}K+`
+    : n >= 100
+      ? `${Math.floor(n / 100) * 100}+`
+      : `${n}`;
+
+function useLiveStats(url?: string) {
+  const [data, setData] = useState<Record<string, unknown> | null>(null);
+  useEffect(() => {
+    if (!url) return;
+    const ctrl = new AbortController();
+    fetch(url, { signal: ctrl.signal })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((json) => json && setData(json))
+      .catch(() => {}); // offline / blocked: keep the static numbers
+    return () => ctrl.abort();
+  }, [url]);
+  return data;
+}
+
+function FlagshipStats({ project }: { project: FlagshipProject }) {
+  const live = useLiveStats(project.liveStatsUrl);
+  return (
+    <>
+      {project.stats.map((s) => {
+        let n = s.n;
+        if (s.live) {
+          const v = live?.[s.live.key];
+          n = roundDown(Math.max(s.live.floor, typeof v === "number" ? v : 0));
+        }
+        return (
+          <div key={s.l}>
+            <div className="text-xl font-black text-sky-500">{n}</div>
+            <div className="text-xs text-muted-foreground">{s.l}</div>
+          </div>
+        );
+      })}
+    </>
+  );
+}
 
 export const projects: Project[] = [
   {
@@ -306,14 +378,7 @@ export const ProjectsSection = () => {
               </p>
 
               <div className="flex gap-6 mb-6 flex-wrap">
-                {flagshipProject.stats.map((s) => (
-                  <div key={s.l}>
-                    <div className="text-xl font-black text-sky-500">
-                      {s.n}
-                    </div>
-                    <div className="text-xs text-muted-foreground">{s.l}</div>
-                  </div>
-                ))}
+                <FlagshipStats project={flagshipProject} />
               </div>
 
               <div className="flex flex-wrap gap-2 mb-6">
