@@ -89,19 +89,19 @@ export const flagshipProjects: FlagshipProject[] = [
       { n: "31/31", l: lang({ vi: "Passive giáp", en: "Armor passives" }) },
       { n: "F7", l: lang({ vi: "Sửa trong game", en: "Live in game" }) },
       {
-        n: "2.6K+",
+        n: "4.5K+",
         l: lang({ vi: "Lượt xem", en: "Views" }),
-        live: { key: "views", floor: 2661 },
+        live: { key: "views", floor: 4593 },
       },
       {
-        n: "500+",
+        n: "900+",
         l: lang({ vi: "Lượt tải", en: "Downloads" }),
-        live: { key: "downloads", floor: 573 },
+        live: { key: "downloads", floor: 939 },
       },
     ],
-    // Written every 6h by the mod repo's AyakaMods workflow (badges branch).
+    // Written every 3h by the mod repo's local updater (tools/update_badges_local.ps1).
     liveStatsUrl:
-      "https://raw.githubusercontent.com/Hung1510/Super-Earth-Armory-Forge/badges/ayakamods.json",
+      "https://gist.githubusercontent.com/Hung1510/996afff3a389ecbb7e77691ec94cab6a/raw/ayakamods.json",
     ogImage: "/projects/armoryForge/feature.png",
     demoUrl: "https://hung1510.github.io/Super-Earth-Armory-Forge/",
     demoLabel: "Web builder",
