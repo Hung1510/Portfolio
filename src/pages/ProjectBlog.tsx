@@ -2,7 +2,7 @@ import { ArrowLeft, Calendar, ExternalLink, Github } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useToast } from "@/hooks/use-toast";
-import { projects } from "../components/ProjectsSection"; // Import projects
+import { projects, flagshipProjects } from "../components/ProjectsSection"; // Import projects
 import { projectBlogs } from "./ProjectBlogs"; // Import blog content
 
 type ProjectBlogProps = {
@@ -11,7 +11,7 @@ type ProjectBlogProps = {
 
 export const ProjectBlog = ({ slug }: ProjectBlogProps) => {
     const { toast } = useToast();
-    const project = projects.find((p) => p.slug === slug);
+    const project = [...flagshipProjects, ...projects].find((p) => p.slug === slug);
 
     if (!project) {
         return (

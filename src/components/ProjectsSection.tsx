@@ -13,26 +13,55 @@ export type Project = {
   slug: string;
 };
 
-// The one project pulled out of the grid and spotlighted on its own -
-// currently a real published npm package with its own case-study page.
-export const flagshipProject = {
-  title: "eco-faker",
-  description: lang({
-    vi: "Thư viện/CLI TypeScript (đã publish lên npm) sinh dữ liệu giả cho e-commerce nhất quán về quan hệ: 18 bảng đều xuất phát từ cùng một state machine, nên dataset đọc như lịch sử của một cửa hàng thật. Kèm mock API với bộ chuyển MSW/tRPC/GraphQL, MCP server, fuzz ngữ nghĩa, mô phỏng gian lận và event sourcing.",
-    en: "A TypeScript library/CLI, published on npm, that generates relationally-consistent fake e-commerce data: 18 tables all derive from one state machine, so the dataset reads like a real store's history. Ships a mock API with MSW/tRPC/GraphQL adapters, an MCP server, semantic fuzzing, fraud simulation, and event sourcing.",
-  }),
-  image: "/projects/ecoFaker.png",
-  tags: ["TypeScript", "npm", "MCP Server", "State Machine"],
-  stats: [
-    { n: "npm", l: lang({ vi: "Đã publish", en: "Published" }) },
-    { n: "18", l: lang({ vi: "Bảng dữ liệu", en: "Tables" }) },
-    { n: "299", l: lang({ vi: "Bài test", en: "Tests" }) },
-    { n: "Seeded", l: lang({ vi: "Tất định", en: "Deterministic" }) },
-  ],
-  demoUrl: "https://www.npmjs.com/package/eco-faker",
-  githubUrl: "https://github.com/Hung1510/Eco-Faker",
-  slug: "eco-faker",
+export type FlagshipProject = Project & {
+  stats: { n: string; l: string }[];
+  demoLabel: string;
 };
+
+// Projects pulled out of the grid and spotlighted on their own, each with a
+// bigger showcase (image, stats, case-study link). Rendered in this order.
+export const flagshipProjects: FlagshipProject[] = [
+  {
+    id: 100,
+    title: "eco-faker",
+    description: lang({
+      vi: "Thư viện/CLI TypeScript (đã publish lên npm) sinh dữ liệu giả cho e-commerce nhất quán về quan hệ: 18 bảng đều xuất phát từ cùng một state machine, nên dataset đọc như lịch sử của một cửa hàng thật. Kèm mock API với bộ chuyển MSW/tRPC/GraphQL, MCP server, fuzz ngữ nghĩa, mô phỏng gian lận và event sourcing.",
+      en: "A TypeScript library/CLI, published on npm, that generates relationally-consistent fake e-commerce data: 18 tables all derive from one state machine, so the dataset reads like a real store's history. Ships a mock API with MSW/tRPC/GraphQL adapters, an MCP server, semantic fuzzing, fraud simulation, and event sourcing.",
+    }),
+    image: "/projects/ecoFaker.png",
+    tags: ["TypeScript", "npm", "MCP Server", "State Machine"],
+    stats: [
+      { n: "npm", l: lang({ vi: "Đã publish", en: "Published" }) },
+      { n: "18", l: lang({ vi: "Bảng dữ liệu", en: "Tables" }) },
+      { n: "299", l: lang({ vi: "Bài test", en: "Tests" }) },
+      { n: "Seeded", l: lang({ vi: "Tất định", en: "Deterministic" }) },
+    ],
+    demoUrl: "https://www.npmjs.com/package/eco-faker",
+    demoLabel: lang({ vi: "npm", en: "npm" }),
+    githubUrl: "https://github.com/Hung1510/Eco-Faker",
+    slug: "eco-faker",
+  },
+  {
+    id: 101,
+    title: "Super Earth Armory Forge",
+    description: lang({
+      vi: "Mod chỉnh sửa passive giáp cho Helldivers 2: bảng điều khiển F7 ngay trong game để tick, đổi giá trị và chồng bất kỳ passive nào trong 31 passive lên bộ giáp đang mặc, lưu loadout và đổi nhanh bằng F9. Có kèm web builder để lên build trước, và bộ công cụ dòng lệnh Python để build/patch. Bắt đầu từ bản fork của Modular Armor Passives v3 (mostlycloudy), nay là dự án độc lập, publish trên AyakaMods và GitHub, cho phép người khác đóng góp/chỉnh sửa.",
+      en: "A live armor-passive editor mod for Helldivers 2: an in-game F7 panel lets you tick, retype, and stack any of the game's 31 armor passives onto your gear, save loadouts, and hot-swap them with F9. Ships with a browser-based web builder for planning a build ahead of time, plus a Python CLI for scripting and releases. Started as a fork of Modular Armor Passives v3 (mostlycloudy), now its own project, published on AyakaMods and GitHub and open for others to contribute to.",
+    }),
+    image: "/projects/superEarthArmoryForge.png",
+    tags: ["Lua", "Python", "Helldivers 2", "Game Modding"],
+    stats: [
+      { n: "31/31", l: lang({ vi: "Passive giáp", en: "Armor passives" }) },
+      { n: "F7 / F9", l: lang({ vi: "Sửa / Đổi nhanh", en: "Live edit / swap" }) },
+      { n: "Web", l: lang({ vi: "Trình lên build", en: "Build planner" }) },
+      { n: "AyakaMods", l: lang({ vi: "Đã publish", en: "Published" }) },
+    ],
+    demoUrl: "https://ayakamods.com/mods/super-earth-armory-forge.4359/",
+    demoLabel: lang({ vi: "AyakaMods", en: "AyakaMods" }),
+    githubUrl: "https://github.com/Hung1510/Super-Earth-Armory-Forge",
+    slug: "super-earth-armory-forge",
+  },
+];
 
 export const projects: Project[] = [
   {
@@ -209,87 +238,92 @@ export const ProjectsSection = () => {
           })}
         </p>
 
-        {/* Flagship spotlight - pulled out of the grid, gets a bigger showcase */}
-        <div className="mb-14 rounded-2xl overflow-hidden border border-sky-500/20 bg-card shadow-lg">
-          <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="h-56 lg:h-full overflow-hidden">
-              <img
-                src={flagshipProject.image}
-                alt={flagshipProject.title}
-                loading="lazy"
-                decoding="async"
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            <div className="p-8 flex flex-col justify-center">
-              <div className="inline-flex items-center gap-2 w-fit rounded-full px-3 py-1 text-xs font-semibold mb-4 border border-sky-500/30 bg-sky-500/10 text-sky-500">
-                <Sparkles size={14} />
-                {lang({ vi: "DỰ ÁN CHỦ LỰC", en: "FLAGSHIP PROJECT" })}
+        {/* Flagship spotlights - pulled out of the grid, each gets a bigger showcase */}
+        {flagshipProjects.map((flagshipProject) => (
+          <div
+            key={flagshipProject.slug}
+            className="mb-14 rounded-2xl overflow-hidden border border-sky-500/20 bg-card shadow-lg"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-2">
+              <div className="h-56 lg:h-full overflow-hidden">
+                <img
+                  src={flagshipProject.image}
+                  alt={flagshipProject.title}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover"
+                />
               </div>
 
-              <h3 className="text-2xl md:text-3xl font-bold mb-3">
-                eco<span className="text-sky-500">-faker</span>
-              </h3>
+              <div className="p-8 flex flex-col justify-center">
+                <div className="inline-flex items-center gap-2 w-fit rounded-full px-3 py-1 text-xs font-semibold mb-4 border border-sky-500/30 bg-sky-500/10 text-sky-500">
+                  <Sparkles size={14} />
+                  {lang({ vi: "DỰ ÁN CHỦ LỰC", en: "FLAGSHIP PROJECT" })}
+                </div>
 
-              <p className="text-muted-foreground text-sm mb-6">
-                {flagshipProject.description}
-              </p>
+                <h3 className="text-2xl md:text-3xl font-bold mb-3">
+                  {flagshipProject.title}
+                </h3>
 
-              <div className="flex gap-6 mb-6 flex-wrap">
-                {flagshipProject.stats.map((s) => (
-                  <div key={s.l}>
-                    <div className="text-xl font-black text-sky-500">
-                      {s.n}
+                <p className="text-muted-foreground text-sm mb-6">
+                  {flagshipProject.description}
+                </p>
+
+                <div className="flex gap-6 mb-6 flex-wrap">
+                  {flagshipProject.stats.map((s) => (
+                    <div key={s.l}>
+                      <div className="text-xl font-black text-sky-500">
+                        {s.n}
+                      </div>
+                      <div className="text-xs text-muted-foreground">{s.l}</div>
                     </div>
-                    <div className="text-xs text-muted-foreground">{s.l}</div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
 
-              <div className="flex flex-wrap gap-2 mb-6">
-                {flagshipProject.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground"
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {flagshipProject.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap items-center gap-4">
+                  <a
+                    href={`/projects/${flagshipProject.slug}`}
+                    onMouseEnter={() => prefetchDetailPage(flagshipProject.slug)}
+                    onFocus={() => prefetchDetailPage(flagshipProject.slug)}
+                    className="cosmic-button w-fit flex items-center gap-2 !bg-sky-500 hover:!shadow-[0_0_10px_rgba(14,165,233,0.5)]"
                   >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap items-center gap-4">
-                <a
-                  href={`/projects/${flagshipProject.slug}`}
-                  onMouseEnter={() => prefetchDetailPage(flagshipProject.slug)}
-                  onFocus={() => prefetchDetailPage(flagshipProject.slug)}
-                  className="cosmic-button w-fit flex items-center gap-2 !bg-sky-500 hover:!shadow-[0_0_10px_rgba(14,165,233,0.5)]"
-                >
-                  {lang({ vi: "Xem chi tiết", en: "Read the case study" })}
-                  <ArrowRight size={16} />
-                </a>
-                <a
-                  href={flagshipProject.demoUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 text-sm text-foreground/80 hover:text-sky-500 transition-colors duration-300"
-                >
-                  <ExternalLink size={16} />
-                  {lang({ vi: "npm", en: "npm" })}
-                </a>
-                <a
-                  href={flagshipProject.githubUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 text-sm text-foreground/80 hover:text-sky-500 transition-colors duration-300"
-                >
-                  <Github size={16} />
-                  {lang({ vi: "Mã nguồn", en: "Source" })}
-                </a>
+                    {lang({ vi: "Xem chi tiết", en: "Read the case study" })}
+                    <ArrowRight size={16} />
+                  </a>
+                  <a
+                    href={flagshipProject.demoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2 text-sm text-foreground/80 hover:text-sky-500 transition-colors duration-300"
+                  >
+                    <ExternalLink size={16} />
+                    {flagshipProject.demoLabel}
+                  </a>
+                  <a
+                    href={flagshipProject.githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2 text-sm text-foreground/80 hover:text-sky-500 transition-colors duration-300"
+                  >
+                    <Github size={16} />
+                    {lang({ vi: "Mã nguồn", en: "Source" })}
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        ))}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, key) => (

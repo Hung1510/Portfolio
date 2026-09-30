@@ -12,8 +12,85 @@ export type ProjectBlogContent = {
 
 export const projectBlogs: Record<string, ProjectBlogContent> = {
     // Keyed by project `slug` (see ProjectsSection.tsx).
-    // "smart-learning-advisor" intentionally has no entry: it uses its own
-    // dedicated page (SmartAdvisorDetail) via the detailPages registry.
+    // "smart-learning-advisor" and "eco-faker" intentionally have no entry:
+    // they use their own dedicated pages via the detailPages registry.
+
+    "super-earth-armory-forge": {
+        title: "Super Earth Armory Forge: A Live Armor-Passive Editor for Helldivers 2",
+        date: "2025 - present",
+        sections: [
+            {
+                type: "text",
+                content: "Super Earth Armory Forge is a Helldivers 2 mod that lets you stack and edit any of the game's 31 armor passives on your gear, live, from an in-game panel (F7). Save loadouts and hot-swap between them with F9, or plan a build first in a browser-based web builder. It started as a fork of another author's mod and has grown into its own project, published on AyakaMods and GitHub with its own engine, in-game terminal, loadout system, and web tooling."
+            },
+            {
+                type: "image",
+                content: "/projects/superEarthArmoryForge.png",
+                caption: "The F7 armory terminal - tick passives, retype their values, everything applies at once"
+            },
+            {
+                type: "heading",
+                content: "The Idea"
+            },
+            {
+                type: "text",
+                content: "The mod it forked from, Passive Picker v3, worked by hand-editing hex rows in a roughly 1,000-line Lua file, one trigger armor at a time, with a full rebuild and reinstall for every change. I wanted to keep the memory-patching core that made the original work, but replace the editing experience entirely: a real in-game panel, named effects instead of raw hex, several passives stacked at once, and loadouts you can save and swap without touching a text file."
+            },
+            {
+                type: "heading",
+                content: "What It Adds"
+            },
+            {
+                type: "list",
+                content: [
+                    "An in-game F7 terminal: tick passives, click a value and type a real number (\"75\" for 75%), undo up to 30 changes",
+                    "Named, editable effects (\"Med-Kit.stims = 6\") instead of raw hex values",
+                    "Multiple passives stacked at once, with a per-passive choice of \"stack\" or \"strongest only\" when two change the same thing",
+                    "Saved loadouts, quick-swapped in game with F9, plus six built-in presets (Kitchen Sink, Tank, Stealth, Survivor, Demolitionist, Gunner)",
+                    "A browser-based web builder for planning a build before ever loading the game, sharing it as a link or a pasteable code, and exporting the mod .zip directly",
+                    "A Python CLI (tools/picker.py) that is the single source of truth for the passive catalog, the release .zip, and the web builder's data - so the in-game Lua, the web builder, and the CLI can never drift apart"
+                ]
+            },
+            {
+                type: "heading",
+                content: "How It Works"
+            },
+            {
+                type: "text",
+                content: "The engine still finds and patches the game's own passive records in memory, the way the original mod did, crediting mostlycloudy's memory-patching core, archive format, and passive data, with additional engine credit to SHODAN (the F7 panel's drawing, input, and font handling are adapted from SHODAN Stat Editor). Everything built on top of that - the terminal, the loadout format, the config layer, the CLI, and the web builder - is my own work. Because the game only exposes passives as opaque hashes, effect names are inferred from in-game descriptions rather than confirmed outright; a companion TESTING.md tracks per-effect verification status, and the project accepts community-submitted effect-test reports as GitHub issues."
+            },
+            {
+                type: "heading",
+                content: "Keeping It Honest"
+            },
+            {
+                type: "text",
+                content: "A patch to the game can silently change or add passives, so the mod writes a full dump of every passive it sees, with the game's own current values, to a log file on startup. A `check-dump` command in the CLI diffs that dump against the catalog and prints ready-to-paste catalog lines for anything new or changed - so updating for a game patch is a diff-and-paste operation instead of reverse-engineering the layout from scratch. The web builder is required to stay byte-identical to the Python build logic, which a dedicated parity test enforces in CI alongside panel-layout and release-zip tests."
+            },
+            {
+                type: "heading",
+                content: "Technical Stack"
+            },
+            {
+                type: "list",
+                content: [
+                    "Runtime: Lua (memory-patching engine, in-game F7/F9 panel), running under Bingus Shared Loader",
+                    "Tooling: Python 3.8+ (catalog, config parsing, Lua generation, release .zip, patch-diffing CLI)",
+                    "Web builder: vanilla JS + JSZip, hosted on GitHub Pages, built to stay byte-identical to the Python core",
+                    "Testing: a fake-game Lua harness plus Python and Node test suites (in-game flows, panel layout, release zip, web/Python parity)",
+                    "CI/CD: GitHub Actions - test suite on every change, tagged releases build and attach the mod .zip, and a scheduled job refreshes AyakaMods download/view/rating badges"
+                ]
+            },
+            {
+                type: "heading",
+                content: "Highlights"
+            },
+            {
+                type: "text",
+                content: "The part I'm proudest of is treating the Python CLI as the single source of truth that everything else derives from: the in-game Lua, the web builder's data, and the release .zip are all generated or checked against it, so the three surfaces can't quietly drift apart. Layering a diffable patch-day workflow, a byte-parity test between the web and native builds, and a fake-game test harness on top of someone else's memory-patching core turned a personal utility mod into a maintained, testable, community-open project."
+            }
+        ]
+    },
 
     "tethys": {
         title: "Tethys: A Native Wuthering Waves Echo Optimizer in Rust",
