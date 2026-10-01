@@ -230,18 +230,20 @@ $ python tools/picker.py build loadout.ini \\
       }),
     ],
     dotColor: "bg-emerald-500",
-    tags: ["460+ checks", "11 suites", "GitHub Actions", "LuaJIT harness"],
+    tags: ["560+ checks", "15 suites", "GitHub Actions", "LuaJIT harness"],
     tagDark: "bg-emerald-900/40 text-emerald-300 border border-emerald-700/40",
     tagLight: "bg-emerald-100 text-emerald-700 border border-emerald-200",
     code: `$ ruff check tools tests
 $ python tests/run_all.py
 test_ingame.py            45  engine vs fake game
-test_panel_layout.py     190  720p..4K, no overlaps
-test_controller.py        24  fake Xbox pad
+test_panel_layout.py     198  720p..4K, no overlaps
+test_controller.py        29  fake Xbox pad
+test_weight.py            22  armor weight, any look
+test_armor_names.py       16  dump -> name table
 test_swap_edition.py      23  can't exceed vanilla
-test_web_parity.js         9  web == python, bytes
+test_web_parity.js        12  web == python, bytes
 ...
-460 checks, 0 failed`,
+562 checks, 0 failed (15 suites)`,
   },
   {
     num: "06",
@@ -364,7 +366,7 @@ const TECH = [
   { icon: "Keyboard", name: "Win32 + XInput FFI", role: "Mouse, keys, controller" },
   { icon: "Wrench", name: "ruff", role: "Python lint in CI" },
   { icon: "Database", name: "FileDiver (Go)", role: "Armor data dumper" },
-  { icon: "CheckCircle2", name: "460+ checks", role: "Game-free verification" },
+  { icon: "CheckCircle2", name: "560+ checks", role: "Game-free verification" },
 ];
 
 const ARCH = [
@@ -458,8 +460,8 @@ const MY_ROLE_STEPS = [
     title: lang({ vi: "Kiểm thử & phát hành", en: "Testing & Release" }),
     items: [
       lang({
-        vi: "Harness game giả cho LuaJIT, 11 bộ test (460+ kiểm thử) chạy trong CI, lint bằng ruff",
-        en: "A fake-game harness for LuaJIT, 11 test suites (460+ checks) in CI, and ruff linting",
+        vi: "Harness game giả cho LuaJIT, 15 bộ test (560+ kiểm thử) chạy trong CI, lint bằng ruff",
+        en: "A fake-game harness for LuaJIT, 15 test suites (560+ checks) in CI, and ruff linting",
       }),
       lang({
         vi: "Release tự động qua tag, công cụ check-dump cho ngày patch, phát hành trên AyakaMods và Nexus Mods (bản Lite được duyệt)",
@@ -493,7 +495,7 @@ function ArmoryForgeDetail() {
         <title>Super Earth Armory Forge | Gia Hung Pham</title>
         <meta
           name="description"
-          content="Super Earth Armory Forge - a Helldivers 2 armor passive editor that patches the game's memory live: an F7 Lua terminal with mouse, keyboard and controller support, loadouts, a byte-identical web builder, 460+ automated checks, and a Nexus-approved Lite edition."
+          content="Super Earth Armory Forge - a Helldivers 2 armor passive editor that patches the game's memory live: an F7 Lua terminal with mouse, keyboard and controller support, loadouts, a byte-identical web builder, 560+ automated checks, and a Nexus-approved Lite edition."
         />
         <link
           rel="canonical"
@@ -553,7 +555,7 @@ function ArmoryForgeDetail() {
             <div className="flex gap-8 mb-8 flex-wrap justify-center">
               {[
                 { n: "31/31", l: lang({ vi: "Passive giáp", en: "Armor passives" }) },
-                { n: "460+", l: lang({ vi: "Kiểm thử trong CI", en: "Checks in CI" }) },
+                { n: "560+", l: lang({ vi: "Kiểm thử trong CI", en: "Checks in CI" }) },
                 { n: "2", l: lang({ vi: "Phiên bản, một codebase", en: "Editions, one codebase" }) },
                 { n: "1:1", l: lang({ vi: "Web ↔ Python", en: "Web ↔ Python parity" }) },
               ].map((s) => (

@@ -102,7 +102,7 @@ export const blogPosts: Record<string, BlogPostContent> = {
       {
         type: "list",
         content: [
-          "500+ automated checks across a dozen suites, run by one command and in CI on every push",
+          "560+ automated checks across 15 suites, run by one command and in CI on every push",
           "Ruff lint, both editions compiled, every preset built and the web builder's data checked for staleness before the tests even start",
           "Tag-triggered releases that build both editions, write notes from the changelog, and allow-list the zip contents so mod sites never quarantine a file",
           "2,000+ downloads across AyakaMods, Nexus Mods and GitHub, with player bug reports usually fixed and released the same day",
