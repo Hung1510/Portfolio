@@ -14,15 +14,28 @@ type TimelineItem = {
 const items: TimelineItem[] = [
   {
     icon: "work",
-    title: { vi: "Kỹ sư phần mềm", en: "Software Engineer" },
+    title: { vi: "Lập trình viên AI/Vision & Full-Stack", en: "AI/Vision & Full-Stack Developer" },
+    org: {
+      vi: "NONPAREY / Asia Genomics · Toàn thời gian",
+      en: "NONPAREY / Asia Genomics · Full-time",
+    },
+    period: { vi: "Th6 2026 – Hiện tại", en: "Jun 2026 – Present" },
+    description: {
+      vi: "Phát triển cả frontend lẫn backend cho nền tảng wellness dựa trên DNA: trang Next.js/React/TypeScript với design system dùng chung, tính năng FastAPI (wizard sửa hồ sơ và đặt giao nhận, lưu đồng ý vào cơ sở dữ liệu, tích hợp Shopify có retry khi bị giới hạn tốc độ), và dịch vụ AI trên AWS Lambda với Claude on Bedrock.",
+      en: "Full-time across the frontend and backend of a DNA-powered wellness platform: Next.js/React/TypeScript pages on a shared design system, FastAPI features (profile-edit and courier-booking wizard, database-backed consent capture, Shopify integration with rate-limit retries), and AI services on AWS Lambda backed by Claude on Bedrock.",
+    },
+  },
+  {
+    icon: "work",
+    title: { vi: "Lập trình viên phần mềm", en: "Software Developer" },
     org: {
       vi: "Astute Industries · Bán thời gian",
       en: "Astute Industries · Part-time",
     },
-    period: { vi: "Th1 2026 – Hiện tại", en: "Jan 2026 – Present" },
+    period: { vi: "Th1 2026 – Th8 2026", en: "Jan 2026 – Aug 2026" },
     description: {
-      vi: "Vị trí kỹ sư phần mềm bán thời gian, tham gia phát triển cùng đội ngũ kỹ thuật.",
-      en: "Part-time software engineering role, contributing to development alongside the engineering team.",
+      vi: "Công cụ trực quan hóa sơ đồ kho cho ứng dụng WRI: SVG bố cục kho theo hợp đồng dữ liệu dùng trong component React có lớp màu runtime, module heatmap theo khu vực bằng TypeScript với 45 unit test, và demo cầu nối 3D bằng Three.js.",
+      en: "Warehouse floor-plan visualization for the WRI app: a contract-compliant layout SVG consumed by a React component with runtime color overlays, a TypeScript zone-heatmap module validated by 45 unit tests, and a Three.js 3D bridge demo.",
     },
   },
   {
@@ -31,15 +44,15 @@ const items: TimelineItem[] = [
     org: { vi: "GO Fleet", en: "GO Fleet" },
     period: { vi: "Th10 2025 – Th1 2026 · 4 tháng", en: "Oct 2025 – Jan 2026 · 4 months" },
     description: {
-      vi: "Kỳ thực tập kỹ sư phần mềm 4 tháng, tham gia phát triển phần mềm cùng nhóm.",
-      en: "Four-month software engineering internship, working on development as part of the team.",
+      vi: "Phát triển AssetPlacementEditor, plugin editor Slate cho Unreal Engine 5 để mô phỏng robot và bố cục kho: trình duyệt asset, viewport 3D có gizmo, trình chỉnh khớp cho tay robot IRB 120 và điều khiển WASD cho robot MiR250.",
+      en: "Built AssetPlacementEditor, a UE5 Slate editor plugin for simulating robots and warehouse layouts: an asset browser, a 3D viewport with gizmos, a joint editor for an IRB 120 robot arm, and WASD controls for a MiR250 robot.",
     },
   },
   {
     icon: "work",
     title: { vi: "Gia sư Tiếng Anh", en: "Private English Tutor" },
     org: { vi: "Tự do", en: "Freelance" },
-    period: { vi: "2025 – Hiện tại", en: "2025 – Present" },
+    period: { vi: "Th1 2025 – Th7 2026", en: "Jan 2025 – Jul 2026" },
     description: {
       vi: "Dạy kèm 1-1 theo nhu cầu, tập trung vào kỹ năng ngôn ngữ và luyện thi IELTS.",
       en: "Personalized one-on-one tutoring focused on language skills and IELTS exam preparation.",

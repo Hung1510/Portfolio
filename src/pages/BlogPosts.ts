@@ -19,6 +19,103 @@ export type BlogPostContent = {
 };
 
 export const blogPosts: Record<string, BlogPostContent> = {
+  "testing-a-game-mod-without-the-game": {
+    title: "Testing a Game Mod Without the Game: Inside Super Earth Armory Forge",
+    date: "Oct 2026",
+    readTime: "8 min read",
+    excerpt:
+      "Armory Forge rewrites Helldivers 2's armor passives live in memory, and the game itself can't be automated. So the tests bring their own fake game, and the real mod code runs inside it.",
+    tags: ["Lua", "Testing", "Game Modding"],
+    sections: [
+      {
+        type: "text",
+        content:
+          "Super Earth Armory Forge is a mod that changes which armor passives Helldivers 2 applies, live, in the running game. You press F7, tick passives, type values, and the change lands immediately. No game file is touched: the mod finds the game's armor-passive table in memory and points the records it changes at row arrays it builds itself. That makes it fun to use and hard to test, because the game is a closed, online binary you cannot drive from a test runner. This post is about how I made it testable anyway.",
+      },
+      {
+        type: "text",
+        content:
+          "A note on credit: Armory Forge started as an edit of mostlycloudy's Modular Armor Passives / Passive Picker v3, and the memory-patching approach and the passive data come from that mod. What I built on top is the in-game terminal, the loadout system, the web builder, the two editions and the test suite described here.",
+      },
+      { type: "image", content: "/projects/armoryForge/panel-preview.png", caption: "The F7 terminal, rendered by the same harness the tests use." },
+      { type: "heading", content: "What the mod actually does to the game" },
+      {
+        type: "text",
+        content:
+          "The game keeps its settings tables in memory as LDLD blocks: a 24-byte header with a magic value, a version and a type hash. Armor passives are one of those types. Each passive record holds two arrays, passive modifiers and stat modifiers, as a pointer plus a count. A passive's gameplay effect is just its list of rows, so instead of overwriting values in place, the engine builds a new row array and switches the record's pointer to it. Turning a passive off restores the original pointer and count byte for byte.",
+      },
+      {
+        type: "list",
+        content: [
+          "Atomic switch: pointer and count go out as one 16-byte store, so the game never sees a new pointer with an old count",
+          "Double buffering: new rows are written into the buffer the game is not reading, then the descriptor is switched",
+          "Verify or roll back: every write is read back, and a mismatch restores the previous descriptor",
+          "Never fight another mod: a record that already points somewhere else belongs to someone else and is left alone",
+          "Fail closed: each frame's work runs under pcall, and repeated errors close the panel instead of crashing the game",
+        ],
+      },
+      { type: "heading", content: "The problem: you can't put the game in CI" },
+      {
+        type: "text",
+        content:
+          "Every one of those rules is the kind of thing that breaks quietly. A scan that misses a block, a restore that is one byte off, a panel button that overlaps another at 1440p: none of these crash anything, they just make the mod subtly wrong for whoever hits them. And manual testing in the game is slow, needs a mission, and can't cover four resolutions and six panel sizes on every change.",
+      },
+      { type: "heading", content: "The fix: a fake game around the real mod" },
+      {
+        type: "text",
+        content:
+          "The test harness runs the generated Lua - the same engine, panel and main loop that ship - unmodified under LuaJIT through lupa, from Python. Only the edges are fakes: memory reads and writes, allocation, the list of memory regions, the engine's GUI calls, the mouse, keyboard and controller, the clock and the file system.",
+      },
+      {
+        type: "list",
+        content: [
+          "Fake memory laid out like the game's: one LDLD block per passive with the real record layout and inline rows, so scanning, snapshotting and the byte-for-byte restore are tested against the real shape",
+          "Driven like a player: tests press keys, move the mouse, click buttons by name, type values and drag the panel, then check both the UI and the bytes in fake memory",
+          "A fake Xbox controller: the whole panel is navigated with the D-pad, bumpers and face buttons, including scrolling long lists",
+          "Hostile inputs: a hand-edited save file tries to stack and boost passives in the restricted edition, and the test checks the engine refuses",
+        ],
+      },
+      {
+        type: "text",
+        content:
+          "Click targets come out of drawing: every button records its region while the immediate-mode panel draws it, and hit-testing walks those regions. The tests use the same regions to click things by name, so a test that clicks 'Undo' is exercising the exact code path a player's mouse does.",
+      },
+      { type: "heading", content: "Layout checks with real fonts" },
+      {
+        type: "text",
+        content:
+          "The panel draws text through the game's GUI, which I can't call in a test. So the harness measures text with a real TrueType font through Pillow and checks every view at 720p, 1080p, 1440p and 4K, at 80 to 150 percent panel size, for overlapping text, labels running out of their buttons and drawing on fractional pixels. The same harness renders the screenshots in the README, so the docs can't drift from what the code draws.",
+      },
+      { type: "heading", content: "One loadout format, three implementations" },
+      {
+        type: "text",
+        content:
+          "A build is a plain loadout.ini, and it is read in three places: a Python CLI that builds releases, a JavaScript web builder that makes the mod zip in the browser, and the Lua engine for in-game saves. Three parsers are three chances to disagree, so a parity test feeds the same files to Python and JavaScript and requires the generated Lua and the zipped archive to be the same bytes. The other rule: build tools only store the loadout. Turning it into modifier rows happens once, in the engine, so what the panel shows is what the game gets.",
+      },
+      { type: "heading", content: "Two editions, one codebase" },
+      {
+        type: "text",
+        content:
+          "Nexus Mods removed the full edition for affecting multiplayer balance, so there is now a Passive Swap edition for Nexus: one passive per armor, values copied from the game's own record, no stacking, no editing. The limit lives in the engine, not the UI. With the swap flag set, the resolver ignores everything except the one swapped passive, so no save file, preset or share code can get around it, and a test tries exactly that with a hostile save.",
+      },
+      { type: "heading", content: "Where it ended up" },
+      {
+        type: "list",
+        content: [
+          "500+ automated checks across a dozen suites, run by one command and in CI on every push",
+          "Ruff lint, both editions compiled, every preset built and the web builder's data checked for staleness before the tests even start",
+          "Tag-triggered releases that build both editions, write notes from the changelog, and allow-list the zip contents so mod sites never quarantine a file",
+          "2,000+ downloads across AyakaMods, Nexus Mods and GitHub, with player bug reports usually fixed and released the same day",
+        ],
+      },
+      { type: "heading", content: "The takeaway" },
+      {
+        type: "text",
+        content:
+          "When the real environment can't be automated, don't test less - move the boundary. Keep the code you ship exactly as it ships, and fake only the narrow edges where it meets the outside world. Then the tests can be as hostile and as thorough as you like, and the bugs they catch are real bugs.",
+      },
+    ],
+  },
   "modeling-a-fake-stores-history-the-state-machine-behind-eco-faker": {
     title: "Modeling a Fake Store's History: The State Machine Behind eco-faker",
     date: "May 2026",

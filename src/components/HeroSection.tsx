@@ -2,10 +2,11 @@ import { ArrowDown, Download } from "lucide-react";
 import { lang } from "../helper/lang";
 
 const heroStats = [
-  { value: "5,000+", label: { vi: "Người dùng bot", en: "Bot Users" } },
+  { value: "2,000+", label: { vi: "Lượt tải mod", en: "Mod Downloads" } },
+  { value: "1,000+", label: { vi: "Người dùng bot", en: "Bot Users" } },
   { value: "90%+", label: { vi: "Độ chính xác ML", en: "ML Accuracy" } },
   { value: "5", label: { vi: "Dự án", en: "Projects" } },
-  { value: "2", label: { vi: "Vị trí SE", en: "SE Roles" } },
+  { value: "3", label: { vi: "Vị trí SE", en: "SE Roles" } },
 ];
 
 export const HeroSection = () => {
@@ -23,8 +24,8 @@ export const HeroSection = () => {
             </span>
             <span className="font-mono text-xs md:text-sm uppercase tracking-wider text-muted-foreground">
               {lang({
-                en: "Software Engineer @ Astute Industries · SE Graduate @ EIU",
-                vi: "Kỹ sư phần mềm @ Astute Industries · Tốt nghiệp KTPM @ EIU",
+                en: "AI/Vision & Full-Stack Developer @ NONPAREY · SE Graduate @ EIU",
+                vi: "Lập trình viên AI/Vision & Full-Stack @ NONPAREY · Tốt nghiệp KTPM @ EIU",
               })}
             </span>
           </div>
@@ -66,7 +67,7 @@ export const HeroSection = () => {
           </div>
 
           <div className="pt-10 opacity-0 animate-fade-in-delay-4">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-2xl mx-auto">
+            <div className="flex flex-wrap justify-center gap-x-10 gap-y-6 max-w-3xl mx-auto">
               {heroStats.map((s) => (
                 <div key={s.label.en} className="text-center">
                   <div className="text-2xl md:text-3xl font-bold text-primary">
