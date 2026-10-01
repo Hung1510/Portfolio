@@ -12,6 +12,7 @@ import { SkyBackground } from "@/components/SkyBackground";
 import {
   CheckCircle2,
   Cpu,
+  Database,
   FileCode,
   FlaskConical,
   Gamepad2,
@@ -34,6 +35,7 @@ import { lang } from "@/helper/lang";
 const Icons: Record<string, LucideIcon> = {
   CheckCircle2,
   Cpu,
+  Database,
   FileCode,
   FlaskConical,
   Gamepad2,
@@ -305,6 +307,48 @@ $ git tag v5.5 && git push origin v5.5`,
     tagLight: "bg-teal-100 text-teal-700 border border-teal-200",
     img: `${IMG}/swap-panel.png`,
   },
+  {
+    num: "08",
+    icon: "Database",
+    iconBg: "bg-indigo-900/30",
+    title: lang({ vi: "Tên giáp lấy từ chính dữ liệu game", en: "Armor Names from the Game's Own Files" }),
+    subtitle: lang({
+      vi: "Bộ nhớ chỉ có ID; tên nằm trong file ngôn ngữ của game",
+      en: "Memory only holds ids; the names live in the game's language files",
+    }),
+    features: [
+      lang({
+        vi: "CI build lại công cụ armor-set-json-dumper của FileDiver (mã nguồn mở, BSD) từ một commit cố định, kèm file chạy một chạm và checksum SHA-256, để người chơi đọc bản cài game (chỉ đọc) ra armors.json",
+        en: "CI reproducibly builds FileDiver's open-source armor-set-json-dumper (BSD) from a pinned commit, with a double-click runner and a SHA-256 checksum, so a player can read their install (read-only) into armors.json",
+      }),
+      lang({
+        vi: "armor_names.py chuyển kết quả thành bảng ID → tên gọn, sắp xếp, dễ diff: 411 bộ (135 giáp, 158 mũ, 118 áo choàng); viết lại hàm băm MurmurHash64A của engine bằng Python để giải ID dạng chuỗi",
+        en: "armor_names.py turns it into a small, sorted, diff-friendly id-to-name table: 411 kits (135 armor, 158 helmets, 118 capes), reimplementing the engine's MurmurHash64A in Python to resolve ids printed as strings",
+      }),
+      lang({
+        vi: "Đối chiếu với các bản ghi giáp mà mod đọc được trong bộ nhớ: mọi ID đều khớp, và giáp của Warbond mới hiện ra thành danh sách tên còn thiếu",
+        en: "Checked against the armor records the mod found in memory: every id matches, and a new Warbond's armors show up as a list of missing names",
+      }),
+      lang({
+        vi: "Bảng tên phục vụ tab Màu sắc và tùy chọn trọng lượng theo từng giáp, trong game lẫn web builder",
+        en: "The table drives the per-armor weight option and the colours tab, in game and in the web builder",
+      }),
+    ],
+    dotColor: "bg-indigo-500",
+    tags: ["Go (FileDiver)", "MurmurHash64A", "Reproducible CI build", "Data validation"],
+    tagDark: "bg-indigo-900/40 text-indigo-300 border border-indigo-700/40",
+    tagLight: "bg-indigo-100 text-indigo-700 border border-indigo-200",
+    code: `> Run-me.bat          # reads the game install, read-only
+armors.json written
+
+$ python tools/armor_names.py armors.json \\
+    --check kits-dump.txt
+411 kits: 135 armor, 158 helmet, 118 cape
+every id matches the game's kit records
+
+# after a game update:
+missing names: <new Warbond armors>`,
+  },
 ];
 
 const TECH = [
@@ -319,6 +363,7 @@ const TECH = [
   { icon: "Rocket", name: "AyakaMods + Nexus", role: "Distribution" },
   { icon: "Keyboard", name: "Win32 + XInput FFI", role: "Mouse, keys, controller" },
   { icon: "Wrench", name: "ruff", role: "Python lint in CI" },
+  { icon: "Database", name: "FileDiver (Go)", role: "Armor data dumper" },
   { icon: "CheckCircle2", name: "460+ checks", role: "Game-free verification" },
 ];
 
@@ -419,6 +464,10 @@ const MY_ROLE_STEPS = [
       lang({
         vi: "Release tự động qua tag, công cụ check-dump cho ngày patch, phát hành trên AyakaMods và Nexus Mods (bản Lite được duyệt)",
         en: "Tag-driven releases, check-dump tooling for patch day, and publishing on AyakaMods and Nexus Mods (the approved Lite edition)",
+      }),
+      lang({
+        vi: "Công cụ dữ liệu: build lại trình dump giáp của FileDiver trong CI và chuyển kết quả thành bảng tên 411 bộ giáp, đối chiếu với dữ liệu game trong bộ nhớ",
+        en: "Data tooling: a reproducible CI build of FileDiver's armor dumper, and a converter that turns its output into a 411-kit name table checked against the game's in-memory records",
       }),
       lang({
         vi: "Hỗ trợ người chơi: đọc log họ gửi, sửa lỗi họ báo (cuộn danh sách, nút xóa rõ hơn, đổi phím) trong vài giờ",
