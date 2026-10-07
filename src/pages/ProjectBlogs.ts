@@ -47,6 +47,7 @@ export const projectBlogs: Record<string, ProjectBlogContent> = {
                     "Named, editable effects (\"Med-Kit.stims = 6\") instead of raw hex values",
                     "Multiple passives stacked at once, with a per-passive choice of \"stack\" or \"strongest only\" when two change the same thing",
                     "Saved loadouts, quick-swapped in game with F9, plus six built-in presets (Kitchen Sink, Tank, Stealth, Survivor, Demolitionist, Gunner)",
+                    "The panel and the web builder in three languages (English, Simplified Chinese, Japanese), with passive and armor names read from the game's own text, while loadout.ini and share codes stay English so loadouts move between languages unchanged",
                     "A browser-based web builder for planning a build before ever loading the game, sharing it as a link or a pasteable code, and exporting the mod .zip directly",
                     "A Python CLI (tools/picker.py) that is the single source of truth for the passive catalog, the release .zip, and the web builder's data - so the in-game Lua, the web builder, and the CLI can never drift apart"
                 ]

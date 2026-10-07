@@ -79,15 +79,15 @@ export const flagshipProjects: FlagshipProject[] = [
     titlePre: "Super Earth Armory ",
     titleAccent: "Forge",
     description: lang({
-      vi: "Mod chỉnh passive giáp cho Helldivers 2, sửa dữ liệu của game ngay trong bộ nhớ khi đang chơi: ghép bất kỳ passive nào trong 31 passive lên bộ giáp và chỉnh mọi giá trị qua terminal F7 viết bằng Lua (LuaJIT), hỗ trợ chuột, bàn phím và tay cầm, kèm loadout đổi nhanh bằng F9, tìm kiếm và undo. Generator Python và web builder cho ra build giống hệt từng byte; 560+ kiểm thử chạy mod thật trên một game giả lập trong CI. Hai phiên bản từ một codebase: bản đầy đủ trên AyakaMods và bản Lite được Nexus Mods duyệt. Phát triển từ Passive Picker v3 của mostlycloudy.",
-      en: "A Helldivers 2 armor passive editor that patches the game's data in memory while it runs: stack any of the 31 armor passives onto your armor and set every value through an F7 terminal written in Lua (LuaJIT), with mouse, keyboard and controller support, F9 loadout swapping, search, and undo. A Python generator and a web builder produce byte-identical builds; 560+ checks run the real mod against a fake game in CI. Two editions from one codebase: the full mod on AyakaMods and a Nexus-approved Lite edition. Grew out of mostlycloudy's Passive Picker v3.",
+      vi: "Mod chỉnh passive giáp cho Helldivers 2, sửa dữ liệu của game ngay trong bộ nhớ khi đang chơi: ghép bất kỳ passive nào trong 31 passive lên bộ giáp và chỉnh mọi giá trị qua terminal F7 viết bằng Lua (LuaJIT), hỗ trợ chuột, bàn phím và tay cầm, giao diện 3 ngôn ngữ (English, 简体中文, 日本語) với tên passive và giáp lấy từ chính văn bản của game, kèm loadout đổi nhanh bằng F9, tìm kiếm và undo. Generator Python và web builder cho ra build giống hệt từng byte; 1000+ kiểm thử chạy mod thật trên một game giả lập trong CI. Hai phiên bản từ một codebase: bản đầy đủ trên AyakaMods và bản Lite được Nexus Mods duyệt. Phát triển từ Passive Picker v3 của mostlycloudy.",
+      en: "A Helldivers 2 armor passive editor that patches the game's data in memory while it runs: stack any of the 31 armor passives onto your armor and set every value through an F7 terminal written in Lua (LuaJIT), with mouse, keyboard and controller support, a panel and web builder in three languages (English, 简体中文, 日本語) using the game's own passive and armor names, F9 loadout swapping, search, and undo. A Python generator and a web builder produce byte-identical builds; 1000+ checks run the real mod against a fake game in CI. Two editions from one codebase: the full mod on AyakaMods and a Nexus-approved Lite edition. Grew out of mostlycloudy's Passive Picker v3.",
     }),
     image: "/projects/armoryForge/panel-preview.png",
     imageFit: "contain",
     tags: ["Lua / LuaJIT", "Python", "JavaScript", "Game Modding"],
     stats: [
       { n: "31/31", l: lang({ vi: "Passive giáp", en: "Armor passives" }) },
-      { n: "560+", l: lang({ vi: "Kiểm thử tự động", en: "Automated checks" }) },
+      { n: "1000+", l: lang({ vi: "Kiểm thử tự động", en: "Automated checks" }) },
       {
         n: "4.5K+",
         l: lang({ vi: "Lượt xem", en: "Views" }),
