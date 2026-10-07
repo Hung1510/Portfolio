@@ -1,5 +1,6 @@
 import { ArrowDown, Download } from "lucide-react";
 import { lang } from "../helper/lang";
+import { Mascot } from "./Mascot";
 
 const heroStats = [
   { value: "2,000+", label: { vi: "Lượt tải mod", en: "Mod Downloads" } },
@@ -17,6 +18,15 @@ export const HeroSection = () => {
     >
       <div className="container max-w-4xl mx-auto text-center z-10">
         <div className="space-y-6">
+          <div className="flex justify-center opacity-0 animate-fade-in">
+            <Mascot
+              directions="/mascots/cat-directions.webp"
+              reactions="/mascots/cat-reactions.webp"
+              size={120}
+              label="cat"
+            />
+          </div>
+
           <div className="flex items-center justify-center gap-2 opacity-0 animate-fade-in">
             <span className="relative flex h-2 w-2 shrink-0">
               <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 animate-ping"></span>
