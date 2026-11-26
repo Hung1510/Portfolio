@@ -34,8 +34,8 @@ export const HeroSection = () => {
             </span>
             <span className="font-mono text-xs md:text-sm uppercase tracking-wider text-muted-foreground">
               {lang({
-                en: "AI/Vision & Full-Stack Developer @ NONPAREY · SE Graduate @ EIU",
-                vi: "Lập trình viên AI/Vision & Full-Stack @ NONPAREY · Tốt nghiệp KTPM @ EIU",
+                en: "AI/Vision Developer @ NONPAREY · Computer Vision · Full-Stack",
+                vi: "Lập trình viên AI/Vision @ NONPAREY · Thị giác máy tính · Full-Stack",
               })}
             </span>
           </div>

@@ -14,15 +14,15 @@ type TimelineItem = {
 const items: TimelineItem[] = [
   {
     icon: "work",
-    title: { vi: "Lập trình viên AI/Vision & Full-Stack", en: "AI/Vision & Full-Stack Developer" },
+    title: { vi: "Lập trình viên AI/Vision", en: "AI/Vision Developer" },
     org: {
-      vi: "NONPAREY / Asia Genomics · Toàn thời gian",
-      en: "NONPAREY / Asia Genomics · Full-time",
+      vi: "NONPAREY · Toàn thời gian · Singapore (Remote)",
+      en: "NONPAREY · Full-time · Singapore (Remote)",
     },
     period: { vi: "Th6 2026 – Hiện tại", en: "Jun 2026 – Present" },
     description: {
-      vi: "Phát triển cả frontend lẫn backend cho nền tảng wellness dựa trên DNA: trang Next.js/React/TypeScript với design system dùng chung, tính năng FastAPI (wizard sửa hồ sơ và đặt giao nhận, lưu đồng ý vào cơ sở dữ liệu, tích hợp Shopify có retry khi bị giới hạn tốc độ), và dịch vụ AI trên AWS Lambda với Claude on Bedrock.",
-      en: "Full-time across the frontend and backend of a DNA-powered wellness platform: Next.js/React/TypeScript pages on a shared design system, FastAPI features (profile-edit and courier-booking wizard, database-backed consent capture, Shopify integration with rate-limit retries), and AI services on AWS Lambda backed by Claude on Bedrock.",
+      vi: "NONPAREY tạo ra skincare và thực phẩm bổ sung riêng cho từng người, dựa trên dữ liệu sức khỏe và sở thích, với công thức được xem lại khi nhu cầu thay đổi. Tôi phụ trách mảng thị giác máy tính: pipeline phân tích da (chụp → phân tích → so sánh) biến ảnh da thành kết quả phân tích đáng tin cậy cho các gợi ý cá nhân hóa, các màn hình chụp ảnh và kết quả, và ánh xạ pipeline lên kiến trúc AWS của công ty. Ngoài ra làm full-stack: trang Next.js/React/TypeScript, tính năng FastAPI (lưu đồng ý, tích hợp Shopify có retry khi bị giới hạn tốc độ) và dịch vụ AI trên AWS Lambda với Claude on Bedrock.",
+      en: "NONPAREY builds skincare and supplements tailored to each person, based on their health data and preferences, with formulas reviewed as their needs change. I work on the computer-vision side: the skin-analysis pipeline (capture → analyse → compare) that turns skin photos into reliable analysis for personalised recommendations, the photo-capture and results screens, and mapping the pipeline onto the company's AWS architecture. Full-stack work alongside it: Next.js/React/TypeScript pages, FastAPI features (consent capture, Shopify integration with rate-limit retries) and AI services on AWS Lambda backed by Claude on Bedrock.",
     },
   },
   {
